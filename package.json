@@ -1,7 +1,7 @@
 {
   "name": "wyze.github.io",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "repository": "wyze/wyze.github.io",
   "author": {
     "name": "Neil Kistner",
