@@ -1,0 +1,12 @@
+[ignore]
+<PROJECT_ROOT>/coverage/.*
+<PROJECT_ROOT>/dist/.*
+<PROJECT_ROOT>/node_modules/fbjs/.*
+<PROJECT_ROOT>/node_modules/nock/node_modules/.*
+
+[include]
+
+[libs]
+
+[options]
+module.name_mapper='^.*\/autotrack.*$' -> 'empty/object'

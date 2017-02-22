@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Employer /> renders 1`] = `
+"<Section styles=\\"css-1sx3me2\\">
+  <div data-css-13yqx3a>
+    <H2>
+      <Strong text=\\"ABC Company\\"></Strong>
+    </H2>
+    <H3 styles=\\"css-mqz3x4\\">May 2016 — December 2016</H3>
+  </div>
+</Section>"
+`;
+
+exports[`<Employer /> renders without end 1`] = `
+"<Section styles=\\"css-1sx3me2\\">
+  <div data-css-13yqx3a>
+    <H2>
+      <Strong text=\\"ABC Company\\"></Strong>
+    </H2>
+    <H3 styles=\\"css-mqz3x4\\">May 2016 — Present</H3>
+  </div>
+</Section>"
+`;

@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Strong /> renders 1`] = `"<strong data-css-ucwin8>Hello</strong>"`;

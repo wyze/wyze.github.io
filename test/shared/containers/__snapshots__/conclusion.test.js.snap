@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Conclusion /> renders 1`] = `
+"<Box>
+  <Section styles=\\"css-63oe3q\\">
+    <H2 styles=\\"css-1wdk04o\\">
+      Download 
+      <Link to=\\"/resume.pdf\\">résumé</Link>
+      . View 
+      <Link to=\\"//github.com/wyze/wyze.github.io\\">source</Link>
+      .
+    </H2>
+  </Section>
+</Box>"
+`;

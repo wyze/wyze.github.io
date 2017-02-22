@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ServerError /> renders 1`] = `
+"<div data-css-jgfdvp>
+  <GhostElectric></GhostElectric>
+  <H2>Internal Server Error</H2>
+  <div data-css-1mvycfw></div>
+  <H3>Sorry! Something went wrong on my side.</H3>
+  <Button text=\\"Try Again\\"></Button>
+</div>"
+`;

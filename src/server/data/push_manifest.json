@@ -1,0 +1,30 @@
+{
+  "/img/me.png": {
+    "type": "image",
+    "weight": 1
+  },
+  "/fonts/lato-v11-latin-300.woff": {
+    "type": "font",
+    "weight": 1
+  },
+  "/fonts/lato-v11-latin-300.woff2": {
+    "type": "font",
+    "weight": 1
+  },
+  "/fonts/lato-v11-latin-regular.woff": {
+    "type": "font",
+    "weight": 1
+  },
+  "/fonts/lato-v11-latin-regular.woff2": {
+    "type": "font",
+    "weight": 1
+  },
+  "/js/js.js": {
+    "type": "script",
+    "weight": 1
+  },
+  "/sw.js": {
+    "type": "script",
+    "weight": 1
+  }
+}

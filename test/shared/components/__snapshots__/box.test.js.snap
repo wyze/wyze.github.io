@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Box /> renders 1`] = `
+"<div data-css-17z6r2c>
+  <span></span>
+  <div data-css-1w4mng5></div>
+</div>"
+`;
+
+exports[`<Box /> renders children 1`] = `
+"<div data-css-17z6r2c>
+  <span></span>
+  <div data-css-1w4mng5>
+    <div>I am a child.</div>
+  </div>
+</div>"
+`;
+
+exports[`<Box /> renders flex wrap 1`] = `
+"<div data-css-17z6r2c>
+  <span></span>
+  <div data-css-1xbb4u></div>
+</div>"
+`;
+
+exports[`<Box /> renders passed styles 1`] = `
+"<div data-css-17z6r2c>
+  <span></span>
+  <div data-css-1gmhrpi></div>
+</div>"
+`;
+
+exports[`<Box /> renders title 1`] = `
+"<div data-css-17z6r2c>
+  <Title title=\\"I am a title.\\"></Title>
+  <div data-css-1w4mng5></div>
+</div>"
+`;

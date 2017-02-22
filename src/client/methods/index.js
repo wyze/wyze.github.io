@@ -1,0 +1,5 @@
+export { default as createTracker } from './createTracker'
+export { default as sendInitialPageview } from './sendInitialPageview'
+export { default as sendTimingMetrics } from './sendTimingMetrics'
+export { default as setupPlugins } from './setupPlugins'
+export { default as trackCustomDimensions } from './trackCustomDimensions'

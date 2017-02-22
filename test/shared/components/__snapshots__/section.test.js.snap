@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Section /> renders 1`] = `
+"<div data-css-1yv2jt6>
+  <div>I am a child.</div>
+</div>"
+`;
+
+exports[`<Section /> renders non-centered 1`] = `"<div></div>"`;
+
+exports[`<Section /> renders passed styles 1`] = `"<div data-css-1op8xq1></div>"`;
