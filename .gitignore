@@ -1,0 +1,22 @@
+# Dependencies
+node_modules
+
+# Logs
+*.log
+npm-debug.log*
+yarn-error.log
+
+# OSX
+.*DS_Store
+
+# Cache
+*.gz
+static/sw.js
+
+# Coverage
+coverage
+
+# Build
+dist
+static/js/*
+!static/js/.gitkeep

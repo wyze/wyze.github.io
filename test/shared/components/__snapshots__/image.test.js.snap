@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Image /> renders 1`] = `"<img data-css-1o7jcq0 alt=\\"me\\" height=\\"100\\" src=\\"img/me.jpg\\" width=\\"100\\" />"`;
+
+exports[`<Image /> renders as circle 1`] = `"<img data-css-p1gv9z alt=\\"me\\" height=\\"100\\" src=\\"img/me.jpg\\" width=\\"100\\" />"`;
+
+exports[`<Image /> renders custom alt attr 1`] = `"<img data-css-1o7jcq0 alt=\\"Neil Kistner\\" height=\\"100\\" src=\\"img/me.jpg\\" width=\\"100\\" />"`;
+
+exports[`<Image /> renders custom width 1`] = `"<img data-css-1o7jcq0 alt=\\"me\\" height=\\"100\\" src=\\"img/me.jpg\\" width=\\"200\\" />"`;

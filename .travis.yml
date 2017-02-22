@@ -1,0 +1,27 @@
+sudo: required
+
+services:
+  - docker
+
+language: node_js
+
+node_js:
+  - 7
+  - 6
+
+cache:
+  directories:
+    - $HOME/.cache
+
+script: ./.travis/scripts/test.sh
+
+after_success: bash <(curl -s https://codecov.io/bash)
+
+deploy:
+  provider: script
+  script: ./.travis/scripts/deploy.sh
+  skip_cleanup: true
+  on:
+    branch: master
+    node: 6
+    tags: true

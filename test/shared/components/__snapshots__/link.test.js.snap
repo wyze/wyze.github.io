@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Link /> renders 1`] = `"<a data-css-1grb0d9 href=\\"//github.com/wyze\\" rel=\\"noopener noreferrer\\" target=\\"_blank\\">GitHub</a>"`;
+
+exports[`<Link /> renders style 1`] = `"<a data-css-v7fx40 href=\\"//github.com/wyze\\" rel=\\"noopener noreferrer\\" target=\\"_blank\\">GitHub</a>"`;

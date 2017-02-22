@@ -1,0 +1,12 @@
+{
+  "cacheDirectory": "../../../.cache/jest",
+  "clearMocks": true,
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "src/**/*.{js,jsx}"
+  ],
+  "coveragePathIgnorePatterns": [
+    "/test/"
+  ],
+  "testEnvironment": "node"
+}

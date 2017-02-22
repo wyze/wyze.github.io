@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GitHubList /> renders 1`] = `
+"<Box wrap childStyle=\\"css-1bslz89\\">
+  <GitHubItem name=\\"wyze.github.io\\" stars=\\"1\\" url=\\"https://github.com/wyze/wyze.github.io\\"></GitHubItem>
+  <GitHubItem name=\\"wyze.github.io\\" stars=\\"1\\" url=\\"https://github.com/wyze/wyze.github.io\\" description=\\"My personal website.\\"></GitHubItem>
+</Box>"
+`;
+
+exports[`<GitHubList /> renders title 1`] = `
+"<Box wrap childStyle=\\"css-1bslz89\\" title=\\"Open Source Projects\\">
+  <GitHubItem name=\\"wyze.github.io\\" stars=\\"1\\" url=\\"https://github.com/wyze/wyze.github.io\\"></GitHubItem>
+  <GitHubItem name=\\"wyze.github.io\\" stars=\\"1\\" url=\\"https://github.com/wyze/wyze.github.io\\" description=\\"My personal website.\\"></GitHubItem>
+</Box>"
+`;

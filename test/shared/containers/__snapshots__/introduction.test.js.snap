@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Introduction /> renders 1`] = `
+"<Box wrap>
+  <Section styles=\\"css-1h4yi9h\\">
+    <Image circle alt=\\"Neil Kistner\\" ext=\\"png\\" name=\\"me\\"></Image>
+  </Section>
+  <Section styles=\\"css-3n7ad4\\">
+    <H1 styles=\\"css-1wdk04o\\">
+      Hello, I'm 
+      <Strong text=\\"Neil Kistner\\"></Strong>
+      , a software engineer in 
+      <Strong text=\\"St. Louis\\"></Strong>
+      .
+    </H1>
+  </Section>
+</Box>"
+`;

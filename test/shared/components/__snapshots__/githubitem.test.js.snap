@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GitHubItem /> renders 1`] = `
+"<Section styles=\\"css-1vym4ij\\">
+  <Section styles=\\"css-l4sax0\\">
+    <div>
+      <Link styles=\\"css-13ym3ej\\" to=\\"https://github.com/wyze/wyze.github.io\\">wyze.github.io</Link>
+    </div>
+    <div data-css-1d401pq>
+      <Star></Star>
+      1
+    </div>
+  </Section>
+  <Section styles=\\"css-jnc48n\\">My personal website.</Section>
+</Section>"
+`;
+
+exports[`<GitHubItem /> renders no description 1`] = `
+"<Section styles=\\"css-1vym4ij\\">
+  <Section styles=\\"css-l4sax0\\">
+    <div>
+      <Link styles=\\"css-13ym3ej\\" to=\\"https://github.com/wyze/wyze.github.io\\">wyze.github.io</Link>
+    </div>
+    <div data-css-1d401pq>
+      <Star></Star>
+      1
+    </div>
+  </Section>
+  <Section styles=\\"css-jnc48n\\"></Section>
+</Section>"
+`;

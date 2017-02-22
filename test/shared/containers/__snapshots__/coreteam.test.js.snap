@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CoreTeam /> renders 1`] = `
+"<Box wrap title=\\"Core Team Member\\">
+  <Section styles=\\"css-1y4bstf\\">
+    <Link styles=\\"css-5j31gr\\">
+      <[object Object]></[object Object]>
+    </Link>
+  </Section>
+</Box>"
+`;
