@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GitHubList /> githubToJs works 1`] = `
+Object {
+  "description": "A repo.",
+  "name": "a/repo",
+  "stars": 1,
+  "url": "//site.local/a/repo",
+}
+`;

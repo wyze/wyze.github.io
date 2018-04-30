@@ -1,33 +1,11 @@
-FROM jkilbride/node-npm-alpine:6
+FROM node:8 as base
 
-ENV SRC_DIR /tmp/src
+ARG GITHUB_TOKEN
 
-COPY . $SRC_DIR
+WORKDIR /usr/src
 
-WORKDIR $SRC_DIR
+COPY . .
+RUN yarn && yarn build
 
-RUN apk add --update tini bash && \
-  addgroup -S node && \
-  adduser -h /app -S -g -D node node && \
-  npm i -g yarn && \
-  yarn && \
-  NODE_ENV=production yarn run build && \
-  mv dist/* /app && \
-  mv node_modules /app/ && \
-  chown -R node:node /app && \
-  apk del bash && \
-  rm -rf /tmp/* /var/cache/apk/*
-
-WORKDIR /app
-
-USER node
-
-RUN npm prune --production && \
-  npm cache clean && \
-  yarn cache clean
-
-EXPOSE 3000
-
-CMD ["yarn", "start"]
-
-ENTRYPOINT ["/sbin/tini", "--"]
+FROM scratch
+COPY --from=base /usr/src/public /public

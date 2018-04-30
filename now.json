@@ -1,0 +1,21 @@
+{
+  "alias": "neilkistner.com",
+  "build": {
+    "env": {
+      "GITHUB_TOKEN": "@github-token"
+    }
+  },
+  "public": true,
+  "static": {
+    "headers": [
+      {
+        "source": "**/*.@(ico|js|json|png|woff2)",
+        "headers": [{
+          "key": "Cache-Control",
+          "value": "max-age=31536000"
+        }]
+      }
+    ]
+  },
+  "type": "static"
+}

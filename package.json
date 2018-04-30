@@ -10,118 +10,72 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": ".travis/scripts/build.sh",
-    "clean": "rimraf coverage dist static/js/*.{js,map}",
-    "dev": "node app",
-    "lint": "eslint --ext js,jsx src test && flow check",
-    "postbuild": "npm run precache",
-    "prebuild": "npm run clean",
-    "precache": "sw-precache --config='config/sw-precache.js'",
-    "predev": "npm run build",
-    "pretest": "npm run lint",
-    "start": "NODE_ENV=production node server",
-    "test": "snyk test && jest"
+    "build": "run-s build:*",
+    "build:autotrack": "autotrack -o static/js/autotrack.custom.js -p eventTracker,impressionTracker,outboundLinkTracker",
+    "build:bsb": "bsb -make-world",
+    "build:config": "rio -o gatsby-config.js src/config/gatsby.re",
+    "build:gatsby": "gatsby build",
+    "clean": "bsb -clean-world && rimraf .cache .merlin lib public *.js static/js",
+    "dev": "run-p dev:*",
+    "dev:bsb": "yarn build:bsb -w",
+    "dev:gatsby": "gatsby develop",
+    "jest": "jest",
+    "postbuild:autotrack": "rimraf static/js/*.map",
+    "prejest": "rio -o babel.config.js src/config/babel.re",
+    "predev:gatsby": "yarn build:config",
+    "pretest": "yarn build:bsb",
+    "test": "yarn jest"
   },
   "dependencies": {
-    "@wyze/koa-file-server": "^3.2.2",
-    "gh-got": "^5.0.0",
-    "glamor": "^2.20.23",
-    "koa": "^2.0.0-alpha.7",
-    "koa-compress": "^2.0.0",
-    "koa-favicon": "^2.0.0",
-    "memoizee": "^0.4.3",
-    "preact": "^7.2.0",
-    "preact-render-to-string": "^3.6.0"
+    "@wyze/bs-react-helmet": "^0.3.1",
+    "bs-css": "^7.2.0",
+    "gatsby": "^2.0.22",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-helmet": "^5.2.0",
+    "reason-react": "^0.5.3"
   },
   "devDependencies": {
-    "autotrack": "^2.0.1",
-    "babel-cli": "^6.23.0",
-    "babel-core": "^6.23.1",
-    "babel-eslint": "^7.1.0",
-    "babel-jest": "^19.0.0",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-plugin-transform-async-to-generator": "^6.22.0",
-    "babel-plugin-transform-inline-imports-commonjs": "^1.2.0",
-    "babel-plugin-transform-node-env-inline": "^0.0.2",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-plugin-transform-react-jsx": "^6.23.0",
-    "babel-preset-env": "^1.1.8",
-    "babel-preset-flow": "^6.23.0",
-    "babel-register": "^6.23.0",
-    "cheerio": "^0.22.0",
-    "empty": "^0.10.1",
-    "eslint": "^3.15.0",
-    "eslint-config-airbnb": "^14.1.0",
-    "eslint-config-wyze": "^4.1.0",
-    "eslint-import-resolver-node": "^0.3.0",
-    "eslint-plugin-flowtype": "^2.30.0",
-    "eslint-plugin-import": "^2.0.1",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.10.0",
-    "eslint-plugin-wyze": "^2.0.0",
-    "fast-async": "^6.2.1",
-    "flow-bin": "^0.39.0",
-    "jest": "^19.0.0",
-    "nock": "^9.0.6",
-    "piping": "^1.0.0-rc.4",
-    "rimraf": "^2.6.0",
-    "rollup": "^0.41.4",
-    "rollup-plugin-babel": "^2.7.1",
-    "rollup-plugin-node-resolve": "^2.0.0",
-    "rollup-plugin-uglify": "^1.0.1",
-    "snyk": "^1.25.1",
-    "supertest": "^3.0.0",
-    "sw-precache": "^5.0.0"
+    "@ahrefs/bs-dotenv": "^1.0.3",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-transform-modules-commonjs": "^7.1.0",
+    "@glennsl/bs-jest": "^0.4.4",
+    "@wyze/gatsby-plugin": "^1.0.0",
+    "@wyze/gatsby-plugin-google-analytics": "^1.0.1",
+    "@wyze/gatsby-source-graphql": "^1.2.0",
+    "@wyze/rio": "^1.1.0",
+    "autotrack": "^2.4.1",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "bs-jest-dom": "^1.0.0",
+    "bs-platform": "^4.0.5",
+    "bs-react-testing-library": "^0.4.0",
+    "dotenv": "^6.1.0",
+    "gatsby-plugin-favicon": "^3.1.2",
+    "gatsby-plugin-glamor": "^2.0.5",
+    "gatsby-plugin-manifest": "^2.0.5",
+    "gatsby-plugin-offline": "^2.0.6",
+    "gatsby-plugin-react-helmet": "^3.0.0",
+    "gatsby-source-filesystem": "^2.0.3",
+    "identity-obj-proxy": "^3.0.0",
+    "npm-run-all": "^4.1.3",
+    "rimraf": "^2.6.2"
   },
-  "babel": {
-    "plugins": [
-      "fast-async",
-      "transform-inline-imports-commonjs",
-      "transform-node-env-inline",
-      "transform-object-rest-spread",
-      [
-        "transform-react-jsx",
-        {
-          "pragma": "preact.h"
-        }
-      ]
-    ],
-    "presets": [
-      [
-        "env",
-        {
-          "targets": {
-            "node": "current"
-          }
-        }
-      ],
-      "flow"
-    ]
-  },
-  "eslintConfig": {
-    "extends": [
-      "wyze/preact",
-      "wyze/flow"
-    ],
-    "settings": {
-      "import/resolver": {
-        "node": {
-          "extensions": [
-            ".js",
-            ".jsx"
-          ]
-        }
-      }
-    }
+  "resolutions": {
+    "reason-react": "^0.5.3"
   },
   "jest": {
-    "clearMocks": true,
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
+      "**/{components,pages}/**/*.bs.js"
     ],
-    "coveragePathIgnorePatterns": [
-      "/test/"
+    "moduleNameMapper": {
+      "^.+\\.png$": "identity-obj-proxy"
+    },
+    "roots": [
+      "src"
     ],
-    "testEnvironment": "node"
+    "transformIgnorePatterns": [
+      "/node_modules/(?!(@ahrefs/bs-dotenv|@glennsl/bs-jest|@wyze/bs-react-helmet|bs-|reason-react))"
+    ]
   }
 }

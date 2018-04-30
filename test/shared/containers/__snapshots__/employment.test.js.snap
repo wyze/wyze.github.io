@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<Employment /> renders 1`] = `
-"<Box wrap title=\\"Employment\\">
-  <Employer name=\\"Startup\\" start=\\"Today\\"></Employer>
-</Box>"
-`;
