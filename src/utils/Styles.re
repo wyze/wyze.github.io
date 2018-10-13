@@ -6,16 +6,9 @@ let makeRGBA = Css.rgba(17, 17, 17);
 
 let breakpoint = size =>
   switch size {
-    /* | Large => "only screen and (min-width: 78.75em)" */
     | Large => "only screen and (min-width: 1280px)"
-    /* | Small => "only screen and (min-width: 53.125em)" */
-    /* | Small => "only screen and (min-width: 48em)" */
     | Small => "only screen and (min-width: 768px)"
   };
-
-/* let flexGrow = Css.([
-  flexGrow(1),
-]); */
 
 let level = Css.([
   alignItems(center),
@@ -82,7 +75,6 @@ Css.([
 
   /* Global */
 
-  /* ( ":root", [ fontSize @@ em(0.75) ] ), */
   ( "html,body", [ height @@ pct(100.) ] ),
   ( "html", [
       unsafe("MozOsxFontSmoothing", "grayscale"),
@@ -101,16 +93,4 @@ Css.([
       fontFamily("Lato, san-serif"),
     ]
   ),
-
-  /* Media Queries */
-
-  /* ( "@media only screen and (min-width: 25em) and (max-width: 93.75em)", [
-      unsafe("", "root { font-size: calc(.75em + (18 - 12) * ((100vw - 25em) / (1500 - 400))) }"),
-    ]
-  ),
-
-  ( "@media only screen and (min-width: 93.75em)", [
-      unsafe("", "root { font-size: 1.125em }"),
-    ]
-  ), */
 ] |> List.iter((( selector, styles )) => { global(selector, styles) }));

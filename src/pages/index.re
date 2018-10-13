@@ -1,3 +1,5 @@
+[%%raw "import { graphql } from 'gatsby';"];
+
 let component = ReasonReact.statelessComponent("index");
 
 let jobs = Employment.([
@@ -34,13 +36,6 @@ let className = Css.(Styles.(
   ])
 ));
 
-/* let preload = ( ~as_, ~href, ~type_ ) =>
-  ReasonReact.cloneElement(
-    <link rel="preload" href />,
-    ~props={"as": as_, "type": type_},
-    [||]
-  ); */
-
 let make = ( ~contributions, ~projects, ~resume, _ ) => {
   ...component,
   render: (_) =>
@@ -49,8 +44,6 @@ let make = ( ~contributions, ~projects, ~resume, _ ) => {
         <html lang="en" />
         <meta name="description" content="Neil Kistner is a self taught software engineer focused mainly on web applications. He loves open source and contributes to projects like Yarn and Tessel." />
         <link rel="preconnect" href="//www.google-analytics.com" />
-        /* {preload(~as_="font", ~href="/fonts/lato-v11-latin-300.woff2", ~type_="font/woff2")}
-        {preload(~as_="font", ~href="/fonts/lato-v11-latin-regular.woff2", ~type_="font/woff2")} */
       </ReactHelmet>
       <Introduction />
       <Social profiles />
