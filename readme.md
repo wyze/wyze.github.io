@@ -52,5 +52,5 @@ MIT © [Neil Kistner](https://neilkistner.com)
 [travis-image]: https://img.shields.io/travis/wyze/wyze.github.io.svg?style=flat-square&branch=gatsby
 [travis-url]: https://travis-ci.org/wyze/wyze.github.io
 
-[coveralls-image]: https://img.shields.io/coveralls/github/wyze/wyze.github.io/gatsby.svg?style=flat-square
-[coveralls-url]: https://coveralls.io/github/wyze/wyze.github.io?branch=gatsby
+[coveralls-image]: https://img.shields.io/coveralls/github/wyze/wyze.github.io.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/github/wyze/wyze.github.io
