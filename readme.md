@@ -3,10 +3,7 @@
 [![Website][website-image]][website-url]
 [![Lighthouse][lighthouse-image]][lighthouse-url]
 [![Build Status][travis-image]][travis-url]
-[![Codecov][codecov-image]][codecov-url]
-[![Known Vulnerabilities][snyk-image]][snyk-url]
-[![dependencies][deps-image]][deps-url]
-[![devDependencies][depsdev-image]][depsdev-url]
+[![Coveralls][coveralls-image]][coveralls-url]
 
 > The personal website of Neil Kistner.
 
@@ -21,25 +18,25 @@ $ yarn # or `npm install`
 ## Development
 
 ```sh
-$ npm run dev
+$ yarn dev
 ```
 
 ## Test
 
 ```sh
-$ npm test
+$ yarn test
 ```
 
 ## Build
 
 ```sh
-$ npm run build
+$ yarn build
 ```
 
 ## Production
 
 ```sh
-$ npm start
+$ docker build --build-arg GITHUB_TOKEN="<token>" .
 ```
 
 ## License
@@ -49,20 +46,11 @@ MIT © [Neil Kistner](https://neilkistner.com)
 [website-image]: https://img.shields.io/website-up-down-green-red/https/neilkistner.com.svg?style=flat-square
 [website-url]: https://neilkistner.com
 
-[lighthouse-image]: https://img.shields.io/badge/lighthouse-100-brightgreen.svg?style=flat-square
-[lighthouse-url]: https://googlechrome.github.io/lighthouse/viewer/?gist=d0268f48e683323055f64515b55da79f
+[lighthouse-image]: https://img.shields.io/badge/lighthouse-98-brightgreen.svg?style=flat-square
+[lighthouse-url]: https://googlechrome.github.io/lighthouse/viewer/?gist=0e786826596fa80011036e427ff0059b
 
-[travis-image]: https://img.shields.io/travis/wyze/wyze.github.io.svg?style=flat-square
+[travis-image]: https://img.shields.io/travis/wyze/wyze.github.io.svg?style=flat-square&branch=gatsby
 [travis-url]: https://travis-ci.org/wyze/wyze.github.io
 
-[codecov-image]: https://img.shields.io/codecov/c/github/wyze/wyze.github.io.svg?style=flat-square
-[codecov-url]: https://codecov.io/gh/wyze/wyze.github.io
-
-[snyk-image]: https://snyk.io/test/github/wyze/wyze.github.io/badge.svg?style=flat-square
-[snyk-url]: https://snyk.io/test/github/wyze/wyze.github.io
-
-[deps-image]: https://img.shields.io/david/wyze/wyze.github.io.svg?style=flat-square
-[deps-url]: https://david-dm.org/wyze/wyze.github.io
-
-[depsdev-image]: https://img.shields.io/david/dev/wyze/wyze.github.io.svg?style=flat-square
-[depsdev-url]: https://david-dm.org/wyze/wyze.github.io?type=dev
+[coveralls-image]: https://img.shields.io/coveralls/github/wyze/wyze.github.io.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/github/wyze/wyze.github.io

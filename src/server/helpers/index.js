@@ -1,6 +1,0 @@
-export { default as formatResult } from './formatResult'
-export { default as github } from './github'
-export { default as memoizer } from './memoizer'
-export { default as renderer } from './renderer'
-export { default as state } from './state'
-export { default as template } from './template'

@@ -1,0 +1,42 @@
+query {
+  viewer {
+    projects: repositories(
+      orderBy: { direction: DESC, field: STARGAZERS }
+      affiliations: [OWNER]
+      first: 100
+      isFork: false
+    ) {
+      nodes {
+        ...RepoFields
+      }
+    }
+    contributions1: pullRequests(first: 100, states: [MERGED]) {
+      nodes {
+        repository {
+          ...RepoFields
+        }
+      }
+    }
+    contributions2: pullRequests(last: 100, states: [MERGED]) {
+      nodes {
+        repository {
+          ...RepoFields
+        }
+      }
+    }
+  }
+}
+
+fragment RepoFields on Repository {
+  isPrivate
+  name
+  nameWithOwner
+  owner {
+    login
+  }
+  shortDescriptionHTML(limit: 100)
+  stargazers {
+    totalCount
+  }
+  url
+}

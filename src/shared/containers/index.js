@@ -1,6 +1,0 @@
-export { default as Conclusion } from './Conclusion'
-export { default as CoreTeam } from './CoreTeam'
-export { default as Employment } from './Employment'
-export { default as GitHubList } from './GitHubList'
-export { default as Introduction } from './Introduction'
-export { default as Social } from './Social'
