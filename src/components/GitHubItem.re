@@ -15,15 +15,25 @@ let styles = Css.(Styles.({
       boxShadow(~y=px(2), ~blur=px(3), shadowColor),
       boxShadow(~spread=px(1), shadowColor)
     ]),
+    display(`flex),
+    flexDirection(`column),
     height @@ pct(100.),
     minHeight @@ em(9.),
-    padding @@ em(1.0),
+    overflow(`hidden),
   ],
   "desc": [
     fontSize @@ em(0.95),
     overflow(`hidden),
-    paddingTop @@ em(0.25),
+    padding3(~top=em(0.25), ~h=em(0.5), ~bottom=`zero),
     textOverflow(`ellipsis),
+  ],
+  "languages": [
+    display(`flex),
+    flexBasis @@ px(12),
+    flexGrow(0),
+    flexShrink(0),
+    marginTop(`auto),
+    width @@ pct(100.),
   ],
   "link": [
     fontSize @@ em(1.05),
@@ -35,16 +45,17 @@ let styles = Css.(Styles.({
     ...level
   ]),
   "title": [
-    alignItems(baseline),
+    padding3(~top=em(0.5), ~h=em(0.5), ~bottom=`zero),
+    paddingBottom(`zero),
     ...level,
   ]
 }));
 
-let make = ( ~description, ~name, ~stars, ~url, _ ) => {
+let make = ( ~description, ~languages, ~name, ~stars, ~url, _ ) => {
   ...component,
   render: (_) =>
     <Section center=false styles=styles##box>
-      <Section center=false styles=Styles.level>
+      <Section center=false styles=styles##title>
         <Link className=styles##link href=url>
           <Text text=name />
         </Link>
@@ -56,5 +67,6 @@ let make = ( ~description, ~name, ~stars, ~url, _ ) => {
       <Section center=false styles=styles##desc>
         <HTML html=description />
       </Section>
+      <Languages languages />
     </Section>
 };

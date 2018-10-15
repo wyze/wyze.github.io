@@ -1,6 +1,7 @@
 [@bs.deriving jsConverter]
 type github = {
   description: string,
+  languages: array(Languages.language),
   name: string,
   stars: int,
   url: string,
@@ -23,8 +24,8 @@ let make = ( ~content, ~title, _ ) => {
     <Box wrap=true childStyle title>
       (
         content
-          |> List.map(({ description, name, stars, url }) =>
-              <GitHubItem key=name description name stars url />
+          |> List.map(({ description, languages, name, stars, url }) =>
+              <GitHubItem key=name description languages name stars url />
             )
           |> Array.of_list
       )

@@ -7,6 +7,7 @@ describe("<GitHubItem />", () =>
     let component =
       <GitHubItem
         description="A repo."
+        languages=[||]
         name="a/repo"
         stars=1
         url="//site.local/a/repo"

@@ -65,6 +65,16 @@ let make = ( ~contributions, ~projects, ~resume, _ ) => {
         projects {
           nodes {
             isPrivate
+            languages {
+              edges {
+                node {
+                  color
+                  name
+                }
+                size
+              }
+              totalSize
+            }
             name
             nameWithOwner
             shortDescriptionHTML
@@ -83,6 +93,16 @@ let make = ( ~contributions, ~projects, ~resume, _ ) => {
               owner {
                 login
               }
+              languages {
+                edges {
+                  node {
+                    color
+                    name
+                  }
+                  size
+                }
+                totalSize
+              }
               shortDescriptionHTML
               stargazers {
                 totalCount
@@ -100,6 +120,16 @@ let make = ( ~contributions, ~projects, ~resume, _ ) => {
               owner {
                 login
               }
+              languages {
+                edges {
+                  node {
+                    color
+                    name
+                  }
+                  size
+                }
+                totalSize
+              }
               shortDescriptionHTML
               stargazers {
                 totalCount
@@ -113,6 +143,21 @@ let make = ( ~contributions, ~projects, ~resume, _ ) => {
   }
 `|}];
 
+let mapLang = (totalSize, language) => {
+  "colorHex": switch(Js.Nullable.toOption(language##node##color)) {
+  | Some(color) => color
+  | None => "#ccc"
+  } |> Js.String.sliceToEnd(~from=1),
+  "name": language##node##name,
+  "percent": (float_of_int(language##size) /. float_of_int(totalSize)) *. 100.,
+} |> Languages.languageFromJs;
+
+let transformLang = languages => Js.Array.(Languages.(
+  map(mapLang(languages##totalSize), languages##edges)
+  |> sortInPlaceWith(( left, right ) => int_of_float(right.percent -. left.percent))
+  |> filter(({ percent }) => Js.Float.toFixedWithPrecision(~digits=1, percent) != "0.0")
+));
+
 let default = ReasonReact.wrapReasonForJs(
   ~component,
   jsProps => {
@@ -123,6 +168,7 @@ let default = ReasonReact.wrapReasonForJs(
       |> Js.Array.map(p =>
         {
           "description": p##shortDescriptionHTML,
+          "languages": transformLang(p##languages),
           "name": p##name,
           "stars": p##stargazers##totalCount,
           "url": p##url
@@ -137,6 +183,7 @@ let default = ReasonReact.wrapReasonForJs(
         let r = c##repository;
         let o = {
           "description": r##shortDescriptionHTML,
+          "languages": transformLang(r##languages),
           "name": r##nameWithOwner,
           "stars": r##stargazers##totalCount,
           "url": r##url
