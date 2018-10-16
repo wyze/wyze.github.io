@@ -123,7 +123,7 @@ let default = ReasonReact.wrapReasonForJs(
       |> Js.Array.map(p =>
         {
           "description": p##shortDescriptionHTML,
-          "name": p##name,
+          "name": Js.String.startsWith("wyze/", p##nameWithOwner) ? p##name : p##nameWithOwner,
           "stars": p##stargazers##totalCount,
           "url": p##url
         } |> GitHubList.githubFromJs
