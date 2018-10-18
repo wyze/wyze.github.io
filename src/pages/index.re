@@ -31,7 +31,7 @@ let className = Css.(Styles.(
   style([
     padding2(~v=em(2.), ~h=em(1.)),
     media(breakpoint(Large), [
-      padding2(~v=em(4.), ~h=em(6.))
+      padding2(~v=em(4.), ~h=em(2.))
     ]),
   ])
 ));

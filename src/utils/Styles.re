@@ -6,7 +6,7 @@ let makeRGBA = Css.rgba(17, 17, 17);
 
 let breakpoint = size =>
   switch size {
-    | Large => "only screen and (min-width: 1280px)"
+    | Large => "only screen and (min-width: 1200px)"
     | Small => "only screen and (min-width: 768px)"
   };
 

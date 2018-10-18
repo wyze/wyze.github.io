@@ -24,6 +24,7 @@ let styles = Css.(Styles.({
     overflow(`hidden),
     paddingTop @@ em(0.25),
     textOverflow(`ellipsis),
+    unsafe("wordBreak", "break-word"),
   ],
   "link": [
     fontSize @@ em(1.05),
