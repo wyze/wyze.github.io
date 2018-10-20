@@ -167,6 +167,10 @@ describe("index page", () => {
                   },
                   {
                     "isPrivate": false,
+                    "languages": {
+                      "edges": [||],
+                      "totalSize": 0
+                    },
                     "shortDescriptionHTML": "Description repo6.",
                     "name": "repo6",
                     "nameWithOwner": "wyze/repo6",
