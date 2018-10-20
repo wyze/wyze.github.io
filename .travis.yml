@@ -25,6 +25,6 @@ jobs:
       install: yarn add --dev coveralls
       script: yarn test --maxWorkers=2 --coverage --coverageReporters=text-lcov | coveralls
     - stage: lighthouse
-      install: yarn add --dev lighthouse-ci wait-for-now
-      script: wait-for-now && lighthouse-ci --pwa=90 --no-comment $NOW_DEPLOYED_URL
+      install: yarn add --dev ebidel/lighthouse-ci wait-for-now
+      script: wait-for-now && lighthouse-ci --pwa=90 --no-comment "$NOW_DEPLOYED_URL"
 
