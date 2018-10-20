@@ -26,6 +26,7 @@ let styles = Css.(Styles.({
     overflow(`hidden),
     padding3(~top=em(0.25), ~h=em(0.5), ~bottom=`zero),
     textOverflow(`ellipsis),
+    unsafe("wordBreak", "break-word"),
   ],
   "languages": [
     display(`flex),

@@ -12,9 +12,12 @@ let component = ReasonReact.statelessComponent("GitHubList");
 let childStyle = Css.(Styles.([
   display(`grid),
   gridGap @@ px(10),
-  unsafe("gridTemplateColumns", "repeat(2, minmax(50%, 1fr))"),
+  gridTemplateColumns([fr(1.)]),
+  media(breakpoint(Large), [
+    unsafe("gridTemplateColumns", "repeat(3, 1fr)"),
+  ]),
   media(breakpoint(Small), [
-    unsafe("gridTemplateColumns", "repeat(3, minmax(33%, 1fr))")
+    unsafe("gridTemplateColumns", "repeat(2, 1fr)"),
   ]),
 ]));
 

@@ -31,7 +31,7 @@ let className = Css.(Styles.(
   style([
     padding2(~v=em(2.), ~h=em(1.)),
     media(breakpoint(Large), [
-      padding2(~v=em(4.), ~h=em(6.))
+      padding2(~v=em(4.), ~h=em(2.))
     ]),
   ])
 ));
@@ -169,7 +169,7 @@ let default = ReasonReact.wrapReasonForJs(
         {
           "description": p##shortDescriptionHTML,
           "languages": transformLang(p##languages),
-          "name": p##name,
+          "name": Js.String.startsWith("wyze/", p##nameWithOwner) ? p##name : p##nameWithOwner,
           "stars": p##stargazers##totalCount,
           "url": p##url
         } |> GitHubList.githubFromJs

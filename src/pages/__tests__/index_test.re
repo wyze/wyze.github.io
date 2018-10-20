@@ -145,6 +145,7 @@ describe("index page", () => {
                     },
                     "shortDescriptionHTML": "Description repo4.",
                     "name": "repo4",
+                    "nameWithOwner": "owner/repo4",
                     "stargazers": {
                       "totalCount": 4
                     },
@@ -158,10 +159,21 @@ describe("index page", () => {
                     },
                     "shortDescriptionHTML": "Description repo5.",
                     "name": "repo5",
+                    "nameWithOwner": "owner/repo5",
                     "stargazers": {
                       "totalCount": 5
                     },
                     "url": "//site.local/wyze/repo5"
+                  },
+                  {
+                    "isPrivate": false,
+                    "shortDescriptionHTML": "Description repo6.",
+                    "name": "repo6",
+                    "nameWithOwner": "wyze/repo6",
+                    "stargazers": {
+                      "totalCount": 6
+                    },
+                    "url": "//site.local/wyze/repo6"
                   }
                 |]
               }
