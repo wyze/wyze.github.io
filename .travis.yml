@@ -28,5 +28,5 @@ jobs:
     - stage: lighthouse
       if: type = pull_request
       install: yarn add --dev ebidel/lighthouse-ci wait-for-now
-      script: lighthouse-ci --pwa=90 --no-comment "$(wait-for-now)"
+      script: lighthouse-ci "$(wait-for-now)"
 
