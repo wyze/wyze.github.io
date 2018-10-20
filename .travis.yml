@@ -11,6 +11,8 @@ cache:
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
   - export PATH="$HOME/.yarn/bin:$PATH"
+  - echo "$TRAVIS_COMMIT"
+  - echo "$TRAVIS_PULL_REQUEST_SHA"
 
 jobs:
   include:
@@ -25,6 +27,7 @@ jobs:
       install: yarn add --dev coveralls
       script: yarn test --maxWorkers=2 --coverage --coverageReporters=text-lcov | coveralls
     - stage: lighthouse
+      if: type = pull_request
       install: yarn add --dev ebidel/lighthouse-ci wait-for-now
       script: lighthouse-ci --pwa=90 --no-comment "$(wait-for-now)"
 
