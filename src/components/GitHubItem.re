@@ -24,7 +24,7 @@ let styles = Css.(Styles.({
   "desc": [
     fontSize @@ em(0.95),
     overflow(`hidden),
-    padding3(~top=em(0.25), ~h=em(0.5), ~bottom=`zero),
+    padding2(~v=em(0.25), ~h=em(0.5)),
     textOverflow(`ellipsis),
     unsafe("wordBreak", "break-word"),
   ],
