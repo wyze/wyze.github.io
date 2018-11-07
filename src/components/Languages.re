@@ -17,7 +17,7 @@ let styles = Css.(Styles.({
     flexBasis @@ px(12),
     flexGrow(0),
     flexShrink(0),
-    width @@ pct(100.),
+    width @@ pct(100.1),
   ]),
   "bold": style([ fontWeight(600) ]),
   "circle": [
@@ -51,23 +51,30 @@ let styles = Css.(Styles.({
 
 let make = ( ~languages, _ ) => {
   ...component,
-  render: (_) =>
+  render: (_) => {
+    let (bullets, bars) = languages |> Array.fold_left(((x, y), ({ colorHex, name, percent })) => {
+      let coloredBackground = Css.(backgroundColor @@ hex(colorHex));
+      let formatted = numberFormat("en-US")->format(percent /. 100.);
+      let unformatted = formatted |> Js.String.replace("%", "") |> float_of_string;
+      let bullet = (
+        <div className=styles##item>
+            <div className=Css.(style([coloredBackground, ...styles##circle])) />
+            <div className=styles##bold> {ReasonReact.string(name)} </div>
+            <div> {ReasonReact.string(formatted)} </div>
+          </div>
+      );
+      let bar = <span className=Css.(style([coloredBackground, width @@ pct(unformatted)])) />;
+
+      (Array.append(x, [|bullet|]), Array.append(y, [|bar|]));
+    }, ([||], [||]));
+
     <div className=styles##container>
       <div className=styles##list>
-        ...{languages |> Array.map(({ colorHex, name, percent }) => (
-          <div className=styles##item>
-            <div className=Css.(style([backgroundColor @@ hex(colorHex), ...styles##circle])) />
-            <div className=styles##bold> {ReasonReact.string(name)} </div>
-            <div> {ReasonReact.string(numberFormat("en-US")->format(percent /. 100.))} </div>
-          </div>
-        ))}
+        ...bullets
       </div>
       <div className=styles##bar>
-        ...{languages
-          |> Array.map(({ colorHex, name, percent }) => (
-            <span className=Css.(style([backgroundColor @@ hex(colorHex), width @@ pct(percent)])) title=name />
-          ))
-        }
+        ...bars
       </div>
     </div>
+  }
 };
