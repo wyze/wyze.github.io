@@ -63,7 +63,7 @@ let make = ( ~languages, _ ) => {
             <div> {ReasonReact.string(formatted)} </div>
           </div>
       );
-      let bar = <span className=Css.(style([coloredBackground, width @@ pct(unformatted)])) />;
+      let bar = <span className=Css.(style([coloredBackground, width @@ pct(unformatted)])) title=name />;
 
       (Array.append(x, [|bullet|]), Array.append(y, [|bar|]));
     }, ([||], [||]));
