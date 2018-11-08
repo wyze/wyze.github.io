@@ -5,6 +5,7 @@ open ReactTestingLibrary;
 let contributions = GitHubList.[
   {
     description: "A repo.",
+    languages: [||],
     name: "a/repo",
     stars: 1,
     url: "//site.local/a/repo"
@@ -14,6 +15,7 @@ let contributions = GitHubList.[
 let projects = GitHubList.[
   {
     description: "Another repo.",
+    languages: [||],
     name: "another/repo",
     stars: 1000,
     url: "//site.local/another/repo"
@@ -41,6 +43,10 @@ describe("index page", () => {
                     "repository": {
                       "isPrivate": false,
                       "shortDescriptionHTML": "Description 1.",
+                      "languages": {
+                        "edges": [||],
+                        "totalSize": 0
+                      },
                       "nameWithOwner": "repo/1",
                       "owner": {
                         "login": "repo"
@@ -54,6 +60,10 @@ describe("index page", () => {
                   {
                     "repository": {
                       "isPrivate": true,
+                      "languages": {
+                        "edges": [||],
+                        "totalSize": 0
+                      },
                       "shortDescriptionHTML": "Description 2.",
                       "nameWithOwner": "repo/2",
                       "owner": {
@@ -68,6 +78,10 @@ describe("index page", () => {
                   {
                     "repository": {
                       "isPrivate": false,
+                      "languages": {
+                        "edges": [||],
+                        "totalSize": 0
+                      },
                       "shortDescriptionHTML": "Description 6.",
                       "nameWithOwner": "repo/6",
                       "owner": {
@@ -86,6 +100,10 @@ describe("index page", () => {
                   {
                     "repository": {
                       "isPrivate": false,
+                      "languages": {
+                        "edges": [||],
+                        "totalSize": 0
+                      },
                       "shortDescriptionHTML": "Description 1.",
                       "nameWithOwner": "repo/1",
                       "owner": {
@@ -100,6 +118,10 @@ describe("index page", () => {
                   {
                     "repository": {
                       "isPrivate": false,
+                      "languages": {
+                        "edges": [||],
+                        "totalSize": 0
+                      },
                       "shortDescriptionHTML": "Description for wyze.",
                       "nameWithOwner": "wyze/3",
                       "owner": {
@@ -117,6 +139,10 @@ describe("index page", () => {
                 "nodes": [|
                   {
                     "isPrivate": false,
+                    "languages": {
+                      "edges": [||],
+                      "totalSize": 0
+                    },
                     "shortDescriptionHTML": "Description repo4.",
                     "name": "repo4",
                     "nameWithOwner": "owner/repo4",
@@ -127,6 +153,10 @@ describe("index page", () => {
                   },
                   {
                     "isPrivate": true,
+                    "languages": {
+                      "edges": [||],
+                      "totalSize": 0
+                    },
                     "shortDescriptionHTML": "Description repo5.",
                     "name": "repo5",
                     "nameWithOwner": "owner/repo5",
@@ -137,6 +167,10 @@ describe("index page", () => {
                   },
                   {
                     "isPrivate": false,
+                    "languages": {
+                      "edges": [||],
+                      "totalSize": 0
+                    },
                     "shortDescriptionHTML": "Description repo6.",
                     "name": "repo6",
                     "nameWithOwner": "wyze/repo6",

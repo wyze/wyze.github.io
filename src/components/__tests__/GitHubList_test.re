@@ -5,12 +5,14 @@ open ReactTestingLibrary;
 let content = GitHubList.([
   {
     description: "A repo.",
+    languages: [||],
     name: "a/repo",
     stars: 1,
     url: "//site.local/a/repo"
   },
   {
     description: "Another repo.",
+    languages: [||],
     name: "another/repo",
     stars: 1000,
     url: "//site.local/another/repo"
