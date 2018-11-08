@@ -87,7 +87,7 @@ let make = ( ~languages, _ ) => {
            switch (index) {
            | 0 | 1 | 2 => bullet
            | 3 =>
-             <div className=Css.(style([color @@ hex("878e91"), ...styles##item]))>
+             <div className=Css.(style([color @@ hex("6b6b6b"), ...styles##item]))>
                {ReasonReact.string({j|+ $(extra) more|j})}
              </div>
            | _ => ReasonReact.null
