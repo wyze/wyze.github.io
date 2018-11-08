@@ -46,13 +46,10 @@ let styles = Css.(Styles.({
     marginRight @@ px(12),
   ],
   "list": style([
-    display(`none),
+    display(`flex),
     fontSize @@ em(0.75),
     flexWrap(`wrap),
     padding3(~top=`zero, ~h=em(0.5), ~bottom=em(0.25)),
-    media(breakpoint(Small), [
-      display(`flex),
-    ]),
   ]),
 }));
 
