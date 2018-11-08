@@ -31,13 +31,13 @@ let styles = Css.(Styles.({
     marginTop(`auto),
     width @@ pct(100.),
   ]),
-  "item": style([
+  "item": [
     alignItems(`center),
     display(`grid),
     gridGap @@ px(6),
     gridTemplateColumns([`auto, `auto, `auto]),
     marginRight @@ px(12),
-  ]),
+  ],
   "list": style([
     display(`none),
     fontSize @@ em(0.75),
@@ -52,25 +52,35 @@ let styles = Css.(Styles.({
 let make = ( ~languages, _ ) => {
   ...component,
   render: (_) => {
-    let (bullets, bars) = languages |> Array.fold_left(((x, y), ({ colorHex, name, percent })) => {
-      let coloredBackground = Css.(backgroundColor @@ hex(colorHex));
-      let formatted = numberFormat("en-US")->format(percent /. 100.);
-      let unformatted = formatted |> Js.String.replace("%", "") |> float_of_string;
-      let bullet = (
-        <div className=styles##item>
-            <div className=Css.(style([coloredBackground, ...styles##circle])) />
-            <div className=styles##bold> {ReasonReact.string(name)} </div>
-            <div> {ReasonReact.string(formatted)} </div>
-          </div>
-      );
-      let bar = <span className=Css.(style([coloredBackground, width @@ pct(unformatted)])) title=name />;
+    let (bullets, bars) = languages
+      |> Js.Array.sortInPlaceWith((a, b) => b.percent > a.percent ? 1 : -1)
+      |> Array.fold_left(((x, y), ({ colorHex, name, percent })) => {
+        let coloredBackground = Css.(backgroundColor @@ hex(colorHex));
+        let formatted = numberFormat("en-US")->format(percent /. 100.);
+        let unformatted = formatted |> Js.String.replace("%", "") |> float_of_string;
+        let bullet = (
+          <div className=Css.style(styles##item)>
+              <div className=Css.(style([coloredBackground, ...styles##circle])) />
+              <div className=styles##bold> {ReasonReact.string(name)} </div>
+              <div> {ReasonReact.string(formatted)} </div>
+            </div>
+        );
+        let bar = <span className=Css.(style([coloredBackground, width @@ pct(unformatted)])) title=name />;
 
-      (Array.append(x, [|bullet|]), Array.append(y, [|bar|]));
-    }, ([||], [||]));
+        (Array.append(x, [|bullet|]), Array.append(y, [|bar|]));
+      }, ([||], [||]));
+    let extra = Array.length(bullets) - 3;
+    let bullets2 = bullets |> Array.mapi((index, bullet) =>
+      switch index {
+      | 0 | 1 | 2 => bullet
+      | 3 => <div className=Css.(style([color @@ hex("878e91"), ...styles##item]))> {ReasonReact.string({j|+ $(extra) more|j})} </div>
+      | _ => ReasonReact.null
+      }
+    );
 
     <div className=styles##container>
       <div className=styles##list>
-        ...bullets
+        ...bullets2
       </div>
       <div className=styles##bar>
         ...bars
