@@ -64,7 +64,7 @@ let make = ( ~contributions, ~projects, ~resume, _ ) => {
       viewer {
         projects {
           nodes {
-            isPrivate
+            isArchived
             languages {
               edges {
                 node {
@@ -87,6 +87,7 @@ let make = ( ~contributions, ~projects, ~resume, _ ) => {
         contributions1 {
           nodes {
             repository {
+              isArchived
               isPrivate
               name
               nameWithOwner
@@ -114,6 +115,7 @@ let make = ( ~contributions, ~projects, ~resume, _ ) => {
         contributions2 {
           nodes {
             repository {
+              isArchived
               isPrivate
               name
               nameWithOwner
@@ -141,6 +143,7 @@ let make = ( ~contributions, ~projects, ~resume, _ ) => {
         contributions3 {
           nodes {
             repository {
+              isArchived
               isPrivate
               name
               nameWithOwner
@@ -191,7 +194,7 @@ let default = ReasonReact.wrapReasonForJs(
     let resume = jsProps##data##resume##publicURL;
     let viewer = jsProps##data##githubGraphQl##viewer;
     let projects = viewer##projects##nodes
-      |> Js.Array.filter(p => p##isPrivate == false)
+      |> Js.Array.filter(p => p##isArchived == false)
       |> Js.Array.map(p =>
         {
           "description": p##shortDescriptionHTML,
@@ -219,6 +222,7 @@ let default = ReasonReact.wrapReasonForJs(
 
         let existsOrMine = List.mem(o, lst)
           || r##owner##login == "wyze"
+          || r##isArchived == true
           || r##isPrivate == true;
 
         switch existsOrMine {

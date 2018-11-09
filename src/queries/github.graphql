@@ -5,6 +5,7 @@ query {
       affiliations: [OWNER]
       first: 100
       isFork: false
+      privacy: PUBLIC
     ) {
       nodes {
         ...RepoFields
@@ -35,6 +36,7 @@ query {
 }
 
 fragment RepoFields on Repository {
+  isArchived
   isPrivate
   name
   nameWithOwner
