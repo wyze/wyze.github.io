@@ -17,7 +17,14 @@ query {
         }
       }
     }
-    contributions2: pullRequests(last: 100, states: [MERGED]) {
+    contributions2: pullRequests(after: "Y3Vyc29yOnYyOpHOBZoUUA==", first: 100, states: [MERGED]) {
+      nodes {
+        repository {
+          ...RepoFields
+        }
+      }
+    }
+    contributions3: pullRequests(after: "Y3Vyc29yOnYyOpHODSNyWw==", first: 100, states: [MERGED]) {
       nodes {
         repository {
           ...RepoFields

@@ -138,6 +138,33 @@ let make = ( ~contributions, ~projects, ~resume, _ ) => {
             }
           }
         }
+        contributions3 {
+          nodes {
+            repository {
+              isPrivate
+              name
+              nameWithOwner
+              owner {
+                login
+              }
+              languages {
+                edges {
+                  node {
+                    color
+                    name
+                  }
+                  size
+                }
+                totalSize
+              }
+              shortDescriptionHTML
+              stargazers {
+                totalCount
+              }
+              url
+            }
+          }
+        }
       }
     }
   }
@@ -179,6 +206,7 @@ let default = ReasonReact.wrapReasonForJs(
 
     let contributions = viewer##contributions1##nodes
       |> Js.Array.concat(viewer##contributions2##nodes)
+      |> Js.Array.concat(viewer##contributions3##nodes)
       |> Js.Array.reduce(( lst, c ) => {
         let r = c##repository;
         let o = {
