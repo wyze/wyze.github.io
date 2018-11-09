@@ -41,6 +41,7 @@ describe("index page", () => {
                 "nodes": [|
                   {
                     "repository": {
+                      "isArchived": false,
                       "isPrivate": false,
                       "shortDescriptionHTML": "Description 1.",
                       "languages": {
@@ -59,6 +60,7 @@ describe("index page", () => {
                   },
                   {
                     "repository": {
+                      "isArchived": false,
                       "isPrivate": true,
                       "languages": {
                         "edges": [||],
@@ -77,6 +79,7 @@ describe("index page", () => {
                   },
                   {
                     "repository": {
+                      "isArchived": true,
                       "isPrivate": false,
                       "languages": {
                         "edges": [||],
@@ -99,6 +102,7 @@ describe("index page", () => {
                 "nodes": [|
                   {
                     "repository": {
+                      "isArchived": false,
                       "isPrivate": false,
                       "languages": {
                         "edges": [||],
@@ -117,6 +121,7 @@ describe("index page", () => {
                   },
                   {
                     "repository": {
+                      "isArchived": false,
                       "isPrivate": false,
                       "languages": {
                         "edges": [||],
@@ -138,6 +143,7 @@ describe("index page", () => {
               "contributions3": {
                 "nodes": [|
                   {
+                    "isArchived": false,
                     "repository": {
                       "isPrivate": false,
                       "languages": {
@@ -160,6 +166,7 @@ describe("index page", () => {
               "projects": {
                 "nodes": [|
                   {
+                    "isArchived": false,
                     "isPrivate": false,
                     "languages": {
                       "edges": [||],
@@ -174,6 +181,7 @@ describe("index page", () => {
                     "url": "//site.local/wyze/repo4"
                   },
                   {
+                    "isArchived": false,
                     "isPrivate": true,
                     "languages": {
                       "edges": [||],
@@ -188,6 +196,7 @@ describe("index page", () => {
                     "url": "//site.local/wyze/repo5"
                   },
                   {
+                    "isArchived": true,
                     "isPrivate": false,
                     "languages": {
                       "edges": [||],
