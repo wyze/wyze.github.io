@@ -135,6 +135,28 @@ describe("index page", () => {
                   },
                 |]
               },
+              "contributions3": {
+                "nodes": [|
+                  {
+                    "repository": {
+                      "isPrivate": false,
+                      "languages": {
+                        "edges": [||],
+                        "totalSize": 0
+                      },
+                      "shortDescriptionHTML": "Description 7.",
+                      "nameWithOwner": "repo/7",
+                      "owner": {
+                        "login": "repo"
+                      },
+                      "stargazers": {
+                        "totalCount": 7
+                      },
+                      "url": "//site.local/repo/7"
+                    }
+                  },
+                |]
+              },
               "projects": {
                 "nodes": [|
                   {
