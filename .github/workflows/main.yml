@@ -20,7 +20,10 @@ jobs:
     - name: Lighthouse
       if: github.event_name == 'push'
       run: |
-        sed -i.bak "s/{{ NOW_URL }}/$(npx now --token $ZEIT_TOKEN ls wyze.github.io | sed -n 2p | tr -s ' ' | cut -d ' ' -f 3)/g" codechecks.yml
+        NOW_URL=$(npx now --token $ZEIT_TOKEN ls wyze.github.io 2> /dev/null | sed -n 2p | tr -s ' ' | cut -d ' ' -f 3)
+        echo "NOW_URL=$NOW_URL"
+        sed -i.bak "s/{{ NOW_URL }}/$NOW_URL/g" codechecks.yml
+        cat codechecks.yml
         yarn add --dev @codechecks/client @codechecks/lighthouse-keeper
         npx codechecks
       env:
