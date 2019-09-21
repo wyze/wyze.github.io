@@ -14,9 +14,7 @@ jobs:
     - run: yarn test
     - name: Code Coverage
       if: github.event_name == 'push'
-      run: |
-        yarn add --dev coveralls
-        yarn test --coverage --coverageReporters=text-lcov | coveralls
+      run: yarn test --coverage --coverageReporters=text-lcov | npx coveralls
     - name: Lighthouse
       if: github.event_name == 'pull_request'
       run: |
