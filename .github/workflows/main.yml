@@ -1,0 +1,26 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 10.x
+    - run: yarn test
+    - name: Code Coverage
+      if: github.event_name == 'push'
+      run: |
+        yarn add --dev coveralls
+        yarn test --coverage --coverageReporters=text-lcov | coveralls
+    - name: Lighthouse
+      if: github.event_name == 'pull_request'
+      run: |
+        sed -i.bak "s/{{ NOW_URL }}/$(npx now ls wyze.github.io | sed -n 2p | tr -s ' ' | cut -d ' ' -f 3)/g" codechecks.yml
+        yarn add --dev @codechecks/client @codechecks/lighthouse-keeper
+        npx codechecks
+      env:
+        CC_SECRET: ${{ secrets.CC_SECRET }}
