@@ -18,10 +18,10 @@ jobs:
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
     - name: Lighthouse
-      if: github.event_name == 'pull_request'
+      if: github.event_name == 'push'
       run: |
         sed -i.bak "s/{{ NOW_URL }}/$(npx now --token $ZEIT_TOKEN ls wyze.github.io | sed -n 2p | tr -s ' ' | cut -d ' ' -f 3)/g" codechecks.yml
-        yarn add --dev @codechecks/client @codechecks/lighthouse-keeper
+        yarn add --dev @codechecks/lighthouse-keeper
         npx codechecks
       env:
         ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
