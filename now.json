@@ -9,11 +9,9 @@
   "routes": [
     {
       "src": "**/*.@(ico|js|json|png|woff2)",
-      "headers": [
-        {
-          "cache-control": "max-age=31536000"
-        }
-      ]
+      "headers": {
+        "cache-control": "max-age=31536000"
+      }
     }
   ],
   "version": 2
