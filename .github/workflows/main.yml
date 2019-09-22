@@ -13,16 +13,35 @@ jobs:
     - run: yarn
     - run: yarn test
     - name: Code Coverage
+      uses: gavinhenderson/coveralls-action@v1.0
       if: github.event_name == 'push'
-      run: yarn test --coverage --coverageReporters=text-lcov | npx coveralls
       env:
-        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+        REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
     - name: Lighthouse
       if: github.event_name == 'push'
       run: |
         NOW_URL=$(npx now --token $ZEIT_TOKEN ls wyze.github.io 2> /dev/null | sed -n 2p | tr -s ' ' | cut -d ' ' -f 3)
         sed -i.bak "s@{{ NOW_URL }}@https://$NOW_URL@g" codechecks.yml
         yarn add --dev @codechecks/client @codechecks/lighthouse-keeper
+
+        MAX_TRIES=20
+        SECONDS_BETWEEN_CHECKS=30
+
+        while [ $MAX_TRIES -gt 0 ]
+        do
+          STATUS=$(npx now --token $ZEIT_TOKEN inspect $NOW_URL 2>&1 | grep READY | head -c1 | wc -c)
+          if [ $STATUS -gt 0 ]; then
+            exit 0
+          else
+            MAX_TRIES=$((MAX_TRIES - 1))
+          fi
+          sleep $SECONDS_BETWEEN_CHECKS
+        done
+
+        if [ MAX_TRIES -eq 0 ]; then
+          exit 1
+        fi
+
         npx codechecks
       env:
         ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
