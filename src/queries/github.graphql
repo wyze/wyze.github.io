@@ -2,7 +2,7 @@ query {
   viewer {
     projects: repositories(
       orderBy: { direction: DESC, field: STARGAZERS }
-      affiliations: [OWNER]
+      ownerAffiliations: [OWNER]
       first: 100
       isFork: false
       privacy: PUBLIC
