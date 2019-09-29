@@ -71,6 +71,9 @@
     "roots": [
       "src"
     ],
+    "setupFiles": [
+      "./src/config/setupTests.bs.js"
+    ],
     "transformIgnorePatterns": [
       "/node_modules/(?!(@ahrefs/bs-dotenv|@glennsl/bs-jest|@wyze/bs-react-helmet|bs-|reason-react))"
     ]

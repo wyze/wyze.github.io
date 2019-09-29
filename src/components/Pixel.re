@@ -55,6 +55,7 @@ let make = (~location, _) => {
     let src = {j|https://l6mmhh8ko9.execute-api.us-east-1.amazonaws.com/production/$location.png|j};
 
     <img
+      alt=location
       ref={self.handle(setRef)}
       className=Css.(style(self.state.visible ? styles##hide : empty))
       src={self.state.visible ? src : ""}
