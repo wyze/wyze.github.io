@@ -28,7 +28,7 @@
     "@wyze/bs-react-helmet": "^0.3.1",
     "bs-css": "^7.2.0",
     "bs-intersection-observer": "^0.2.0",
-    "gatsby": "^2.0.22",
+    "gatsby": "^2.15.28",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-helmet": "^5.2.0",
