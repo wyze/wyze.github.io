@@ -36,7 +36,7 @@ let make = (_) => {
           <Text text="." />
         </H1>
       </Section>
-      <img src="https://md82aclso9.execute-api.us-east-1.amazonaws.com/dev/introduction.png" />
+      <img src="https://md82aclso9.execute-api.us-east-1.amazonaws.com/dev/introduction-hidden.png" style="display: none" />
     </Box>
 };
 
