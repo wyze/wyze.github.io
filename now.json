@@ -5,10 +5,6 @@
       "GITHUB_TOKEN": "@github-token"
     }
   },
-  "builds": [
-    { "src": "analytics/Cargo.toml", "use": "now-rust" },
-    { "src": "package.json", "use": "@now/static-build" }
-  ],
   "public": true,
   "routes": [
     {
@@ -16,9 +12,6 @@
       "headers": {
         "cache-control": "max-age=31536000"
       }
-    },
-    {
-      "src": "/images/(.*)", "dest": "/analytics/$1"
     }
   ],
   "version": 2
