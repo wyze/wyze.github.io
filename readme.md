@@ -46,7 +46,7 @@ MIT © [Neil Kistner](https://neilkistner.com)
 [website-image]: https://img.shields.io/website-up-down-green-red/https/neilkistner.com.svg?style=flat-square
 [website-url]: https://neilkistner.com
 
-[lighthouse-image]: https://img.shields.io/badge/lighthouse-98-brightgreen.svg?style=flat-square
+[lighthouse-image]: https://img.shields.io/badge/lighthouse-100-brightgreen.svg?style=flat-square
 [lighthouse-url]: https://googlechrome.github.io/lighthouse/viewer/?gist=0e786826596fa80011036e427ff0059b
 
 [actions-image]: https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fwyze%2Fwyze.github.io%2Fbadge&style=flat-square
