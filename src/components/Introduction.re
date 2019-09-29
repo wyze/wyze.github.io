@@ -3,6 +3,9 @@
 let component = ReasonReact.statelessComponent("Introduction");
 
 let styles = Css.(Styles.({
+  "hide": [
+    display(none),
+  ],
   "image": [
     flexBasis @@ pct(100.),
     paddingBottom @@ em(1.0),
@@ -36,7 +39,7 @@ let make = (_) => {
           <Text text="." />
         </H1>
       </Section>
-      <img src="https://md82aclso9.execute-api.us-east-1.amazonaws.com/dev/introduction-hidden.png" style={{ display: "none" }} />
+      <img className=styles##hide src="https://md82aclso9.execute-api.us-east-1.amazonaws.com/dev/introduction-hidden.png" />
     </Box>
 };
 
