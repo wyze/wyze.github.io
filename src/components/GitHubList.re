@@ -9,28 +9,41 @@ type github = {
 
 let component = ReasonReact.statelessComponent("GitHubList");
 
-let childStyle = Css.(Styles.([
-  display(`grid),
-  gridGap @@ px(10),
-  gridTemplateColumns([fr(1.)]),
-  media(breakpoint(Large), [
-    unsafe("gridTemplateColumns", "repeat(3, 1fr)"),
-  ]),
-  media(breakpoint(Small), [
-    unsafe("gridTemplateColumns", "repeat(2, 1fr)"),
-  ]),
-]));
+let childStyle =
+  Css.(
+    Styles.[
+      display(`grid),
+      gridGap @@ px(10),
+      gridTemplateColumns([fr(1.)]),
+      media(
+        breakpoint(Large),
+        [unsafe("gridTemplateColumns", "repeat(3, 1fr)")],
+      ),
+      media(
+        breakpoint(Small),
+        [unsafe("gridTemplateColumns", "repeat(2, 1fr)")],
+      ),
+    ]
+  );
 
-let make = ( ~content, ~title, _ ) => {
+let make = (~content, ~title, _) => {
   ...component,
-  render: (_) =>
+  render: _ => {
+    let location =
+      title == "Contributions Made" ? "contributions" : "projects";
+
     <Box wrap=true childStyle title>
-      (
-        content
-          |> List.map(({ description, languages, name, stars, url }) =>
-              <GitHubItem key=name description languages name stars url />
-            )
+      <>
+        <Pixel location />
+        {
+          content
+          |> List.map(({description, languages, name, stars, url}) =>
+               <GitHubItem key=name description languages name stars url />
+             )
           |> Array.of_list
-      )
-    </Box>
+          |> ReasonReact.array
+        }
+      </>
+    </Box>;
+  },
 };

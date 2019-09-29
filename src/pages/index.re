@@ -43,7 +43,6 @@ let make = ( ~contributions, ~projects, ~resume, _ ) => {
       <ReactHelmet title="Neil Kistner | St. Louis Software Engineer">
         <html lang="en" />
         <meta name="description" content="Neil Kistner is a self taught software engineer focused mainly on web applications. He loves open source and contributes to projects like Yarn and Tessel." />
-        <link rel="preconnect" href="//www.google-analytics.com" />
       </ReactHelmet>
       <Introduction />
       <Social profiles />

@@ -48,52 +48,6 @@ module.exports = {
         },
       },
     },
-    {
-      resolve: '@wyze/gatsby-plugin-google-analytics',
-      options: {
-        gaPlugins: {
-          config: [
-            {
-              name: 'eventTracker',
-              options: {
-                events: [ 'click', 'contextmenu' ],
-                hitFilter: [
-                  '@@/ga-function',
-                  [ 'model', 'element', 'event', `model.set('eventAction',event.type,true)` ],
-                ],
-              },
-            },
-            {
-              name: 'impressionTracker',
-              options: {
-                elements: [
-                  'Introduction',
-                  'MeAroundTheInternet',
-                  'Employment',
-                  'CoreTeamMember',
-                  'ContributionsMade',
-                  'OpenSourceProjects',
-                  'Conclusion',
-                ],
-                fieldsObj: {
-                  nonInteraction: false,
-                },
-              },
-            },
-            {
-              name: 'outboundLinkTracker',
-              options: {
-                events: [ 'click', 'contextmenu' ],
-              },
-            },
-          ],
-          sources: [
-            'js/autotrack.custom.js',
-          ],
-        },
-        trackingId: 'UA-4907572-11',
-      },
-    },
     '@wyze/gatsby-plugin',
     'gatsby-plugin-glamor',
     'gatsby-plugin-offline',

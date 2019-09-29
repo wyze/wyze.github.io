@@ -26,7 +26,8 @@ let styles = Css.(Styles.({
 let make = (_) => {
   ...component,
   render: (_) =>
-    <Box id="Introduction" wrap=true>
+    <Box wrap=true>
+      <Pixel location="introduction" />
       <Section center=false styles=styles##image>
         <Image circle=true alt="Neil Kistner" src=me />
       </Section>
@@ -39,7 +40,6 @@ let make = (_) => {
           <Text text="." />
         </H1>
       </Section>
-      <img className=Css.style(styles##hide) src="https://md82aclso9.execute-api.us-east-1.amazonaws.com/dev/introduction-hidden.png" />
     </Box>
 };
 

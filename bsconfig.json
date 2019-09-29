@@ -44,6 +44,7 @@
     "@ahrefs/bs-dotenv",
     "@wyze/bs-react-helmet",
     "bs-css",
+    "bs-intersection-observer",
     "reason-react"
   ],
   "bs-dev-dependencies": [
