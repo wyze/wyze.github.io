@@ -39,7 +39,7 @@ let make = (_) => {
           <Text text="." />
         </H1>
       </Section>
-      <img className=styles##hide src="https://md82aclso9.execute-api.us-east-1.amazonaws.com/dev/introduction-hidden.png" />
+      <img className=Css.style(styles##hide) src="https://md82aclso9.execute-api.us-east-1.amazonaws.com/dev/introduction-hidden.png" />
     </Box>
 };
 
