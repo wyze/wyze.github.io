@@ -52,7 +52,7 @@ let make = (~location, _) => {
     | Visible => ReasonReact.Update({...state, visible: true})
     },
   render: self => {
-    let src = {j|https://l6mmhh8ko9.execute-api.us-east-1.amazonaws.com/production/$location.png|j};
+    let src = {j|https://est1ye8mhe.execute-api.us-east-1.amazonaws.com/prod/$location.png|j};
 
     <img
       alt=location
