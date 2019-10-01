@@ -12,6 +12,7 @@ let jobs = Employment.([
 ]);
 
 let profiles = IconList.([
+  { href: "//wyze.dev", image: GitHub, title: "wyze.dev" },
   { href: "//github.com/wyze", image: GitHub, title: "GitHub" },
   { href: "//twitter.com/wyze", image: Twitter, title: "Twitter" },
   { href: "//linkedin.com/in/neilkistner", image: LinkedIn, title: "LinkedIn" },
