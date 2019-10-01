@@ -1,25 +1,16 @@
-/* [@bs.module] external resume : string = "../resume.pdf"; */
-
 let component = ReasonReact.statelessComponent("Conclusion");
 
-let styles = Css.([
-  width @@ pct(100.),
-]);
-
-let resumeLink = href => ReasonReact.cloneElement(
-  <a className=Css.style(Link.styles) href rel="noopener noreferrer" target="_blank" />,
-  ~props={"ga-on": "click,contextmenu", "ga-event-category": "Resume"},
-  [| ReasonReact.string({j|résumé|j}) |]
-);
+let styles = Css.[width @@ pct(100.)];
 
 let make = (~resume, _) => {
   ...component,
-  render: (_) =>
+  render: _ =>
     <Box id="Conclusion">
+      <Pixel location="conclusion" />
       <Section styles>
         <H2 className=Styles.thin>
           <Text text="Download " />
-          {resumeLink(resume)}
+          <Link href=resume> {ReasonReact.string({j|résumé|j})} </Link>
           <Text text=". View " />
           <Link href="//github.com/wyze/wyze.github.io">
             <Text text="source" />
@@ -27,5 +18,5 @@ let make = (~resume, _) => {
           <Text text="." />
         </H2>
       </Section>
-    </Box>
+    </Box>,
 };

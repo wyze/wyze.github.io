@@ -3,6 +3,9 @@
 let component = ReasonReact.statelessComponent("Introduction");
 
 let styles = Css.(Styles.({
+  "hide": [
+    display(none),
+  ],
   "image": [
     flexBasis @@ pct(100.),
     paddingBottom @@ em(1.0),
@@ -23,7 +26,8 @@ let styles = Css.(Styles.({
 let make = (_) => {
   ...component,
   render: (_) =>
-    <Box id="Introduction" wrap=true>
+    <Box wrap=true>
+      <Pixel location="introduction" />
       <Section center=false styles=styles##image>
         <Image circle=true alt="Neil Kistner" src=me />
       </Section>

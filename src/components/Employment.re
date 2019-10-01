@@ -6,15 +6,20 @@ type job = {
 
 let component = ReasonReact.statelessComponent("Employment");
 
-let make = ( ~jobs, _ ) => {
+let make = (~jobs, _) => {
   ...component,
-  render: (_) =>
+  render: _ =>
     <Box wrap=true title="Employment">
-      (jobs
-        |> List.map(({ end_, name, start }) =>
-            <Employer key=name end_ name start />
-          )
-        |> Array.of_list
-      )
-    </Box>
+      <>
+        <Pixel location="employment" />
+        {
+          jobs
+          |> List.map(({end_, name, start}) =>
+               <Employer key=name end_ name start />
+             )
+          |> Array.of_list
+          |> ReasonReact.array
+        }
+      </>
+    </Box>,
 };
