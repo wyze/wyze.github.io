@@ -7,7 +7,7 @@
   },
   "functions": {
     "api/**/*.rs": {
-      "runtime": "now-rust@1.0.0"
+      "runtime": "now-rust@1.0.1"
     }
   },
   "public": true,
