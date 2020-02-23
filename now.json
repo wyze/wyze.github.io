@@ -5,6 +5,11 @@
       "GITHUB_TOKEN": "@github-token"
     }
   },
+  "functions": {
+    "api/**/*.rs": {
+      "runtime": "now-rust@1.0.0"
+    }
+  },
   "public": true,
   "routes": [
     {
