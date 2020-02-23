@@ -84,6 +84,9 @@
     "reason-react": "^0.5.3"
   },
   "jest": {
+    "collectCoverageFrom": [
+      "**/*.{ts,tsx}"
+    ],
     "roots": [
       "pages"
     ]
@@ -100,6 +103,7 @@
               }
             }
           ],
+          "next/babel",
           "@babel/typescript"
         ]
       }
