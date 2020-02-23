@@ -12,6 +12,8 @@ coverage
 
 # Build
 .cache
+.next
+.now
 lib
 public
 static/js
@@ -20,5 +22,3 @@ static/js
 .merlin
 **/*.bs.js
 /*.js
-
-.now
