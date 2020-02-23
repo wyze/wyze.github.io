@@ -13,7 +13,7 @@
     "build": "next build",
     "dev": "next",
     "start": "next start",
-    "test": "jest --passWithNoTests"
+    "test": "jest"
   },
   "scripts_": {
     "build": "run-s build:*",
@@ -36,8 +36,13 @@
     "react-dom": "^16.12.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-typescript": "^7.8.3",
+    "@types/jest": "^25.1.3",
     "@types/node": "^13.7.4",
     "@types/react": "^16.9.22",
+    "babel-jest": "^25.1.0",
     "jest": "^25.1.0",
     "typescript": "^3.8.2"
   },
@@ -80,8 +85,25 @@
   },
   "jest": {
     "roots": [
-      "src"
+      "pages"
     ]
+  },
+  "babel": {
+    "env": {
+      "test": {
+        "presets": [
+          [
+            "@babel/env",
+            {
+              "targets": {
+                "node": "current"
+              }
+            }
+          ],
+          "@babel/typescript"
+        ]
+      }
+    }
   },
   "jest_": {
     "collectCoverageFrom": [
