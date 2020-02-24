@@ -8,19 +8,25 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-app.prepare().then(() =>
+app.prepare().then(() => {
   createServer((req, res) => {
-    const parsedUrl = parse(req.url ?? '', true)
+    const parsedUrl = parse(req.url!, true)
     const { pathname } = parsedUrl
 
-    if (pathname === '/service-worker.js' && !dev) {
+    console.log({ pathname, sw: join(__dirname, '..', '.next', pathname ?? '') })
+
+    if (pathname === '/service-worker.js') {
       const filePath = join(__dirname, '..', '.next', pathname)
 
       app.serveStatic(req, res, filePath)
     } else {
       handle(req, res, parsedUrl)
     }
-  }).listen(port, () => {
-    console.log(`> Ready on http://localhost:${port}`)
-  })
-)
+  }).listen(port)
+
+  console.log(
+    `> Server listening at http://localhost:${port} as ${
+      dev ? 'development' : process.env.NODE_ENV
+    }`
+  )
+})
