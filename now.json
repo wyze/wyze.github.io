@@ -6,7 +6,7 @@
     }
   },
   "functions": {
-    "api/**/*.rs": {
+    "src/api/**/*.rs": {
       "runtime": "now-rust@1.0.1"
     }
   },

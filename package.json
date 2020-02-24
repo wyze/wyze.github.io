@@ -88,7 +88,7 @@
       "**/*.{ts,tsx}"
     ],
     "roots": [
-      "pages"
+      "src"
     ]
   },
   "babel": {
@@ -103,11 +103,13 @@
               }
             }
           ],
-          "next/babel",
           "@babel/typescript"
         ]
       }
-    }
+    },
+    "presets": [
+      "next/babel"
+    ]
   },
   "jest_": {
     "collectCoverageFrom": [
