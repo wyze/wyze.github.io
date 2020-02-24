@@ -7,7 +7,7 @@
   },
   "functions": {
     "api/**/*.rs": {
-      "runtime": "now-rust@1.0.1"
+      "runtime": "@wyze/now-rust@1.0.6"
     }
   },
   "public": true,

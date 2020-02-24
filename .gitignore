@@ -18,7 +18,7 @@ lib
 public
 static/js
 .bsb.lock
-.env
+.env*
 .merlin
 **/*.bs.js
 /*.js
