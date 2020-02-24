@@ -13,7 +13,7 @@ app.prepare().then(() => {
     const parsedUrl = parse(req.url!, true)
     const { pathname } = parsedUrl
 
-    console.log({ pathname, sw: join(__dirname, '..', '.next', pathname ?? '') })
+    console.log({ __dirname, pathname, sw: join(__dirname, '..', '.next', pathname ?? '') })
 
     if (pathname === '/service-worker.js') {
       const filePath = join(__dirname, '..', '.next', pathname)
