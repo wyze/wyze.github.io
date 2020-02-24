@@ -10,9 +10,9 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "next build",
-    "dev": "next",
-    "start": "next start",
+    "build": "next build && tsc --project tsconfig.server.json",
+    "dev": "ts-node-dev --respawn --transpileOnly --project tsconfig.server.json src/server.ts",
+    "start": "NODE_ENV=production node dist/server.js",
     "test": "jest"
   },
   "scripts_": {
@@ -44,6 +44,8 @@
     "@types/react": "^16.9.22",
     "babel-jest": "^25.1.0",
     "jest": "^25.1.0",
+    "sw-precache-webpack-plugin": "^1.0.0",
+    "ts-node-dev": "^1.0.0-pre.44",
     "typescript": "^3.8.2"
   },
   "dependencies_": {
@@ -110,6 +112,12 @@
     "presets": [
       "next/babel"
     ]
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
   },
   "jest_": {
     "collectCoverageFrom": [

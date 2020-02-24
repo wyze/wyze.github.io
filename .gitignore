@@ -14,11 +14,9 @@ coverage
 .cache
 .next
 .now
+dist
 lib
-public
-static/js
 .bsb.lock
 .env*
 .merlin
 **/*.bs.js
-/*.js
