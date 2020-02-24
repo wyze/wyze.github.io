@@ -1,0 +1,11 @@
+{
+  "name": "Neil Kistner | St. Louis Software Engineer",
+  "short_name": "NeilKistner",
+  "start_url": "/",
+  "background_color": "#4b79a1",
+  "theme_color": "#ffffff",
+  "display": "standalone",
+  "icons": [
+    { "src": "img/ts.svg", "sizes": "150x150", "type": "image/svg+xml" }
+  ]
+}
