@@ -22,7 +22,7 @@
     },
     {
       "src": "/pixel/(?<image>[^/]+).png",
-      "dest": "/api/pixel?image=$image"
+      "dest": "/api/pixel.rs?image=$image"
     },
     {
       "src": "/.*\\.(ico|js|json|png|woff2)",

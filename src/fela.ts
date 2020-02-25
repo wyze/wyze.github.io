@@ -9,7 +9,7 @@ const dev = process.env.NODE_ENV !== 'production'
 export const renderer = createRenderer({
   plugins: [
     typescript(),
-    ...createWebPreset({ unit: ['em', { borderRadius: 'px', flexBasis: 'pc' }] }),
+    ...createWebPreset({ unit: ['em', { borderRadius: 'px', flexBasis: '%' }] }),
     namedKeys({
       large: '@media only screen and (min-width: 1200px)',
       small: '@media only screen and (min-width: 768px)',
