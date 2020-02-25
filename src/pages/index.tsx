@@ -1,3 +1,4 @@
+import { Box } from '../components'
 import { useEffect } from 'react'
 
 const dev = process.env.NODE_ENV !== 'production'
@@ -16,5 +17,5 @@ export default function HomePage() {
     }
   }, [])
 
-  return <div>Welcome to Next.js!</div>
+  return <Box>Welcome to Next.js!</Box>
 }
