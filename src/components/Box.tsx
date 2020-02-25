@@ -6,6 +6,7 @@ type BoxProps = PropsWithChildren<{}>
 const styles = {
   backgroundColor: 'hsl(200, 25%, 94%)',
   borderRadius: 5,
+  padding: '1em',
 }
 
 export function Box({ children }: BoxProps) {

@@ -2467,6 +2467,11 @@ clone@^1.0.2:
   resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
   integrity sha1-2jCcwmPfFZlMaIypAheco8fNfH4=
 
+clone@~2.1.0:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/clone/-/clone-2.1.2.tgz#1b7f4b9f591f1e8f83670401600345a02887435f"
+  integrity sha1-G39Ln1kfHo+DZwQBYANFoCiHQ18=
+
 co@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
@@ -2863,6 +2868,14 @@ cssesc@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/cssesc/-/cssesc-3.0.0.tgz#37741919903b868565e1c09ea747445cd18983ee"
   integrity sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
+
+csslint@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/csslint/-/csslint-1.0.5.tgz#19cc3eda322160fd3f7232af1cb2a360e898a2e9"
+  integrity sha1-Gcw+2jIhYP0/cjKvHLKjYOiYouk=
+  dependencies:
+    clone "~2.1.0"
+    parserlib "~1.1.1"
 
 cssnano-preset-simple@^1.0.0:
   version "1.0.3"
@@ -3580,6 +3593,11 @@ fela-plugin-fallback-value@^11.1.2:
     css-in-js-utils "^3.0.0"
     isobject "^3.0.1"
 
+fela-plugin-logger@^11.1.2:
+  version "11.1.2"
+  resolved "https://registry.yarnpkg.com/fela-plugin-logger/-/fela-plugin-logger-11.1.2.tgz#4070d2d65acb4257ad34a51a7b1171db291124ae"
+  integrity sha512-qSWMN5usD+W53dAYCbvWwMLoDcWg9FPY3ibQQDM87Veg81Vv+5xVpC8WnpbBWDxyBAqISMhpamxxtMvDpu5Dkg==
+
 fela-plugin-prefixer@^11.1.2:
   version "11.1.2"
   resolved "https://registry.yarnpkg.com/fela-plugin-prefixer/-/fela-plugin-prefixer-11.1.2.tgz#2abcb0faed6ec0ee4e9207e3b1e4bbba793f1e91"
@@ -3605,6 +3623,24 @@ fela-plugin-unit@^11.1.2:
   dependencies:
     css-in-js-utils "^3.0.0"
     isobject "^3.0.1"
+
+fela-plugin-validator@^11.1.2:
+  version "11.1.2"
+  resolved "https://registry.yarnpkg.com/fela-plugin-validator/-/fela-plugin-validator-11.1.2.tgz#a4c7f6c69ad78d95389c0be00e2d6bd7712380b1"
+  integrity sha512-/C/fJK4f5pYWZX5X3F025n96c6VP6ggGsn3fhF83Qkn0OW7XwhbbaWAHCA62aQy59Qk65Dx6a3EjAjDvIIZWCw==
+  dependencies:
+    css-in-js-utils "^3.0.0"
+    csslint "^1.0.5"
+    fela-utils "^11.1.2"
+    isobject "^3.0.1"
+
+fela-preset-dev@^11.1.2:
+  version "11.1.2"
+  resolved "https://registry.yarnpkg.com/fela-preset-dev/-/fela-preset-dev-11.1.2.tgz#6cca98d107e6ebad19f18f1ce5c7723dba3d3923"
+  integrity sha512-RuYra3L+qSitTlH/n31OZ5nmEyffQ+poLfSQ0+D53tS0RzmuqE8GB0D4kqPxBzRcQBaxlZGPWjHsE7LWxmhFhA==
+  dependencies:
+    fela-plugin-logger "^11.1.2"
+    fela-plugin-validator "^11.1.2"
 
 fela-preset-web@^11.1.2:
   version "11.1.2"
@@ -6115,6 +6151,11 @@ parse5@5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-5.1.0.tgz#c59341c9723f414c452975564c7c00a68d58acd2"
   integrity sha512-fxNG2sQjHvlVAYmzBZS9YlDp6PTSSDwa98vkD4QgVDDCAo84z5X1t5XyJQ62ImdLXx5NdIIfihey6xpum9/gRQ==
+
+parserlib@~1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/parserlib/-/parserlib-1.1.1.tgz#a64cfa724062434fdfc351c9a4ec2d92b94c06f4"
+  integrity sha1-pkz6ckBiQ0/fw1HJpOwtkrlMBvQ=
 
 pascalcase@^0.1.1:
   version "0.1.1"

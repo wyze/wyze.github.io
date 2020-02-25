@@ -1,6 +1,13 @@
+import {
+  AppContextType,
+  AppInitialProps,
+  AppPropsType,
+  NextComponentType,
+} from 'next/dist/next-server/lib/utils'
+import { IRenderer } from 'fela'
+import { NextRouter } from 'next/router'
 import { renderToSheetList } from 'fela-dom'
 import { renderer } from '../fela'
-import { IRenderer } from 'fela'
 import Document, {
   DocumentContext,
   Head,
@@ -8,16 +15,6 @@ import Document, {
   Main,
   NextScript,
 } from 'next/document'
-import { AppProps } from 'next/app'
-import { PropsWithChildren } from 'react'
-import { NextRouter } from 'next/router'
-import {
-  AppContextType,
-  AppInitialProps,
-  AppPropsType,
-  Enhancer,
-  NextComponentType,
-} from 'next/dist/next-server/lib/utils'
 
 type AppWithRenderer = NextComponentType<
   AppContextType<NextRouter>,

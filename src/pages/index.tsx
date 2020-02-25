@@ -1,21 +1,28 @@
 import { Box } from '../components'
 import { useEffect } from 'react'
+import { useFela } from 'react-fela'
 
 const dev = process.env.NODE_ENV !== 'production'
 
+const styles = {
+  padding: '2em 1em',
+  '@media only screen and (min-width: 1200px)': {
+    padding: '4em 2em',
+  },
+}
+
 export default function HomePage() {
+  const { css } = useFela()
+
   useEffect(() => {
     if ('serviceWorker' in navigator && !dev) {
-      navigator.serviceWorker
-        .register('/service-worker.js')
-        .then(() => {
-          console.log('service worker registration successful')
-        })
-        .catch((err) => {
-          console.warn('service worker registration failed', err.message)
-        })
+      navigator.serviceWorker.register('/service-worker.js')
     }
   }, [])
 
-  return <Box>Welcome to Next.js!</Box>
+  return (
+    <main className={css(styles)}>
+      <Box>Welcome to Next.js!</Box>
+    </main>
+  )
 }

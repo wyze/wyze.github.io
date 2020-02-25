@@ -34,6 +34,7 @@
     "fela": "^11.1.2",
     "fela-dom": "^11.1.2",
     "fela-plugin-typescript": "^11.1.2",
+    "fela-preset-dev": "^11.1.2",
     "fela-preset-web": "^11.1.2",
     "next": "^9.2.2",
     "react": "^16.12.0",
