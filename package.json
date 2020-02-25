@@ -33,6 +33,7 @@
   "dependencies": {
     "fela": "^11.1.2",
     "fela-dom": "^11.1.2",
+    "fela-plugin-named-keys": "^11.1.2",
     "fela-plugin-typescript": "^11.1.2",
     "fela-preset-dev": "^11.1.2",
     "fela-preset-web": "^11.1.2",

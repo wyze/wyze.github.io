@@ -3598,6 +3598,14 @@ fela-plugin-logger@^11.1.2:
   resolved "https://registry.yarnpkg.com/fela-plugin-logger/-/fela-plugin-logger-11.1.2.tgz#4070d2d65acb4257ad34a51a7b1171db291124ae"
   integrity sha512-qSWMN5usD+W53dAYCbvWwMLoDcWg9FPY3ibQQDM87Veg81Vv+5xVpC8WnpbBWDxyBAqISMhpamxxtMvDpu5Dkg==
 
+fela-plugin-named-keys@^11.1.2:
+  version "11.1.2"
+  resolved "https://registry.yarnpkg.com/fela-plugin-named-keys/-/fela-plugin-named-keys-11.1.2.tgz#e4b7254694cbcc4350553d0e130a0cf9eb6e138f"
+  integrity sha512-r/Tu8dc5sj8fSEYwX7EvvjzNGNhEZwxCw+MDOHqqL1cCJKSe/v9+gLl5kilH5MNDHRGw8w/+nXWhY/z3mr4Qsg==
+  dependencies:
+    css-in-js-utils "^3.0.0"
+    isobject "^3.0.1"
+
 fela-plugin-prefixer@^11.1.2:
   version "11.1.2"
   resolved "https://registry.yarnpkg.com/fela-plugin-prefixer/-/fela-plugin-prefixer-11.1.2.tgz#2abcb0faed6ec0ee4e9207e3b1e4bbba793f1e91"

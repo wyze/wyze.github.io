@@ -21,6 +21,10 @@
       }
     },
     {
+      "src": "/pixel/(?<image>[^/]+).png",
+      "dest": "/api/pixel?image=$image"
+    },
+    {
       "src": "/.*\\.(ico|js|json|png|woff2)",
       "headers": {
         "cache-control": "max-age=31536000"
