@@ -20,3 +20,4 @@ lib
 .env*
 .merlin
 **/*.bs.js
+firebase-service-account.json

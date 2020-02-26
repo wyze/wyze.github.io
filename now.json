@@ -5,6 +5,11 @@
       "GITHUB_TOKEN": "@github-token"
     }
   },
+  "env": {
+    "FIREBASE_CREDENTIALS": "@firebase-credentials",
+    "FIREBASE_JWK_SERVICE_ACCT": "@firebase-jwk-service-acct",
+    "FIREBASE_JWK_ANALYTICS_ACCT": "@firebase-jwk-analytics-acct"
+  },
   "functions": {
     "api/**/*.rs": {
       "runtime": "@wyze/now-rust@1.0.6"

@@ -5,5 +5,8 @@ authors = [ "Neil Kistner <neil.kistner@gmail.com>" ]
 edition = "2018"
 
 [dependencies]
+base64 = "0.11"
+firestore-db-and-auth = "0.6"
 http = "0.1"
 now_lambda = "*"
+serde = "1"
