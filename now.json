@@ -10,7 +10,7 @@
     "AES_IV": "@aes-iv"
   },
   "functions": {
-    "api/**/*.rs": {
+    "api/**/pixel.rs": {
       "runtime": "@wyze/now-rust@1.0.6"
     }
   },
