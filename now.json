@@ -6,9 +6,8 @@
     }
   },
   "env": {
-    "FIREBASE_CREDENTIALS": "@firebase-credentials",
-    "FIREBASE_JWK_SERVICE_ACCT": "@firebase-jwk-service-acct",
-    "FIREBASE_JWK_ANALYTICS_ACCT": "@firebase-jwk-analytics-acct"
+    "AES_KEY": "@aes-key",
+    "AES_IV": "@aes-iv"
   },
   "functions": {
     "api/**/*.rs": {
