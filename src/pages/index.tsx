@@ -1,7 +1,7 @@
-import { Box, Image, Pixel, Section } from '../components'
+import { Box, Icon, IconType, Image, Pixel, Section } from '../components'
 import { thin } from '../styles'
 import { useEffect } from 'react'
-import { useFela } from 'react-fela'
+import { createComponentWithProxy, useFela } from 'react-fela'
 
 const dev = process.env.NODE_ENV !== 'production'
 
@@ -62,7 +62,22 @@ const styles = {
       },
     },
   },
+  social: {
+    flexBasis: 50,
+    flexGrow: 0,
+    flexShrink: 0,
+    margin: '0.5em 0',
+    paddingTop: 0.4,
+    nested: {
+      small: {
+        flexBasis: 25,
+        margin: 0,
+      },
+    },
+  },
 } as const
+
+const SocialIcon = createComponentWithProxy(styles.social, Icon)
 
 export default function HomePage() {
   const { css } = useFela()
@@ -87,7 +102,19 @@ export default function HomePage() {
           </h1>
         </Section>
       </Box>
-      <Box title="Me Around The Internet" />
+      <Box title="Me Around The Internet" wrap>
+        <Pixel location="social" />
+        <SocialIcon href="//github.com/wyze" icon={IconType.GitHub} />
+        <SocialIcon href="//twitter.com/wyze" icon={IconType.Twitter} />
+        <SocialIcon
+          href="//linkedin.com/in/neilkistner"
+          icon={IconType.LinkedIn}
+        />
+        <SocialIcon
+          href="//stackoverflow.com/users/1507905/neil-kistner"
+          icon={IconType.StackOverflow}
+        />
+      </Box>
     </main>
   )
 }

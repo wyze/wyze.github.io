@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react'
 
 type SectionProps = PropsWithChildren<{
   center?: boolean
-  className: CssFelaStyle<{}, {}>
+  className: CssFelaStyle<{}, {}> | string
 }>
 
 const styles = ({ center }: Pick<SectionProps, 'center'>) =>
@@ -17,7 +17,17 @@ const styles = ({ center }: Pick<SectionProps, 'center'>) =>
   } as const)
 
 export function Section({ center = true, children, className }: SectionProps) {
-  const { css } = useFela()
+  const { css } = useFela({ center })
 
-  return <div className={css(styles({ center }), className)}>{children}</div>
+  return (
+    <div
+      className={
+        typeof className === 'string'
+          ? `${css(styles)} ${className}`
+          : css(styles, className)
+      }
+    >
+      {children}
+    </div>
+  )
 }
