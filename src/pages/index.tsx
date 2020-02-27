@@ -1,4 +1,12 @@
-import { Box, Icon, IconType, Image, Pixel, Section } from '../components'
+import {
+  Box,
+  Employer,
+  Icon,
+  IconType,
+  Image,
+  Pixel,
+  Section,
+} from '../components'
 import { thin } from '../styles'
 import { useEffect } from 'react'
 import { createComponentWithProxy, useFela } from 'react-fela'
@@ -114,6 +122,25 @@ export default function HomePage() {
           href="//stackoverflow.com/users/1507905/neil-kistner"
           icon={IconType.StackOverflow}
         />
+      </Box>
+      <Box title="Employment" wrap>
+        <Pixel location="employment" />
+        <Employer start="April 2017">Juristat</Employer>
+        <Employer end="April 2017" start="September 2015">
+          Monsanto
+        </Employer>
+        <Employer end="September 2015" start="December 2013">
+          Safety National
+        </Employer>
+        <Employer end="December 2013" start="February 2012">
+          SteadyRain
+        </Employer>
+        <Employer end="February 2012" start="April 2011">
+          CSC
+        </Employer>
+        <Employer end="March 2011" start="March 2007">
+          Panera Bread
+        </Employer>
       </Box>
     </main>
   )
