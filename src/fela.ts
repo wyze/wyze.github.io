@@ -2,17 +2,21 @@ import { createRenderer } from 'fela'
 import { createWebPreset } from 'fela-preset-web'
 import devPreset from 'fela-preset-dev'
 import namedKeys from 'fela-plugin-named-keys'
+import sortMediaQueryMobileFirst from 'fela-sort-media-query-mobile-first'
 import typescript from 'fela-plugin-typescript'
 
 const dev = process.env.NODE_ENV !== 'production'
 
 export const renderer = createRenderer({
+  enhancers: [sortMediaQueryMobileFirst()],
   plugins: [
     typescript(),
-    ...createWebPreset({ unit: ['em', { borderRadius: 'px', flexBasis: '%' }] }),
     namedKeys({
       large: '@media only screen and (min-width: 1200px)',
       small: '@media only screen and (min-width: 768px)',
+    }),
+    ...createWebPreset({
+      unit: ['em', { borderRadius: 'px', flexBasis: '%' }],
     }),
     ...(dev ? devPreset : []),
   ],
@@ -35,7 +39,7 @@ renderer.renderFont(
 renderer.renderStatic({ margin: 0, padding: 0 }, 'html, body, p, h1, h2, h3')
 renderer.renderStatic({ fontSize: '100%', fontWeight: 400 }, 'h1, h2, h3')
 renderer.renderStatic({ boxSizing: 'border-box' }, 'html')
-renderer.renderStatic({ boxSizing: 'inherit' }, '*, *:after, &:before')
+renderer.renderStatic({ boxSizing: 'inherit' }, '*, *:after, *:before')
 renderer.renderStatic({ height: 'auto', maxWidth: '100%' }, 'img')
 
 /* Globals */

@@ -83,9 +83,38 @@ const styles = {
       },
     },
   },
+  team: {
+    paddingTop: 0.4,
+    width: '100%',
+    nested: {
+      small: {
+        nested: {
+          ':not(:first-of-type)': {
+            paddingTop: 0.4,
+          },
+          ':last-of-type': {
+            marginLeft: '25%',
+          },
+        },
+        width: '50%',
+      },
+      large: {
+        width: '33%',
+        nested: {
+          ':last-of-type': {
+            marginLeft: 0,
+          },
+        }
+      },
+      ':not(:first-of-type)': {
+        paddingTop: 1,
+      },
+    },
+  },
 } as const
 
 const SocialIcon = createComponentWithProxy(styles.social, Icon)
+const TeamIcon = createComponentWithProxy(styles.team, Icon)
 
 export default function HomePage() {
   const { css } = useFela()
@@ -141,6 +170,12 @@ export default function HomePage() {
         <Employer end="March 2011" start="March 2007">
           Panera Bread
         </Employer>
+      </Box>
+      <Box title="Core Team Member" wrap>
+        <Pixel location="core-team" />
+        <TeamIcon href="//yarnpkg.com" icon={IconType.Yarn} />
+        <TeamIcon href="//tessel.io" icon={IconType.Tessel} />
+        <TeamIcon href="//starship.rs" icon={IconType.Starship} />
       </Box>
     </main>
   )

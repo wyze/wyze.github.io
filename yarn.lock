@@ -3661,6 +3661,13 @@ fela-preset-web@^11.1.2:
     fela-plugin-prefixer "^11.1.2"
     fela-plugin-unit "^11.1.2"
 
+fela-sort-media-query-mobile-first@^11.1.2:
+  version "11.1.2"
+  resolved "https://registry.yarnpkg.com/fela-sort-media-query-mobile-first/-/fela-sort-media-query-mobile-first-11.1.2.tgz#e8cc1970dad74afa53f000100399ad824c6988ba"
+  integrity sha512-WJZ4R/V6ySlON6sMsMnYwbe0pAi03LXL8QJOojg1j6qxQ54Ny3qdliq2TvGjmeZHJraTh3uQSD9W7bqqfTd4CQ==
+  dependencies:
+    sort-css-media-queries "^1.4.3"
+
 fela-tools@^11.1.2:
   version "11.1.2"
   resolved "https://registry.yarnpkg.com/fela-tools/-/fela-tools-11.1.2.tgz#4f4b4d71795e3f341846da5d7e1aa800a33724ca"

@@ -22,3 +22,9 @@ declare module "fela-preset-web" {
 
   export default presets;
 }
+
+declare module "fela-sort-media-query-mobile-first" {
+  import { TEnhancer } from "fela";
+
+  export default function(): TEnhancer;
+}
