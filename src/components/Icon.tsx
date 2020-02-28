@@ -12,13 +12,13 @@ import { Link } from './Link'
 import { Section } from './Section'
 
 export enum IconType {
-  GitHub,
-  LinkedIn,
-  StackOverflow,
-  Starship,
-  Tessel,
-  Twitter,
-  Yarn,
+  GitHub = 'github',
+  LinkedIn = 'linked-in',
+  StackOverflow = 'stack-overflow',
+  Starship = 'starship',
+  Tessel = 'tessel',
+  Twitter = 'twitter',
+  Yarn = 'yarn',
 }
 
 type IconProps = {
@@ -37,7 +37,7 @@ const styles = {
 export function Icon({ className = {}, icon, ...rest }: IconProps) {
   return (
     <Section className={className}>
-      <Link className={styles} {...rest}>
+      <Link className={styles} title={icon} {...rest}>
         {icon === IconType.GitHub && <GitHub />}
         {icon === IconType.LinkedIn && <LinkedIn />}
         {icon === IconType.Starship && <Starship />}
