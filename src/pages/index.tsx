@@ -1,15 +1,59 @@
 import {
   Box,
   Employer,
+  GitHubItem,
   Icon,
   IconType,
   Image,
   Pixel,
   Section,
 } from '../components'
+import { GitHubInfo } from '../types'
+import { createComponentWithProxy, useFela } from 'react-fela'
+import { graphql } from '@octokit/graphql'
 import { thin } from '../styles'
 import { useEffect } from 'react'
-import { createComponentWithProxy, useFela } from 'react-fela'
+
+type Repository = {
+  isArchived: boolean
+  isPrivate: boolean
+  name: string
+  nameWithOwner: string
+  owner: {
+    login: string
+  }
+  languages: {
+    edges: [
+      {
+        node: {
+          color: string
+          name: string
+        }
+        size: number
+      }
+    ]
+    totalSize: number
+  }
+  shortDescriptionHTML: string
+  stargazers: {
+    totalCount: number
+  }
+  url: string
+}
+
+type ViewerResponse = {
+  viewer: {
+    contributions1: { nodes: { repository: Repository }[] }
+    contributions2: { nodes: { repository: Repository }[] }
+    contributions3: { nodes: { repository: Repository }[] }
+    projects: { nodes: Repository[] }
+  }
+}
+
+type HomePageProps = {
+  contributions: GitHubInfo[]
+  projects: GitHubInfo[]
+}
 
 const dev = process.env.NODE_ENV !== 'production'
 
@@ -40,6 +84,19 @@ const styles = {
     nested: {
       large: {
         padding: '4em 2em',
+      },
+    },
+  },
+  github: {
+    display: 'grid',
+    gridGap: 10,
+    gridTemplateColumns: 1,
+    nested: {
+      large: {
+        gridTemplateColumns: 'repeat(3, 1fr)',
+      },
+      small: {
+        gridTemplateColumns: 'repeat(2, 1fr)',
       },
     },
   },
@@ -104,7 +161,7 @@ const styles = {
           ':last-of-type': {
             marginLeft: 0,
           },
-        }
+        },
       },
       ':not(:first-of-type)': {
         paddingTop: 1,
@@ -116,7 +173,7 @@ const styles = {
 const SocialIcon = createComponentWithProxy(styles.social, Icon)
 const TeamIcon = createComponentWithProxy(styles.team, Icon)
 
-export default function HomePage() {
+export default function HomePage({ contributions, projects }: HomePageProps) {
   const { css } = useFela()
 
   useEffect(() => {
@@ -177,6 +234,160 @@ export default function HomePage() {
         <TeamIcon href="//tessel.io" icon={IconType.Tessel} />
         <TeamIcon href="//starship.rs" icon={IconType.Starship} />
       </Box>
+      <Box className={styles.github} title="Contributions Made" wrap>
+        <Pixel location="contributions" />
+        {contributions.map((contribution) => (
+          <GitHubItem key={contribution.name} {...contribution} />
+        ))}
+      </Box>
+      <Box className={styles.github} title="Open Source Projects" wrap>
+        <Pixel location="projects" />
+        {projects.map((project) => (
+          <GitHubItem key={project.name} {...project} />
+        ))}
+      </Box>
     </main>
   )
+}
+
+HomePage.getInitialProps = async () => {
+  const { viewer } = (await graphql(
+    `
+      {
+        viewer {
+          contributions1: pullRequests(first: 100, states: [MERGED]) {
+            nodes {
+              repository {
+                ...RepoFields
+              }
+            }
+          }
+          contributions2: pullRequests(
+            after: "Y3Vyc29yOnYyOpHOBZoUUA=="
+            first: 100
+            states: [MERGED]
+          ) {
+            nodes {
+              repository {
+                ...RepoFields
+              }
+            }
+          }
+          contributions3: pullRequests(
+            after: "Y3Vyc29yOnYyOpHODSNyWw=="
+            first: 100
+            states: [MERGED]
+          ) {
+            nodes {
+              repository {
+                ...RepoFields
+              }
+            }
+          }
+          projects: repositories(
+            orderBy: { direction: DESC, field: STARGAZERS }
+            ownerAffiliations: [OWNER]
+            first: 100
+            isFork: false
+            privacy: PUBLIC
+          ) {
+            nodes {
+              ...RepoFields
+            }
+          }
+        }
+      }
+
+      fragment RepoFields on Repository {
+        isArchived
+        isPrivate
+        name
+        nameWithOwner
+        owner {
+          login
+        }
+        languages(first: 20) {
+          edges {
+            node {
+              color
+              name
+            }
+            size
+          }
+          totalSize
+        }
+        shortDescriptionHTML(limit: 100)
+        stargazers {
+          totalCount
+        }
+        url
+      }
+    `,
+    { headers: { authorization: `token ${process.env.GITHUB_TOKEN}` } }
+  )) as ViewerResponse
+
+  const transformLanguages = ({ edges, totalSize }: Repository['languages']) =>
+    edges
+      .map(({ node: { color, name }, size }) => ({
+        colorHex: color ?? '#ccc',
+        name,
+        percent: (size / totalSize) * 100,
+      }))
+      .sort((left, right) => right.percent - left.percent)
+      .filter((project) => project.percent >= 0.1)
+
+  const projects = viewer.projects.nodes
+    .filter((project) => !project.isArchived)
+    .map(
+      ({
+        languages,
+        name,
+        nameWithOwner,
+        shortDescriptionHTML,
+        stargazers: { totalCount },
+        url,
+      }) => ({
+        description: shortDescriptionHTML,
+        languages: transformLanguages(languages),
+        name: nameWithOwner.startsWith('wyze/') ? name : nameWithOwner,
+        stars: totalCount,
+        url,
+      })
+    )
+    .slice(0, 20)
+
+  const contributions = [
+    ...viewer.contributions1.nodes,
+    ...viewer.contributions2.nodes,
+    ...viewer.contributions3.nodes,
+  ]
+    .reduce(
+      (acc, { repository }) =>
+        acc.find((item) => item.nameWithOwner === repository.nameWithOwner) ||
+        repository.owner.login === 'wyze' ||
+        repository.isArchived ||
+        repository.isPrivate
+          ? acc
+          : [...acc, repository],
+      [] as Repository[]
+    )
+    .map(
+      ({
+        languages,
+        nameWithOwner,
+        shortDescriptionHTML,
+        stargazers: { totalCount },
+        url,
+      }) => ({
+        description: shortDescriptionHTML,
+        languages: transformLanguages(languages),
+        name: nameWithOwner,
+        stars: totalCount,
+        url,
+      })
+    )
+    .sort((left, right) => right.stars - left.stars)
+    .slice(0, 20)
+
+  return { contributions, projects }
 }

@@ -1,8 +1,9 @@
+import { CssFelaStyle, useFela } from 'react-fela'
 import { PropsWithChildren } from 'react'
 import { level, makeRGBA } from '../styles'
-import { useFela } from 'react-fela'
 
 type BoxProps = PropsWithChildren<{
+  className?: CssFelaStyle<{}, {}>
   title?: string
   wrap?: boolean
 }>
@@ -42,13 +43,18 @@ const styles = {
   },
 }
 
-export function Box({ children, title, wrap = false }: BoxProps) {
-  const { css } = useFela()
+export function Box({
+  children,
+  className = {},
+  title,
+  wrap = false,
+}: BoxProps) {
+  const { css } = useFela({ wrap })
 
   return (
     <div className={css(styles.container)}>
       {title && <h1 className={css(styles.title)}>{title}</h1>}
-      <div className={css(styles.child({ wrap }), level)}>{children}</div>
+      <div className={css(styles.child, level, className)}>{children}</div>
     </div>
   )
 }

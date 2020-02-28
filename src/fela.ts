@@ -16,7 +16,15 @@ export const renderer = createRenderer({
       small: '@media only screen and (min-width: 768px)',
     }),
     ...createWebPreset({
-      unit: ['em', { borderRadius: 'px', flexBasis: '%' }],
+      unit: [
+        'em',
+        {
+          borderRadius: 'px',
+          flexBasis: '%',
+          gridGap: 'px',
+          gridTemplateColumns: 'fr',
+        },
+      ],
     }),
     ...(dev ? devPreset : []),
   ],
