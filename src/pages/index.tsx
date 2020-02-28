@@ -173,7 +173,7 @@ const styles = {
 const SocialIcon = createComponentWithProxy(styles.social, Icon)
 const TeamIcon = createComponentWithProxy(styles.team, Icon)
 
-export default function HomePage({ contributions, projects }: HomePageProps) {
+export default function HomePage({ contributions, projects, ...rest }: HomePageProps) {
   const { css } = useFela()
 
   useEffect(() => {
@@ -250,7 +250,7 @@ export default function HomePage({ contributions, projects }: HomePageProps) {
   )
 }
 
-HomePage.getInitialProps = async () => {
+export async function getStaticProps() {
   const { viewer } = (await graphql(
     `
       {
@@ -389,5 +389,5 @@ HomePage.getInitialProps = async () => {
     .sort((left, right) => right.stars - left.stars)
     .slice(0, 20)
 
-  return { contributions, projects }
+  return { props: { contributions, projects } }
 }

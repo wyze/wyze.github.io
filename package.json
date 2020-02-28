@@ -39,7 +39,7 @@
     "fela-preset-dev": "^11.1.2",
     "fela-preset-web": "^11.1.2",
     "fela-sort-media-query-mobile-first": "^11.1.2",
-    "next": "^9.2.2",
+    "next": "^9.2.3-canary.17",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-fela": "^11.1.2"
