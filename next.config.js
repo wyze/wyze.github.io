@@ -28,4 +28,22 @@ const offlineConfig = {
 
 module.exports = withPlugins([[offline, offlineConfig], withOptimizedImages], {
   target: 'serverless',
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.pdf$/,
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            context: '',
+            outputPath: 'static',
+            publicPath: '_next/static',
+            name: '[path][name].[hash].[ext]',
+          },
+        },
+      ],
+    })
+
+    return config
+  },
 })

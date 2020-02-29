@@ -1,7 +1,7 @@
 import { Section } from './Section'
 import { useFela } from 'react-fela'
-import png from '../media/me.png'
-import webp from '../media/me.png?webp'
+import png from '../assets/me.png'
+import webp from '../assets/me.png?webp'
 
 const styles = {
   container: {

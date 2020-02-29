@@ -44,6 +44,12 @@ declare module 'fela-sort-media-query-mobile-first' {
   export default function(): TEnhancer
 }
 
+declare module '*.pdf' {
+  const value: string
+
+  export = value
+}
+
 declare module '*.png' {
   const value: string
 

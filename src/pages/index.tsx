@@ -4,6 +4,7 @@ import {
   GitHubItem,
   Icon,
   IconType,
+  Link,
   Me,
   Pixel,
   Section,
@@ -12,8 +13,9 @@ import { GitHubInfo } from '../types'
 import { createComponentWithProxy, useFela } from 'react-fela'
 import { graphql } from '@octokit/graphql'
 import { thin } from '../styles'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useIntersectionObserver } from '../hooks'
+import resume from '../assets/resume.pdf'
 
 type Repository = {
   isArchived: boolean
@@ -58,28 +60,15 @@ type HomePageProps = {
 
 const dev = process.env.NODE_ENV !== 'production'
 
-/*
-  "hide": [
-    display(none),
-  ],
-  "image": [
-    flexBasis @@ pct(100.),
-    paddingBottom @@ em(1.0),
-    textAlign(center),
-    media(breakpoint(Small), [
-      flexBasis(auto),
-      paddingBottom(zero),
-    ]),
-  ],
-  "section": [
-    flexBasis @@ pct(75.),
-    flexGrow(1),
-    flexShrink(1),
-    width @@ pct(100.0),
-  ]
-*/
-
 const styles = {
+  conclusion: {
+    width: '100%',
+    nested: {
+      '> h2': {
+        fontSize: 1.25,
+      },
+    },
+  },
   container: {
     padding: '2em 1em',
     nested: {
@@ -169,8 +158,12 @@ export default function HomePage({
   ...rest
 }: HomePageProps) {
   const { css } = useFela()
-  const [contributionsRef, contributionsVisible]= useIntersectionObserver<HTMLDivElement>()
-  const [projectsRef, projectsVisible]= useIntersectionObserver<HTMLDivElement>()
+  const [contributionsRef, contributionsVisible] = useIntersectionObserver<
+    HTMLDivElement
+  >()
+  const [projectsRef, projectsVisible] = useIntersectionObserver<
+    HTMLDivElement
+  >()
 
   useEffect(() => {
     if ('serviceWorker' in navigator && !dev) {
@@ -228,21 +221,38 @@ export default function HomePage({
         <TeamIcon href="//tessel.io" icon={IconType.Tessel} />
         <TeamIcon href="//starship.rs" icon={IconType.Starship} />
       </Box>
-      <Box ref={contributionsRef} className={styles.github} title="Contributions Made" wrap>
+      <Box
+        ref={contributionsRef}
+        className={styles.github}
+        title="Contributions Made"
+        wrap
+      >
         <Pixel location="contributions" />
-        {contributionsVisible && (
+        {contributionsVisible &&
           contributions.map((contribution) => (
             <GitHubItem key={contribution.name} {...contribution} />
-          ))
-        )}
+          ))}
       </Box>
-      <Box ref={projectsRef} className={styles.github} title="Open Source Projects" wrap>
+      <Box
+        ref={projectsRef}
+        className={styles.github}
+        title="Open Source Projects"
+        wrap
+      >
         <Pixel location="projects" />
-        {projectsVisible && (
+        {projectsVisible &&
           projects.map((project) => (
             <GitHubItem key={project.name} {...project} />
-          ))
-        )}
+          ))}
+      </Box>
+      <Box>
+        <Pixel location="conclusion" />
+        <Section className={styles.conclusion}>
+          <h2 className={css(thin)}>
+            Download <Link href={resume}>résumé</Link>. View{' '}
+            <Link href="//github.com/wyze/wyze.github.io">source</Link>.
+          </h2>
+        </Section>
       </Box>
     </main>
   )
