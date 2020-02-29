@@ -1,5 +1,6 @@
 import { CssFelaStyle, useFela } from 'react-fela'
 import { PropsWithChildren } from 'react'
+import { forwardRef } from 'react'
 import { level, makeRGBA } from '../styles'
 
 type BoxProps = PropsWithChildren<{
@@ -43,18 +44,16 @@ const styles = {
   },
 }
 
-export function Box({
-  children,
-  className = {},
-  title,
-  wrap = false,
-}: BoxProps) {
+export const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
+  { children, className = {}, title, wrap = false },
+  ref
+) {
   const { css } = useFela({ wrap })
 
   return (
-    <div className={css(styles.container)}>
+    <div ref={ref} className={css(styles.container)}>
       {title && <h1 className={css(styles.title)}>{title}</h1>}
       <div className={css(styles.child, level, className)}>{children}</div>
     </div>
   )
-}
+})

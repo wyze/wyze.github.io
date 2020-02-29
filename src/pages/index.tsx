@@ -13,6 +13,7 @@ import { createComponentWithProxy, useFela } from 'react-fela'
 import { graphql } from '@octokit/graphql'
 import { thin } from '../styles'
 import { useEffect, useState } from 'react'
+import { useIntersectionObserver } from '../hooks'
 
 type Repository = {
   isArchived: boolean
@@ -162,25 +163,14 @@ const styles = {
 const SocialIcon = createComponentWithProxy(styles.social, Icon)
 const TeamIcon = createComponentWithProxy(styles.team, Icon)
 
-function useIsMounted() {
-  const [isMounted, setIsMounted] = useState(false)
-
-  useEffect(() => {
-    const timeout = setTimeout(() => setIsMounted(true), 500)
-
-    return () => clearTimeout(timeout)
-  }, [])
-
-  return isMounted
-}
-
 export default function HomePage({
   contributions,
   projects,
   ...rest
 }: HomePageProps) {
   const { css } = useFela()
-  const isMounted = useIsMounted()
+  const [contributionsRef, contributionsVisible]= useIntersectionObserver<HTMLDivElement>()
+  const [projectsRef, projectsVisible]= useIntersectionObserver<HTMLDivElement>()
 
   useEffect(() => {
     if ('serviceWorker' in navigator && !dev) {
@@ -238,24 +228,20 @@ export default function HomePage({
         <TeamIcon href="//tessel.io" icon={IconType.Tessel} />
         <TeamIcon href="//starship.rs" icon={IconType.Starship} />
       </Box>
-      <Box className={styles.github} title="Contributions Made" wrap>
+      <Box ref={contributionsRef} className={styles.github} title="Contributions Made" wrap>
         <Pixel location="contributions" />
-        {isMounted ? (
+        {contributionsVisible && (
           contributions.map((contribution) => (
             <GitHubItem key={contribution.name} {...contribution} />
           ))
-        ) : (
-          <>Loading...</>
         )}
       </Box>
-      <Box className={styles.github} title="Open Source Projects" wrap>
+      <Box ref={projectsRef} className={styles.github} title="Open Source Projects" wrap>
         <Pixel location="projects" />
-        {isMounted ? (
+        {projectsVisible && (
           projects.map((project) => (
             <GitHubItem key={project.name} {...project} />
           ))
-        ) : (
-          <>Loading...</>
         )}
       </Box>
     </main>

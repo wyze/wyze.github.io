@@ -1,28 +1,13 @@
-import { useEffect, useRef, useState } from 'react'
 import { useFela } from 'react-fela'
+import {useIntersectionObserver} from '../hooks'
 
 type PixelProps = { location: string }
 
 const styles = (visible: boolean) => ({ display: visible ? 'none' : 'inline' })
 
 export function Pixel({ location }: PixelProps) {
+  const [imageRef, visible] = useIntersectionObserver<HTMLImageElement>()
   const { css } = useFela()
-  const [visible, setVisible] = useState(false)
-  const imageRef = useRef<HTMLImageElement>(null)
-
-  useEffect(() => {
-    if (imageRef.current) {
-      const observer = new IntersectionObserver(([entry]) => {
-        if (entry.intersectionRatio > 0) {
-          setVisible(true)
-        }
-      })
-
-      observer.observe(imageRef.current)
-
-      return () => observer.unobserve(imageRef.current!)
-    }
-  }, [imageRef.current])
 
   return (
     <img
