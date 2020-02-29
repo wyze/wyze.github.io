@@ -6,7 +6,6 @@ import {
   IconType,
   Link,
   Me,
-  Pixel,
   Section,
 } from '../components'
 import { GitHubInfo, Repository, ViewerResponse } from '../types'
@@ -118,12 +117,10 @@ const TeamIcon = createComponentWithProxy(styles.team, Icon)
 
 export default function HomePage({ contributions, projects }: HomePageProps) {
   const { css } = useFela()
-  const [contributionsRef, contributionsVisible] = useIntersectionObserver<
-    HTMLDivElement
-  >('150px')
-  const [projectsRef, projectsVisible] = useIntersectionObserver<
-    HTMLDivElement
-  >('150px')
+  const [contributionsRef, contributionsVisible] = useIntersectionObserver(
+    '150px'
+  )
+  const [projectsRef, projectsVisible] = useIntersectionObserver('150px')
 
   useEffect(() => {
     if ('serviceWorker' in navigator && !dev) {
@@ -133,8 +130,7 @@ export default function HomePage({ contributions, projects }: HomePageProps) {
 
   return (
     <main className={css(styles.container)}>
-      <Box wrap>
-        <Pixel location="introduction" />
+      <Box pixel="introduction" wrap>
         <Me />
         <Section className={styles.section}>
           <h1>
@@ -143,8 +139,7 @@ export default function HomePage({ contributions, projects }: HomePageProps) {
           </h1>
         </Section>
       </Box>
-      <Box title="Me Around The Internet" wrap>
-        <Pixel location="social" />
+      <Box pixel="social" title="Me Around The Internet" wrap>
         <SocialIcon href="//github.com/wyze" icon={IconType.GitHub} />
         <SocialIcon href="//twitter.com/wyze" icon={IconType.Twitter} />
         <SocialIcon
@@ -156,8 +151,7 @@ export default function HomePage({ contributions, projects }: HomePageProps) {
           icon={IconType.StackOverflow}
         />
       </Box>
-      <Box title="Employment" wrap>
-        <Pixel location="employment" />
+      <Box pixel="employment" title="Employment" wrap>
         <Employer start="April 2017">Juristat</Employer>
         <Employer end="April 2017" start="September 2015">
           Monsanto
@@ -175,8 +169,7 @@ export default function HomePage({ contributions, projects }: HomePageProps) {
           Panera Bread
         </Employer>
       </Box>
-      <Box title="Core Team Member" wrap>
-        <Pixel location="core-team" />
+      <Box pixel="core-team" title="Core Team Member" wrap>
         <TeamIcon href="//yarnpkg.com" icon={IconType.Yarn} />
         <TeamIcon href="//tessel.io" icon={IconType.Tessel} />
         <TeamIcon href="//starship.rs" icon={IconType.Starship} />
@@ -184,10 +177,10 @@ export default function HomePage({ contributions, projects }: HomePageProps) {
       <Box
         ref={contributionsRef}
         className={styles.github}
+        pixel="contributions"
         title="Contributions Made"
         wrap
       >
-        <Pixel location="contributions" />
         {contributionsVisible &&
           contributions.map((contribution) => (
             <GitHubItem key={contribution.name} {...contribution} />
@@ -196,17 +189,16 @@ export default function HomePage({ contributions, projects }: HomePageProps) {
       <Box
         ref={projectsRef}
         className={styles.github}
+        pixel="projects"
         title="Open Source Projects"
         wrap
       >
-        <Pixel location="projects" />
         {projectsVisible &&
           projects.map((project) => (
             <GitHubItem key={project.name} {...project} />
           ))}
       </Box>
-      <Box>
-        <Pixel location="conclusion" />
+      <Box pixel="conclusion">
         <Section className={styles.conclusion}>
           <h2 className={css(thin)}>
             Download <Link href={resume}>résumé</Link>. View{' '}

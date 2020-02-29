@@ -1,10 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 
-export function useIntersectionObserver<T extends HTMLElement>(
-  rootMargin?: string
-) {
+export function useIntersectionObserver(rootMargin?: string) {
   const [visible, setVisible] = useState(false)
-  const element = useRef<T>(null)
+  const element = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     if (element.current) {
@@ -17,7 +15,7 @@ export function useIntersectionObserver<T extends HTMLElement>(
         { rootMargin }
       )
 
-      observer.observe(element.current)
+      observer.observe(element.current!)
 
       return () => observer.unobserve(element.current!)
     }

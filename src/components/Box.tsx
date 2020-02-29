@@ -2,9 +2,15 @@ import { CssFelaStyle, useFela } from 'react-fela'
 import { PropsWithChildren } from 'react'
 import { forwardRef } from 'react'
 import { level, makeRGBA } from '../styles'
+import { useIntersectionObserver } from '../hooks'
+
+type ForwardMutableRef<T = HTMLDivElement | null, P = BoxProps> = (
+  render: (props: PropsWithChildren<P>, ref: React.MutableRefObject<T>) => React.ReactElement | null
+) => React.ForwardRefExoticComponent<React.PropsWithoutRef<P> & React.RefAttributes<T>>
 
 type BoxProps = PropsWithChildren<{
   className?: CssFelaStyle<{}, {}>
+  pixel: string
   title?: string
   wrap?: boolean
 }>
@@ -12,7 +18,7 @@ type BoxProps = PropsWithChildren<{
 const boxShadow = makeRGBA(0.1)
 
 const styles = {
-  child: ({ wrap }: BoxProps) =>
+  child: ({ wrap }: Pick<BoxProps, 'wrap'>) =>
     ({
       flexWrap: wrap ? 'wrap' : 'nowrap',
     } as const),
@@ -34,6 +40,9 @@ const styles = {
       },
     },
   },
+  image: {
+    display: 'none',
+  },
   title: {
     boxShadow: `0 2px 2px -2px ${makeRGBA(0.25)}`,
     color: makeRGBA(0.75),
@@ -44,14 +53,31 @@ const styles = {
   },
 }
 
-export const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
-  { children, className = {}, title, wrap = false },
+const forwardMutableRef = forwardRef as ForwardMutableRef
+
+export const Box = forwardMutableRef(function Box(
+  { children, className = {}, pixel, title, wrap = false }: BoxProps,
   ref
 ) {
   const { css } = useFela({ wrap })
+  const [boxRef, visible] = useIntersectionObserver()
 
   return (
-    <div ref={ref} className={css(styles.container)}>
+    <div
+      ref={(instance) => {
+        if (ref && typeof ref !== 'function') {
+          ref.current = instance
+        }
+
+        boxRef.current = instance
+      }}
+      className={css(styles.container)}
+    >
+      {visible && <img
+        alt={pixel}
+        className={css(styles.image)}
+        src={`/pixel/${pixel}.png`}
+      />}
       {title && <h1 className={css(styles.title)}>{title}</h1>}
       <div className={css(styles.child, level, className)}>{children}</div>
     </div>
