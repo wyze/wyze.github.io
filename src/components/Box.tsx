@@ -1,12 +1,7 @@
 import { CssFelaStyle, useFela } from 'react-fela'
 import { PropsWithChildren } from 'react'
-import { forwardRef } from 'react'
 import { level, makeRGBA } from '../styles'
-import { useIntersectionObserver } from '../hooks'
-
-type ForwardMutableRef<T = HTMLDivElement | null, P = BoxProps> = (
-  render: (props: PropsWithChildren<P>, ref: React.MutableRefObject<T>) => React.ReactElement | null
-) => React.ForwardRefExoticComponent<React.PropsWithoutRef<P> & React.RefAttributes<T>>
+import { useEffect, useRef, useState } from 'react'
 
 type BoxProps = PropsWithChildren<{
   className?: CssFelaStyle<{}, {}>
@@ -53,33 +48,42 @@ const styles = {
   },
 }
 
-const forwardMutableRef = forwardRef as ForwardMutableRef
-
-export const Box = forwardMutableRef(function Box(
-  { children, className = {}, pixel, title, wrap = false }: BoxProps,
-  ref
-) {
+export function Box({
+  children,
+  className = {},
+  pixel,
+  title,
+  wrap = false,
+}: BoxProps) {
   const { css } = useFela({ wrap })
-  const [boxRef, visible] = useIntersectionObserver()
+  const [visible, setVisible] = useState(false)
+  const ref = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    if (ref.current) {
+      const observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true)
+        }
+      })
+
+      observer.observe(ref.current!)
+
+      return () => observer.unobserve(ref.current!)
+    }
+  }, [ref.current])
 
   return (
-    <div
-      ref={(instance) => {
-        if (ref && typeof ref !== 'function') {
-          ref.current = instance
-        }
-
-        boxRef.current = instance
-      }}
-      className={css(styles.container)}
-    >
-      {visible && <img
-        alt={pixel}
-        className={css(styles.image)}
-        src={`/pixel/${pixel}.png`}
-      />}
+    <div ref={ref} className={css(styles.container)}>
+      {visible && (
+        <img
+          alt={pixel}
+          className={css(styles.image)}
+          src={`/pixel/${pixel}.png`}
+        />
+      )}
       {title && <h1 className={css(styles.title)}>{title}</h1>}
       <div className={css(styles.child, level, className)}>{children}</div>
     </div>
   )
-})
+}

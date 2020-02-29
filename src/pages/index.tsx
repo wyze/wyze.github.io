@@ -12,8 +12,7 @@ import { GitHubInfo, Repository, ViewerResponse } from '../types'
 import { createComponentWithProxy, useFela } from 'react-fela'
 import { graphql } from '@octokit/graphql'
 import { thin } from '../styles'
-import { useEffect } from 'react'
-import { useIntersectionObserver } from '../hooks'
+import { useEffect, useState } from 'react'
 import resume from '../assets/resume.pdf'
 
 type HomePageProps = {
@@ -117,16 +116,25 @@ const TeamIcon = createComponentWithProxy(styles.team, Icon)
 
 export default function HomePage({ contributions, projects }: HomePageProps) {
   const { css } = useFela()
-  const [contributionsRef, contributionsVisible] = useIntersectionObserver(
-    '150px'
-  )
-  const [projectsRef, projectsVisible] = useIntersectionObserver('150px')
+  const [renderData, setRenderData] = useState(false)
 
   useEffect(() => {
     if ('serviceWorker' in navigator && !dev) {
       navigator.serviceWorker.register('/service-worker.js')
     }
   }, [])
+
+  useEffect(() => {
+    if (window && !renderData) {
+      const scroller = () => {
+        setRenderData(true)
+      }
+
+      window.addEventListener('scroll', scroller)
+
+      return () => window.removeEventListener('scroll', scroller)
+    }
+  }, [renderData])
 
   return (
     <main className={css(styles.container)}>
@@ -175,25 +183,23 @@ export default function HomePage({ contributions, projects }: HomePageProps) {
         <TeamIcon href="//starship.rs" icon={IconType.Starship} />
       </Box>
       <Box
-        ref={contributionsRef}
         className={styles.github}
         pixel="contributions"
         title="Contributions Made"
         wrap
       >
-        {contributionsVisible &&
+        {renderData &&
           contributions.map((contribution) => (
             <GitHubItem key={contribution.name} {...contribution} />
           ))}
       </Box>
       <Box
-        ref={projectsRef}
         className={styles.github}
         pixel="projects"
         title="Open Source Projects"
         wrap
       >
-        {projectsVisible &&
+        {renderData &&
           projects.map((project) => (
             <GitHubItem key={project.name} {...project} />
           ))}
