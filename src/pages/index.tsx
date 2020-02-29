@@ -333,6 +333,7 @@ export async function getStaticProps() {
     `,
     { headers: { authorization: `token ${process.env.GITHUB_TOKEN}` } }
   )) as ViewerResponse
+  const itemCount = 24
 
   const transformLanguages = ({ edges, totalSize }: Repository['languages']) =>
     edges
@@ -362,7 +363,7 @@ export async function getStaticProps() {
         url,
       })
     )
-    .slice(0, 20)
+    .slice(0, itemCount)
 
   const contributions = [
     ...viewer.contributions1.nodes,
@@ -395,7 +396,7 @@ export async function getStaticProps() {
       })
     )
     .sort((left, right) => right.stars - left.stars)
-    .slice(0, 20)
+    .slice(0, itemCount)
 
   return { props: { contributions, projects } }
 }
