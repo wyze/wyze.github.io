@@ -9,49 +9,13 @@ import {
   Pixel,
   Section,
 } from '../components'
-import { GitHubInfo } from '../types'
+import { GitHubInfo, Repository, ViewerResponse } from '../types'
 import { createComponentWithProxy, useFela } from 'react-fela'
 import { graphql } from '@octokit/graphql'
 import { thin } from '../styles'
 import { useEffect } from 'react'
 import { useIntersectionObserver } from '../hooks'
 import resume from '../assets/resume.pdf'
-
-type Repository = {
-  isArchived: boolean
-  isPrivate: boolean
-  name: string
-  nameWithOwner: string
-  owner: {
-    login: string
-  }
-  languages: {
-    edges: [
-      {
-        node: {
-          color: string
-          name: string
-        }
-        size: number
-      }
-    ]
-    totalSize: number
-  }
-  shortDescriptionHTML: string
-  stargazers: {
-    totalCount: number
-  }
-  url: string
-}
-
-type ViewerResponse = {
-  viewer: {
-    contributions1: { nodes: { repository: Repository }[] }
-    contributions2: { nodes: { repository: Repository }[] }
-    contributions3: { nodes: { repository: Repository }[] }
-    projects: { nodes: Repository[] }
-  }
-}
 
 type HomePageProps = {
   contributions: GitHubInfo[]
@@ -152,18 +116,14 @@ const styles = {
 const SocialIcon = createComponentWithProxy(styles.social, Icon)
 const TeamIcon = createComponentWithProxy(styles.team, Icon)
 
-export default function HomePage({
-  contributions,
-  projects,
-  ...rest
-}: HomePageProps) {
+export default function HomePage({ contributions, projects }: HomePageProps) {
   const { css } = useFela()
   const [contributionsRef, contributionsVisible] = useIntersectionObserver<
     HTMLDivElement
-  >()
+  >('150px')
   const [projectsRef, projectsVisible] = useIntersectionObserver<
     HTMLDivElement
-  >()
+  >('150px')
 
   useEffect(() => {
     if ('serviceWorker' in navigator && !dev) {
