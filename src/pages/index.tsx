@@ -12,7 +12,7 @@ import { GitHubInfo } from '../types'
 import { createComponentWithProxy, useFela } from 'react-fela'
 import { graphql } from '@octokit/graphql'
 import { thin } from '../styles'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 type Repository = {
   isArchived: boolean
@@ -162,8 +162,21 @@ const styles = {
 const SocialIcon = createComponentWithProxy(styles.social, Icon)
 const TeamIcon = createComponentWithProxy(styles.team, Icon)
 
-export default function HomePage({ contributions, projects, ...rest }: HomePageProps) {
+function useIsMounted() {
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => setIsMounted(true), [])
+
+  return isMounted
+}
+
+export default function HomePage({
+  contributions,
+  projects,
+  ...rest
+}: HomePageProps) {
   const { css } = useFela()
+  const isMounted = useIsMounted()
 
   useEffect(() => {
     if ('serviceWorker' in navigator && !dev) {
@@ -223,15 +236,23 @@ export default function HomePage({ contributions, projects, ...rest }: HomePageP
       </Box>
       <Box className={styles.github} title="Contributions Made" wrap>
         <Pixel location="contributions" />
-        {contributions.map((contribution) => (
-          <GitHubItem key={contribution.name} {...contribution} />
-        ))}
+        {isMounted ? (
+          contributions.map((contribution) => (
+            <GitHubItem key={contribution.name} {...contribution} />
+          ))
+        ) : (
+          <>Loading...</>
+        )}
       </Box>
       <Box className={styles.github} title="Open Source Projects" wrap>
         <Pixel location="projects" />
-        {projects.map((project) => (
-          <GitHubItem key={project.name} {...project} />
-        ))}
+        {isMounted ? (
+          projects.map((project) => (
+            <GitHubItem key={project.name} {...project} />
+          ))
+        ) : (
+          <>Loading...</>
+        )}
       </Box>
     </main>
   )
