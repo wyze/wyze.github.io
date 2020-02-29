@@ -165,7 +165,11 @@ const TeamIcon = createComponentWithProxy(styles.team, Icon)
 function useIsMounted() {
   const [isMounted, setIsMounted] = useState(false)
 
-  useEffect(() => setIsMounted(true), [])
+  useEffect(() => {
+    const timeout = setTimeout(() => setIsMounted(true), 500)
+
+    return () => clearTimeout(timeout)
+  }, [])
 
   return isMounted
 }
