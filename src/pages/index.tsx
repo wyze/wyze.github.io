@@ -4,7 +4,7 @@ import {
   GitHubItem,
   Icon,
   IconType,
-  Image,
+  Me,
   Pixel,
   Section,
 } from '../components'
@@ -100,17 +100,6 @@ const styles = {
       },
     },
   },
-  image: {
-    flexBasis: 100,
-    paddingBottom: 1,
-    textAlign: 'center',
-    nested: {
-      small: {
-        flexBasis: 'auto',
-        paddingBottom: 0,
-      },
-    },
-  },
   section: {
     flexBasis: 75,
     flexGrow: 1,
@@ -186,9 +175,7 @@ export default function HomePage({ contributions, projects, ...rest }: HomePageP
     <main className={css(styles.container)}>
       <Box wrap>
         <Pixel location="introduction" />
-        <Section center={false} className={styles.image}>
-          <Image alt="Neil Kistner" circle src="img/me-large.png" />
-        </Section>
+        <Me />
         <Section className={styles.section}>
           <h1>
             Hello, I'm <strong>Neil Kistner</strong>, a software engineer in{' '}
