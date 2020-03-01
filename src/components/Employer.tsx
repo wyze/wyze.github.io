@@ -10,16 +10,14 @@ type EmployerProps = PropsWithChildren<{
 
 const styles = {
   child: {
-    display: 'block',
+    display: 'flex',
+    flexDirection: 'column',
+    flexGrow: 0,
+    flexShrink: 0,
     nested: {
-      small: {
-        alignItems: 'center',
-        display: 'flex',
-        flexBasis: 50,
-        flexGrow: 0,
-        flexShrink: 0,
-        justifyContent: 'space-between',
-      },
+      large: {
+        flexDirection: 'row',
+      }
     },
   },
   h2: {
@@ -31,6 +29,7 @@ const styles = {
     nested: {
       small: {
         paddingBottom: 0.5,
+        width: '50%',
       },
       large: {
         width: '48%',
@@ -51,7 +50,7 @@ const styles = {
   strong: {
     fontWeight: 400,
   }
-}
+} as const
 
 export function Employer({ children, end = 'Present', start }: EmployerProps) {
   const { css } = useFela()

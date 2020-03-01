@@ -42,7 +42,7 @@ const styles = {
   github: {
     display: 'grid',
     gridGap: 10,
-    gridTemplateColumns: 1,
+    gridTemplateColumns: '1fr',
     nested: {
       large: {
         gridTemplateColumns: 'repeat(3, 1fr)',

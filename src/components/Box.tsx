@@ -67,7 +67,7 @@ export function Box({
         }
       })
 
-      observer.observe(ref.current!)
+      observer.observe(ref.current)
 
       return () => observer.unobserve(ref.current!)
     }

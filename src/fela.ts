@@ -22,7 +22,6 @@ export const renderer = createRenderer({
           borderRadius: 'px',
           flexBasis: '%',
           gridGap: 'px',
-          gridTemplateColumns: 'fr',
         },
       ],
     }),
