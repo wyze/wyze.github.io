@@ -2,6 +2,7 @@ import { CssFelaStyle, useFela } from 'react-fela'
 import { PropsWithChildren } from 'react'
 import { level, makeRGBA } from '../styles'
 import { useEffect, useRef, useState } from 'react'
+import log from '../log'
 
 type BoxProps = PropsWithChildren<{
   className?: CssFelaStyle<{}, {}>
@@ -56,14 +57,15 @@ export function Box({
   wrap = false,
 }: BoxProps) {
   const { css } = useFela({ wrap })
-  const [visible, setVisible] = useState(false)
+  // const [visible, setVisible] = useState(false)
   const ref = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     if (ref.current) {
       const observer = new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
-          setVisible(true)
+          // setVisible(true)
+          log(`/${pixel}`, window.location.href)
         }
       })
 
@@ -75,13 +77,13 @@ export function Box({
 
   return (
     <div ref={ref} className={css(styles.container)}>
-      {visible && (
+      {/* {visible && (
         <img
           alt={pixel}
           className={css(styles.image)}
           src={`/pixel/${pixel}.png`}
         />
-      )}
+      )} */}
       {title && <h1 className={css(styles.title)}>{title}</h1>}
       <div className={css(styles.child, level, className)}>{children}</div>
     </div>
