@@ -1,5 +1,6 @@
 import { CssFelaStyle, useFela } from 'react-fela'
 import { PropsWithChildren } from 'react'
+import { click } from '../log'
 
 type LinkProps = PropsWithChildren<{
   className?: CssFelaStyle<{}, {}>
@@ -25,6 +26,7 @@ export function Link({ children, className = {}, href, title = '' }: LinkProps) 
     <a
       className={css(styles, className)}
       href={href}
+      onClick={() => click(href.replace(/(^|\w|:)+\/\//, ''))}
       rel="noopener noreferrer"
       target="_blank"
       title={title}

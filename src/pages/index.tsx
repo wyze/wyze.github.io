@@ -13,7 +13,7 @@ import { createComponentWithProxy, useFela } from 'react-fela'
 import { graphql } from '@octokit/graphql'
 import { thin } from '../styles'
 import { useEffect, useState } from 'react'
-import log from '../log'
+import { view } from '../log'
 import resume from '../assets/resume.pdf'
 
 type HomePageProps = {
@@ -124,7 +124,7 @@ export default function HomePage({ contributions, projects }: HomePageProps) {
       navigator.serviceWorker.register('/service-worker.js')
     }
 
-    log()
+    view()
   }, [])
 
   useEffect(() => {
