@@ -2,11 +2,12 @@
 /// <reference types="next/types/global" />
 
 declare module 'fela' {
-  import * as CSS from 'csstype'
-  import { TKeyFrame } from 'fela'
+  import * as Fela from 'fela'
 
-  export interface IStyle extends CSS.Properties<string | number> {
-    animationName?: string | ReturnType<TKeyFrame>
+  type TKeyFrame = ReturnType<Fela.TKeyFrame>
+
+  export interface IStyle extends Omit<Fela.IStyle, 'animationName'> {
+    animationName?: string | TKeyFrame | TKeyFrame[]
   }
 }
 
