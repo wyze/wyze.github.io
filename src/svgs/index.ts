@@ -1,5 +1,7 @@
+export * from './GhostFloating'
 export * from './GitHub'
 export * from './LinkedIn'
+export * from './Shadow'
 export * from './StackOverflow'
 export * from './Star'
 export * from './Starship'

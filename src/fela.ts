@@ -1,11 +1,8 @@
 import { createRenderer } from 'fela'
 import { createWebPreset } from 'fela-preset-web'
-import devPreset from 'fela-preset-dev'
 import namedKeys from 'fela-plugin-named-keys'
 import sortMediaQueryMobileFirst from 'fela-sort-media-query-mobile-first'
 import typescript from 'fela-plugin-typescript'
-
-const dev = process.env.NODE_ENV !== 'production'
 
 export const renderer = createRenderer({
   enhancers: [sortMediaQueryMobileFirst()],
@@ -25,9 +22,7 @@ export const renderer = createRenderer({
         },
       ],
     }),
-    ...(dev ? devPreset : []),
   ],
-  devMode: process.env.NODE_ENV !== 'production',
 })
 
 renderer.renderFont(

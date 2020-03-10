@@ -1476,10 +1476,10 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@next/polyfill-nomodule@9.2.3-canary.28":
-  version "9.2.3-canary.28"
-  resolved "https://registry.yarnpkg.com/@next/polyfill-nomodule/-/polyfill-nomodule-9.2.3-canary.28.tgz#7403ab01d392a90bdee41a8c74d71fbe894b8ab3"
-  integrity sha512-jEbk23mkogYp+gEcRwYqDyk13xLTh/2TeysI5yOS4fJXTHKBu74WkhY5F4wAYfSoTQ485rABdP3P9VdwZnSc5A==
+"@next/polyfill-nomodule@9.3.0":
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/@next/polyfill-nomodule/-/polyfill-nomodule-9.3.0.tgz#5d564a6af7f80f95dba30281dd3420a4a170e219"
+  integrity sha512-CPYTirQylgrtXNHfQriy5V/ur4xURkF5PNRiBg5Tac1fQtCFc6mCJzK4+K0eKcn8mPKdo+20stnr9dvOtrajXw==
 
 "@nodelib/fs.scandir@2.1.3":
   version "2.1.3"
@@ -2975,11 +2975,6 @@ clone@^1.0.2:
   resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
   integrity sha1-2jCcwmPfFZlMaIypAheco8fNfH4=
 
-clone@~2.1.0:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/clone/-/clone-2.1.2.tgz#1b7f4b9f591f1e8f83670401600345a02887435f"
-  integrity sha1-G39Ln1kfHo+DZwQBYANFoCiHQ18=
-
 co@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
@@ -3410,14 +3405,6 @@ cssesc@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/cssesc/-/cssesc-3.0.0.tgz#37741919903b868565e1c09ea747445cd18983ee"
   integrity sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
-
-csslint@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/csslint/-/csslint-1.0.5.tgz#19cc3eda322160fd3f7232af1cb2a360e898a2e9"
-  integrity sha1-Gcw+2jIhYP0/cjKvHLKjYOiYouk=
-  dependencies:
-    clone "~2.1.0"
-    parserlib "~1.1.1"
 
 cssnano-preset-simple@^1.0.0:
   version "1.0.3"
@@ -4360,11 +4347,6 @@ fela-plugin-fallback-value@^11.2.0:
     css-in-js-utils "^3.0.0"
     isobject "^3.0.1"
 
-fela-plugin-logger@^11.2.0:
-  version "11.2.0"
-  resolved "https://registry.yarnpkg.com/fela-plugin-logger/-/fela-plugin-logger-11.2.0.tgz#399280ff144b9b8a1c977a29f722d924badc709d"
-  integrity sha512-qrDn9vrDypUV08l+7mcvNSif3WnaLRMrilG5PQCIw5Rm1BjIAMm6Id5G6ye+tKvA84BASrjwiXfIzPHKbgbZ4w==
-
 fela-plugin-named-keys@^11.2.0:
   version "11.2.0"
   resolved "https://registry.yarnpkg.com/fela-plugin-named-keys/-/fela-plugin-named-keys-11.2.0.tgz#72cef8afd9f87a8b26dbce15f9e00312338c7c03"
@@ -4398,24 +4380,6 @@ fela-plugin-unit@^11.2.0:
   dependencies:
     css-in-js-utils "^3.0.0"
     isobject "^3.0.1"
-
-fela-plugin-validator@^11.2.0:
-  version "11.2.0"
-  resolved "https://registry.yarnpkg.com/fela-plugin-validator/-/fela-plugin-validator-11.2.0.tgz#69bed59c4209c6b5dcebfc115cf0d83ca0c98321"
-  integrity sha512-+NoCaYwQelf7Za+wjAqhXF68spZ0iWCxmB1pTZ+e+ImMh0GnO1lRhZs6F/hrNxZxgyd+MLREC7YDR5V3LbfPIw==
-  dependencies:
-    css-in-js-utils "^3.0.0"
-    csslint "^1.0.5"
-    fela-utils "^11.2.0"
-    isobject "^3.0.1"
-
-fela-preset-dev@^11.2.0:
-  version "11.2.0"
-  resolved "https://registry.yarnpkg.com/fela-preset-dev/-/fela-preset-dev-11.2.0.tgz#9bb38ca31a391bc2d76baf284bf6c88db5d17ba2"
-  integrity sha512-gfVj67aDTTlexY1wgAAhxXOGX4+8GFXyd2/WYd9yuhPXUEyUWAC9dLc7RDuhetC5mXwO5vbxs3Nz8S6zKWrN0g==
-  dependencies:
-    fela-plugin-logger "^11.2.0"
-    fela-plugin-validator "^11.2.0"
 
 fela-preset-web@^11.2.0:
   version "11.2.0"
@@ -6926,10 +6890,10 @@ next-tick@~1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-next@^9.2.3-canary.28:
-  version "9.2.3-canary.28"
-  resolved "https://registry.yarnpkg.com/next/-/next-9.2.3-canary.28.tgz#34691dc38c9443c7bf535ccb7ad42b038d804204"
-  integrity sha512-420ZhXBduHyVmGubfvB/8FNREssQncJvpcgLRb8MnRk90CKnPKSR78k+9vzOxiqGgU48PH96s5kydOgUkqSA0A==
+next@^9.3.0:
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/next/-/next-9.3.0.tgz#7be6ebbddd154214c523fb9e7b88c8e88d553378"
+  integrity sha512-dGuL9xufFqebF0CtbUrOaLXurEjLoqv8Si9U5Yi2ovzsfq2RPjQs8UmgOFYYRjGM4jhJOFCUK0bxLwvSb4uzBg==
   dependencies:
     "@ampproject/toolbox-optimizer" "2.0.0"
     "@babel/core" "7.7.2"
@@ -6947,7 +6911,7 @@ next@^9.2.3-canary.28:
     "@babel/preset-typescript" "7.7.2"
     "@babel/runtime" "7.7.2"
     "@babel/types" "7.7.4"
-    "@next/polyfill-nomodule" "9.2.3-canary.28"
+    "@next/polyfill-nomodule" "9.3.0"
     amphtml-validator "1.0.30"
     async-retry "1.2.3"
     async-sema "3.0.0"
@@ -7017,7 +6981,7 @@ next@^9.2.3-canary.28:
     url "0.11.0"
     use-subscription "1.1.1"
     watchpack "2.0.0-beta.13"
-    webpack "4.41.2"
+    webpack "4.42.0"
     webpack-dev-middleware "3.7.0"
     webpack-hot-middleware "2.25.0"
     webpack-sources "1.4.3"
@@ -7505,11 +7469,6 @@ parse5@5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-5.1.0.tgz#c59341c9723f414c452975564c7c00a68d58acd2"
   integrity sha512-fxNG2sQjHvlVAYmzBZS9YlDp6PTSSDwa98vkD4QgVDDCAo84z5X1t5XyJQ62ImdLXx5NdIIfihey6xpum9/gRQ==
-
-parserlib@~1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/parserlib/-/parserlib-1.1.1.tgz#a64cfa724062434fdfc351c9a4ec2d92b94c06f4"
-  integrity sha1-pkz6ckBiQ0/fw1HJpOwtkrlMBvQ=
 
 pascalcase@^0.1.1:
   version "0.1.1"
@@ -9531,7 +9490,7 @@ terminal-link@^2.0.0:
     ansi-escapes "^4.2.1"
     supports-hyperlinks "^2.0.0"
 
-terser-webpack-plugin@^1.4.1:
+terser-webpack-plugin@^1.4.3:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/terser-webpack-plugin/-/terser-webpack-plugin-1.4.3.tgz#5ecaf2dbdc5fb99745fd06791f46fc9ddb1c9a7c"
   integrity sha512-QMxecFz/gHQwteWwSo5nTc6UaICqN1bMedC5sMtUc7y3Ha3Q8y6ZO0iCR8pq4RJC8Hjf0FEPEHZqcMB/+DFCrA==
@@ -10146,10 +10105,10 @@ webpack-sources@1.4.3, webpack-sources@^1.0.1, webpack-sources@^1.1.0, webpack-s
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@4.41.2:
-  version "4.41.2"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.41.2.tgz#c34ec76daa3a8468c9b61a50336d8e3303dce74e"
-  integrity sha512-Zhw69edTGfbz9/8JJoyRQ/pq8FYUoY0diOXqW0T6yhgdhCv6wr0hra5DwwWexNRns2Z2+gsnrNcbe9hbGBgk/A==
+webpack@4.42.0:
+  version "4.42.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.42.0.tgz#b901635dd6179391d90740a63c93f76f39883eb8"
+  integrity sha512-EzJRHvwQyBiYrYqhyjW9AqM90dE4+s1/XtCfn7uWg6cS72zH+2VPFAlsnW0+W0cDi0XRjNKUMoJtpSi50+Ph6w==
   dependencies:
     "@webassemblyjs/ast" "1.8.5"
     "@webassemblyjs/helper-module-context" "1.8.5"
@@ -10171,7 +10130,7 @@ webpack@4.41.2:
     node-libs-browser "^2.2.1"
     schema-utils "^1.0.0"
     tapable "^1.1.3"
-    terser-webpack-plugin "^1.4.1"
+    terser-webpack-plugin "^1.4.3"
     watchpack "^1.6.0"
     webpack-sources "^1.4.1"
 

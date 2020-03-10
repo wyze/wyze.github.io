@@ -33,7 +33,10 @@ export function click(value: string) {
   send(query, variables)
 }
 
-export function view(page = '/', incoming = window.document.referrer) {
+export function view(
+  page = window.location.pathname,
+  incoming = window.document.referrer
+) {
   const { timeZone } = Intl.DateTimeFormat().resolvedOptions()
   const { userAgent } = window.navigator
   const unique = isUnique(incoming)

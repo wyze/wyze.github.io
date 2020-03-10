@@ -36,10 +36,9 @@
     "fela-dom": "^11.2.0",
     "fela-plugin-named-keys": "^11.2.0",
     "fela-plugin-typescript": "^11.2.0",
-    "fela-preset-dev": "^11.2.0",
     "fela-preset-web": "^11.2.0",
     "fela-sort-media-query-mobile-first": "^11.2.0",
-    "next": "^9.2.3-canary.28",
+    "next": "^9.3.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-fela": "^11.2.0"
