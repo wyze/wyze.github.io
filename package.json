@@ -47,6 +47,8 @@
     "@babel/core": "^7.8.7",
     "@babel/preset-env": "^7.8.7",
     "@babel/preset-typescript": "^7.8.3",
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/react": "^10.0.0-beta.2",
     "@types/jest": "^25.1.4",
     "@types/node": "^13.9.0",
     "@types/react": "^16.9.23",
@@ -101,11 +103,14 @@
     ],
     "roots": [
       "src"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/setupTests.ts"
     ]
   },
   "babel": {
     "env": {
-      "test": {
+      "tes": {
         "presets": [
           [
             "@babel/env",
