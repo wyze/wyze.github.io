@@ -60,18 +60,20 @@ export function Box({
   const ref = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
-    if (ref.current) {
+    const element = ref.current
+
+    if (element) {
       const observer = new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
           view(`/${pixel}`, window.location.href)
         }
       })
 
-      observer.observe(ref.current)
+      observer.observe(element)
 
-      return () => observer.unobserve(ref.current!)
+      return () => observer.unobserve(element)
     }
-  }, [ref.current])
+  }, [pixel])
 
   return (
     <div ref={ref} className={css(styles.container)}>

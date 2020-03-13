@@ -145,7 +145,7 @@ export default function HomePage({ contributions, projects }: HomePageProps) {
         <Me />
         <Section className={styles.section}>
           <h1>
-            Hello, I'm <strong>Neil Kistner</strong>, a software engineer in{' '}
+            Hello, I{"'"}m <strong>Neil Kistner</strong>, a software engineer in{' '}
             <strong>St. Louis</strong>.
           </h1>
         </Section>

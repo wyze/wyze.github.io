@@ -17,7 +17,7 @@ const styles = {
     nested: {
       large: {
         flexDirection: 'row',
-      }
+      },
     },
   },
   h2: {
@@ -49,7 +49,7 @@ const styles = {
   },
   strong: {
     fontWeight: 400,
-  }
+  },
 } as const
 
 export function Employer({ children, end = 'Present', start }: EmployerProps) {

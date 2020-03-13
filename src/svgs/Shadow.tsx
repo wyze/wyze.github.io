@@ -41,7 +41,7 @@ export function Shadow() {
       xmlns="http://www.w3.org/2000/svg"
       y="20px"
     >
-      <title> shadow </title>
+      <title>shadow</title>
       <ellipse
         className={css(styles.ellipse)}
         cx="61.128"

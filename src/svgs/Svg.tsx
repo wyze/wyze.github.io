@@ -13,6 +13,7 @@ export function Svg({ children, height, name = '', width }: SvgProps) {
       viewBox={`0 0 ${width} ${height}`}
       xmlns="http://www.w3.org/2000/svg"
     >
+      <title>{name}</title>
       {children}
     </svg>
   )

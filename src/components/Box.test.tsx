@@ -18,7 +18,7 @@ describe('<Box />', () => {
     expect(content).toBeInTheDocument()
     expect(content).toHaveStyle('flex-wrap: nowrap')
 
-    mockIsIntersecting(container.firstElementChild!, true)
+    mockIsIntersecting(container.firstElementChild ?? new Element(), true)
 
     expect(view).toHaveBeenCalledTimes(1)
     expect(view).toHaveBeenCalledWith('/test', 'http://localhost/')

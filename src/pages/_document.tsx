@@ -23,7 +23,7 @@ type AppWithRenderer = NextComponentType<
 >
 
 type SheetList = ReturnType<typeof renderToSheetList> extends Array<infer U>
-  ? (U & { rehydration: number })[]
+  ? Array<U & { rehydration: number }>
   : never
 
 export default class extends Document<{ sheetList: SheetList }> {

@@ -35,7 +35,7 @@ export default function FourOhFourPage() {
       </div>
       <h1>Whoops!</h1>
       <div>
-        We couldn't find the page you
+        We couldn{"'"}t find the page you
         <br />
         were looking for.
       </div>

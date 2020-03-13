@@ -28,7 +28,8 @@ describe('<GitHubItem />', () => {
     expect(getByText('A test repo')).toBeInTheDocument()
 
     // Bullet Structure
-    const bulletContainer = getByText('Language 1').parentElement!
+    const bulletContainer =
+      getByText('Language 1').parentElement ?? new HTMLElement()
     const bullet = within(bulletContainer)
 
     expect(Array.from(bulletContainer.childNodes)).toStrictEqual([
@@ -39,7 +40,8 @@ describe('<GitHubItem />', () => {
 
     // Bullets
     for (const { colorHex, name, percent } of languages.slice(0, 3)) {
-      const languageContainer = getByText(name).parentElement!
+      const languageContainer =
+        getByText(name).parentElement ?? new HTMLElement()
       const language = within(languageContainer)
 
       expect(language.getByTestId('language-color')).toHaveStyle({

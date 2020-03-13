@@ -19,7 +19,12 @@ const styles = {
   },
 }
 
-export function Link({ children, className = {}, href, title = '' }: LinkProps) {
+export function Link({
+  children,
+  className = {},
+  href,
+  title = '',
+}: LinkProps) {
   const { css } = useFela()
 
   return (
