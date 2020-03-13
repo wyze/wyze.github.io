@@ -41,9 +41,9 @@ export type Repository = {
 
 export type ViewerResponse = {
   viewer: {
-    contributions1: { nodes: { repository: Repository }[] }
-    contributions2: { nodes: { repository: Repository }[] }
-    contributions3: { nodes: { repository: Repository }[] }
+    contributions1: { nodes: Array<{ repository: Repository }> }
+    contributions2: { nodes: Array<{ repository: Repository }> }
+    contributions3: { nodes: Array<{ repository: Repository }> }
     projects: { nodes: Repository[] }
   }
 }
