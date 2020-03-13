@@ -95,17 +95,26 @@ export function GitHubItem({
     .reduce(
       ([bullets, bars], { colorHex, name, percent }) => {
         const background = { backgroundColor: colorHex }
-        const width = formatLanguage(percent / 100)
+        const width = formatLanguage(percent / 100).replace('.0', '')
 
         const bullet = (
-          <div className={css(styles.language)}>
-            <div className={css(background, styles.circle)} />
+          <div key={name} className={css(styles.language)}>
+            <div
+              className={css(background, styles.circle)}
+              data-testid="language-color"
+            />
             <div className={css(styles.bold)}>{name}</div>
             <div>{width}</div>
           </div>
         )
 
-        const bar = <span className={css(background, { width })} title={name} />
+        const bar = (
+          <span
+            key={name}
+            className={css(background, { width })}
+            title={name}
+          />
+        )
 
         return [
           [...bullets, bullet],
