@@ -18,21 +18,6 @@
     "test": "jest",
     "type-check": "tsc --noEmit"
   },
-  "scripts_": {
-    "build": "run-s build:*",
-    "build:bsb": "bsb -make-world",
-    "build:config": "rio -o gatsby-config.js src/config/gatsby.re",
-    "build:gatsby": "gatsby build",
-    "clean": "bsb -clean-world && rimraf .cache .merlin lib public *.js static/js",
-    "dev": "run-p dev:*",
-    "dev:bsb": "yarn build:bsb -w",
-    "dev:gatsby": "gatsby develop",
-    "jest": "jest",
-    "prejest": "rio -o babel.config.js src/config/babel.re",
-    "predev:gatsby": "yarn build:config",
-    "pretest": "yarn build:bsb",
-    "test": "yarn jest"
-  },
   "dependencies": {
     "@octokit/graphql": "^4.3.1",
     "fela": "^11.2.0",
@@ -75,43 +60,6 @@
     "typescript": "^3.8.3",
     "webp-loader": "^0.6.0"
   },
-  "dependencies_": {
-    "@wyze/bs-react-helmet": "^0.3.1",
-    "bs-css": "^7.2.0",
-    "bs-intersection-observer": "^0.2.0",
-    "gatsby": "^2.15.28",
-    "react": "^16.10.1",
-    "react-dom": "^16.10.1",
-    "react-helmet": "^5.2.0",
-    "reason-react": "^0.5.3"
-  },
-  "devDependencies_": {
-    "@ahrefs/bs-dotenv": "^1.0.3",
-    "@babel/core": "^7.1.2",
-    "@babel/plugin-transform-modules-commonjs": "^7.1.0",
-    "@glennsl/bs-jest": "^0.4.4",
-    "@wyze/gatsby-plugin": "^1.0.0",
-    "@wyze/gatsby-source-graphql": "^1.2.0",
-    "@wyze/rio": "^1.1.0",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^23.6.0",
-    "bs-jest-dom": "^1.0.0",
-    "bs-platform": "^4.0.5",
-    "bs-react-testing-library": "^0.4.0",
-    "dotenv": "^6.1.0",
-    "gatsby-plugin-favicon": "^3.1.2",
-    "gatsby-plugin-glamor": "^2.0.5",
-    "gatsby-plugin-manifest": "^2.0.5",
-    "gatsby-plugin-offline": "^2.0.6",
-    "gatsby-plugin-react-helmet": "^3.0.0",
-    "gatsby-source-filesystem": "^2.0.3",
-    "identity-obj-proxy": "^3.0.0",
-    "npm-run-all": "^4.1.3",
-    "rimraf": "^2.6.2"
-  },
-  "resolutions_": {
-    "reason-react": "^0.5.3"
-  },
   "jest": {
     "collectCoverageFrom": [
       "**/*.{ts,tsx}"
@@ -127,21 +75,6 @@
     ]
   },
   "babel": {
-    "env": {
-      "tes": {
-        "presets": [
-          [
-            "@babel/env",
-            {
-              "targets": {
-                "node": "current"
-              }
-            }
-          ],
-          "@babel/typescript"
-        ]
-      }
-    },
     "presets": [
       "next/babel"
     ]
@@ -149,22 +82,5 @@
   "prettier": {
     "semi": false,
     "singleQuote": true
-  },
-  "jest_": {
-    "collectCoverageFrom": [
-      "**/{components,pages}/**/*.bs.js"
-    ],
-    "moduleNameMapper": {
-      "^.+\\.png$": "identity-obj-proxy"
-    },
-    "roots": [
-      "src"
-    ],
-    "setupFiles": [
-      "./src/config/setupTests.bs.js"
-    ],
-    "transformIgnorePatterns": [
-      "/node_modules/(?!(@ahrefs/bs-dotenv|@glennsl/bs-jest|@wyze/bs-react-helmet|bs-|reason-react))"
-    ]
   }
 }
