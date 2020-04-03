@@ -25,7 +25,6 @@ type IconProps = {
   className?: CssFelaStyle<{}, {}>
   href: string
   icon: IconType
-  title?: string
 }
 
 const styles = {
@@ -34,10 +33,10 @@ const styles = {
   minWidth: 3.7,
 }
 
-export function Icon({ className = {}, icon, ...rest }: IconProps) {
+export function Icon({ className = {}, href, icon }: IconProps) {
   return (
     <Section className={className}>
-      <Link className={styles} title={icon} {...rest}>
+      <Link className={styles} href={href}>
         {icon === IconType.GitHub && <GitHub />}
         {icon === IconType.LinkedIn && <LinkedIn />}
         {icon === IconType.Starship && <Starship />}

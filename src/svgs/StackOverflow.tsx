@@ -2,7 +2,7 @@ import { Svg } from './Svg'
 
 export function StackOverflow() {
   return (
-    <Svg height={118} name="stackoverflow" width={100}>
+    <Svg height={118} name="stack-overflow" width={100}>
       <path
         d="M84.072 107.35V75.8h10.516v42.07H0V75.8h10.516v31.55"
         fill="#bcbbbb"

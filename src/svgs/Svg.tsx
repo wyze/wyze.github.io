@@ -2,11 +2,11 @@ import { PropsWithChildren } from 'react'
 
 type SvgProps = PropsWithChildren<{
   height: number
-  name?: string
+  name: string
   width: number
 }>
 
-export function Svg({ children, height, name = '', width }: SvgProps) {
+export function Svg({ children, height, name, width }: SvgProps) {
   return (
     <svg
       height="100%"

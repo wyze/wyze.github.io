@@ -5,7 +5,6 @@ import { click } from '../log'
 type LinkProps = PropsWithChildren<{
   className?: CssFelaStyle<{}, {}>
   href: string
-  title?: string
 }>
 
 const styles = {
@@ -19,12 +18,7 @@ const styles = {
   },
 }
 
-export function Link({
-  children,
-  className = {},
-  href,
-  title = '',
-}: LinkProps) {
+export function Link({ children, className = {}, href }: LinkProps) {
   const { css } = useFela()
 
   return (
@@ -34,7 +28,6 @@ export function Link({
       onClick={() => click(href.replace(/(^|\w|:)+\/\//, ''))}
       rel="noopener noreferrer"
       target="_blank"
-      title={title}
     >
       {children}
     </a>

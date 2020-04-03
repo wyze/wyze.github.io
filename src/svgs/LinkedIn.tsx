@@ -2,7 +2,7 @@ import { Svg } from './Svg'
 
 export function LinkedIn() {
   return (
-    <Svg height={144} name="linkedin" width={144}>
+    <Svg height={144} name="linked-in" width={144}>
       <path
         d="M133.345 0H10.63C4.764 0 0 4.648 0 10.376V133.61C0 139.344 4.765 144 10.63 144h122.715c5.874 0 10.66-4.655 10.66-10.39V10.376C144.005 4.648 139.22 0 133.345 0z"
         fill="#0077b5"

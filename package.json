@@ -116,6 +116,9 @@
     "collectCoverageFrom": [
       "**/*.{ts,tsx}"
     ],
+    "moduleNameMapper": {
+      "\\.(pdf|png(\\?webp)?)$": "<rootDir>/__mocks__/file.ts"
+    },
     "roots": [
       "src"
     ],
