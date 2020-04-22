@@ -1,7 +1,7 @@
 import * as octokit from '@octokit/graphql'
 import { Repository } from '../types'
 import { render } from '../test-utils'
-import HomePage, { getStaticProps } from '../pages'
+import HomePage, { getStaticProps } from '.'
 
 jest.mock('../log')
 jest.mock('@octokit/graphql')

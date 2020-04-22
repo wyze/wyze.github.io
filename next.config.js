@@ -27,6 +27,7 @@ const offlineConfig = {
 }
 
 module.exports = withPlugins([[offline, offlineConfig], withOptimizedImages], {
+  pageExtensions: ['tsx)(?<!test\\.tsx'],
   target: 'serverless',
   webpack: (config) => {
     config.module.rules.push({

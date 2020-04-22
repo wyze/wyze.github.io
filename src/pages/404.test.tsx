@@ -1,6 +1,6 @@
 import { render } from '../test-utils'
 import { view } from '../log'
-import FourOhFourPage from '../pages/404'
+import FourOhFourPage from './404'
 
 jest.mock('../log')
 
