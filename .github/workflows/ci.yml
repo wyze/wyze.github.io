@@ -53,9 +53,3 @@ jobs:
       with:
         reports: '.lighthouseci'
         github-token: ${{ secrets.GITHUB_TOKEN }}
-    # - name: Lighthouse
-    #   run: |
-    #     yarn add --dev @codechecks/client @codechecks/lighthouse-keeper
-    #     npx codechecks
-    #   env:
-    #     CC_SECRET: ${{ secrets.CC_SECRET }}
