@@ -5,10 +5,8 @@
       "GITHUB_TOKEN": "@github-token"
     }
   },
-  "env": {
-    "AES_KEY": "@aes-key",
-    "AES_IV": "@aes-iv",
-    "GITHUB_TOKEN": "@github-token"
+  "github": {
+    "enabled": false
   },
   "public": true,
   "routes": [
