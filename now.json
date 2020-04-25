@@ -5,9 +5,6 @@
       "GITHUB_TOKEN": "@github-token"
     }
   },
-  "github": {
-    "enabled": false
-  },
   "public": true,
   "routes": [
     {

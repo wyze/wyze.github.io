@@ -1,25 +1,26 @@
-name: CI
+name: Lighthouse Audit
 
-on: push
+on: deployment_status
 
 jobs:
-  build:
+  audit:
+    if: github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: ['12', '10']
+    # strategy:
+    #   matrix:
+    #     node-version: ['12', '10']
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: yarn install --frozen-lockfile --check-files
-    - run: yarn lint
-    - run: yarn type-check
-    - run: yarn test --coverage --coverageReporters=text-lcov | npx coveralls
-      env:
-        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+    # - uses: actions/checkout@v2
+    # - name: Use Node ${{ matrix.node-version }}
+    #   uses: actions/setup-node@v1
+    #   with:
+    #     node-version: ${{ matrix.node-version }}
+    # - run: yarn install --frozen-lockfile --check-files
+    # - run: yarn lint
+    # - run: yarn type-check
+    # - run: yarn test --coverage --coverageReporters=text-lcov | npx coveralls
+    #   env:
+    #     COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
     # - uses: amondnet/now-deployment@v2
     #   id: deployment
     #   with:
@@ -50,13 +51,13 @@ jobs:
     #     MAX_TRIES: 20
     #     SECONDS_BETWEEN_CHECKS: 30
     #     ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
-    # - name: Audit using Lighthouse
-    #   uses: treosh/lighthouse-ci-action@v2
-    #   with:
-    #     urls: |
-    #       ${{ steps.deployment.outputs.preview-url }}
-    # - name: Post Lighthouse Status
-    #   uses: manrueda/lighthouse-report-action@v1.1.1
-    #   with:
-    #     reports: '.lighthouseci'
-    #     github-token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Audit using Lighthouse
+      uses: treosh/lighthouse-ci-action@v2
+      with:
+        urls: |
+          ${{ github.event.deployment_status.target_url }}
+    - name: Post Lighthouse Status
+      uses: manrueda/lighthouse-report-action@v1.1.1
+      with:
+        reports: '.lighthouseci'
+        github-token: ${{ secrets.GITHUB_TOKEN }}
