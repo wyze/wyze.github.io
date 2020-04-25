@@ -25,7 +25,7 @@ jobs:
       run: |
         NOW_URL=$(npx now --token $ZEIT_TOKEN ls wyze.github.io 2> /dev/null | sed -n 2p | tr -s ' ' | cut -d ' ' -f 3)
         sed -i.bak "s@{{ NOW_URL }}@https://$NOW_URL@g" codechecks.yml
-        echo "::set-output name=now-url::$NOW_URL"
+        echo "::set-output name=now-url::https://$NOW_URL"
 
         while [ $MAX_TRIES -gt 0 ]
         do
