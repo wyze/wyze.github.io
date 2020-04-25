@@ -14,7 +14,6 @@ function send(query: string, variables: object) {
 
   fetch('https://api.neilkistner.com/graphql', {
     body,
-    // credentials: 'include',
     headers,
     method: 'post',
   })

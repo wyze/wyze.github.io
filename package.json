@@ -62,7 +62,8 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "**/*.{ts,tsx}"
+      "**/*.{ts,tsx}",
+      "!src/test-utils.tsx"
     ],
     "moduleNameMapper": {
       "\\.(pdf|png(\\?webp)?)$": "<rootDir>/__mocks__/file.ts"

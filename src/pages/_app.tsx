@@ -8,7 +8,7 @@ export default function App({
   Component,
   pageProps,
   renderer = felaConfig.renderer,
-}: AppProps & { renderer: IRenderer }) {
+}: AppProps & { renderer?: IRenderer }) {
   return (
     <>
       <Head>

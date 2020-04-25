@@ -1,14 +1,17 @@
 import * as octokit from '@octokit/graphql'
 import { Repository } from '../types'
-import { render } from '../test-utils'
+import { fireEvent, render } from '../test-utils'
 import HomePage, { getStaticProps } from '.'
 
 jest.mock('../log')
 jest.mock('@octokit/graphql')
 
 const createLanguages = (): Repository['languages'] => ({
-  edges: [{ node: { color: '#000000', name: 'JavaScript' }, size: 1 }],
-  totalSize: 1,
+  edges: [
+    { node: { color: '#000000', name: 'JavaScript' }, size: 1 },
+    { node: { color: '#663399', name: 'TypeScript' }, size: 2 },
+  ],
+  totalSize: 3,
 })
 
 const createRepo = ({
@@ -42,7 +45,50 @@ const createRepo = ({
 
 describe('<HomePage />', () => {
   it('should render', () => {
-    const { getByText } = render(<HomePage contributions={[]} projects={[]} />)
+    const { getByText } = render(
+      <HomePage
+        contributions={[
+          {
+            description: 'A mock repo 1.',
+            languages: [
+              {
+                colorHex: '#663399',
+                name: 'TypeScript',
+                percent: 66.66666666666666,
+              },
+              {
+                colorHex: '#000000',
+                name: 'JavaScript',
+                percent: 33.33333333333333,
+              },
+            ],
+            name: 'mock/repo-1',
+            stars: 100,
+            url: '//mock.local/mock/repo-1',
+          },
+        ]}
+        projects={[
+          {
+            description: 'The personal website of me.',
+            languages: [
+              {
+                colorHex: '#663399',
+                name: 'TypeScript',
+                percent: 66.66666666666666,
+              },
+              {
+                colorHex: '#000000',
+                name: 'JavaScript',
+                percent: 33.33333333333333,
+              },
+            ],
+            name: 'wyze.github.io',
+            stars: 7,
+            url: '//mock.local/wyze/wyze.github.io',
+          },
+        ]}
+      />
+    )
 
     expect(
       getByText(
@@ -52,6 +98,9 @@ describe('<HomePage />', () => {
         { selector: 'main > div' }
       )
     ).toBeInTheDocument()
+
+    // Scroll page to render data
+    fireEvent.scroll(window)
   })
 })
 
@@ -64,15 +113,41 @@ describe('getStaticProps', () => {
             createRepo({
               isArchived: false,
               isPrivate: false,
-              owner: 'facebook',
-              name: 'react',
-              shortDescriptionHTML: 'The V in MVC.',
-              stargazers: 123456,
+              owner: 'wyze',
+              name: 'wyze.github.io',
+              shortDescriptionHTML: 'The personal website of me.',
+              stargazers: 7,
             }),
           ],
         },
-        contributions1: { nodes: [] },
-        contributions2: { nodes: [] },
+        contributions1: {
+          nodes: [
+            {
+              repository: createRepo({
+                isArchived: false,
+                isPrivate: false,
+                owner: 'mock',
+                name: 'repo-1',
+                shortDescriptionHTML: 'A mock repo 1.',
+                stargazers: 100,
+              }),
+            },
+          ],
+        },
+        contributions2: {
+          nodes: [
+            {
+              repository: createRepo({
+                isArchived: false,
+                isPrivate: false,
+                owner: 'mock',
+                name: 'repo-2',
+                shortDescriptionHTML: 'A mock repo 2.',
+                stargazers: 123456,
+              }),
+            },
+          ],
+        },
         contributions3: { nodes: [] },
       },
     })
@@ -82,20 +157,62 @@ describe('getStaticProps', () => {
     expect(data).toMatchInlineSnapshot(`
       Object {
         "props": Object {
-          "contributions": Array [],
-          "projects": Array [
+          "contributions": Array [
             Object {
-              "description": "The V in MVC.",
+              "description": "A mock repo 2.",
               "languages": Array [
+                Object {
+                  "colorHex": "#663399",
+                  "name": "TypeScript",
+                  "percent": 66.66666666666666,
+                },
                 Object {
                   "colorHex": "#000000",
                   "name": "JavaScript",
-                  "percent": 100,
+                  "percent": 33.33333333333333,
                 },
               ],
-              "name": "facebook/react",
+              "name": "mock/repo-2",
               "stars": 123456,
-              "url": "//mock.local/facebook/react",
+              "url": "//mock.local/mock/repo-2",
+            },
+            Object {
+              "description": "A mock repo 1.",
+              "languages": Array [
+                Object {
+                  "colorHex": "#663399",
+                  "name": "TypeScript",
+                  "percent": 66.66666666666666,
+                },
+                Object {
+                  "colorHex": "#000000",
+                  "name": "JavaScript",
+                  "percent": 33.33333333333333,
+                },
+              ],
+              "name": "mock/repo-1",
+              "stars": 100,
+              "url": "//mock.local/mock/repo-1",
+            },
+          ],
+          "projects": Array [
+            Object {
+              "description": "The personal website of me.",
+              "languages": Array [
+                Object {
+                  "colorHex": "#663399",
+                  "name": "TypeScript",
+                  "percent": 66.66666666666666,
+                },
+                Object {
+                  "colorHex": "#000000",
+                  "name": "JavaScript",
+                  "percent": 33.33333333333333,
+                },
+              ],
+              "name": "wyze.github.io",
+              "stars": 7,
+              "url": "//mock.local/wyze/wyze.github.io",
             },
           ],
         },

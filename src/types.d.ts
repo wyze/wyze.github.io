@@ -21,15 +21,13 @@ export type Repository = {
     login: string
   }
   languages: {
-    edges: [
-      {
-        node: {
-          color: string
-          name: string
-        }
-        size: number
+    edges: Array<{
+      node: {
+        color: string
+        name: string
       }
-    ]
+      size: number
+    }>
     totalSize: number
   }
   shortDescriptionHTML: string
