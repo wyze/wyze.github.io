@@ -48,6 +48,11 @@ jobs:
       with:
         urls: |
           ${{ steps.wait-for-now.outputs.now-url }}
+    - name: Post Lighthouse Status
+      uses: manrueda/lighthouse-report-action@v1.0.1
+      with:
+        reports: '.lighthouseci'
+        github-token: ${{ secrets.GITHUB_TOKEN }}
     # - name: Lighthouse
     #   run: |
     #     yarn add --dev @codechecks/client @codechecks/lighthouse-keeper
