@@ -21,9 +21,11 @@ jobs:
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
     - name: Wait for Now Deployment
+      id: wait-for-now
       run: |
         NOW_URL=$(npx now --token $ZEIT_TOKEN ls wyze.github.io 2> /dev/null | sed -n 2p | tr -s ' ' | cut -d ' ' -f 3)
         sed -i.bak "s@{{ NOW_URL }}@https://$NOW_URL@g" codechecks.yml
+        echo "::set-output name=now-url::$NOW_URL"
 
         while [ $MAX_TRIES -gt 0 ]
         do
@@ -41,9 +43,14 @@ jobs:
         MAX_TRIES: 20
         SECONDS_BETWEEN_CHECKS: 30
         ZEIT_TOKEN: ${{ secrets.ZEIT_TOKEN }}
-    - name: Lighthouse
-      run: |
-        yarn add --dev @codechecks/client @codechecks/lighthouse-keeper
-        npx codechecks
-      env:
-        CC_SECRET: ${{ secrets.CC_SECRET }}
+    - name: Audit using Lighthouse
+      uses: treosh/lighthouse-ci-action@v2
+      with:
+        urls: |
+          ${{ steps.wait-for-now.outputs.now-url }}
+    # - name: Lighthouse
+    #   run: |
+    #     yarn add --dev @codechecks/client @codechecks/lighthouse-keeper
+    #     npx codechecks
+    #   env:
+    #     CC_SECRET: ${{ secrets.CC_SECRET }}
