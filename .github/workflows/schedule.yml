@@ -1,0 +1,19 @@
+name: Scheduled Deploy
+
+on:
+  schedule:
+  - cron: '0 0 * * *'
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: amondnet/now-deployment@v2
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        now-args: '--prod'
+        now-org-id: ${{ secrets.ORG_ID}}
+        now-project-id: ${{ secrets.PROJECT_ID}}
+        zeit-token: ${{ secrets.ZEIT_TOKEN }}
