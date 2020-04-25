@@ -10,11 +10,6 @@
     "AES_IV": "@aes-iv",
     "GITHUB_TOKEN": "@github-token"
   },
-  "functions": {
-    "api/**/pixel.rs": {
-      "runtime": "@wyze/now-rust@1.0.6"
-    }
-  },
   "public": true,
   "routes": [
     {
@@ -24,10 +19,6 @@
         "cache-control": "public, max-age=43200, immutable",
         "Service-Worker-Allowed": "/"
       }
-    },
-    {
-      "src": "/pixel/(?<image>[^/]+).png",
-      "dest": "/api/pixel.rs?image=$image"
     },
     {
       "src": "/.*\\.(ico|js|json|png|woff2)",
