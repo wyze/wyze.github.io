@@ -38,7 +38,6 @@ describe('<Document />', () => {
         hybridAmp={false}
         staticMarkup={false}
         isDevelopment={false}
-        hasCssMode={false}
         devFiles={[]}
         files={[]}
         lowPriorityFiles={[]}
