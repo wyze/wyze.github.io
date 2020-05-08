@@ -17,6 +17,9 @@ jobs:
     - run: yarn install --frozen-lockfile --check-files
     - run: yarn lint
     - run: yarn type-check
-    - run: yarn test --coverage --coverageReporters=text-lcov | npx coveralls
-      env:
-        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+    - run: yarn test --coverage
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        fail_ci_if_error: true
+        file: coverage/lcov.info
