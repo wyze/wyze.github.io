@@ -10,6 +10,7 @@
   },
   "license": "MIT",
   "scripts": {
+    "prebuild": "rio -o next.config.js next.config.ts",
     "build": "next build",
     "dev": "next",
     "format": "prettier --write src/**/*.{ts,tsx}",
@@ -42,6 +43,7 @@
     "@types/react": "^16.9.34",
     "@typescript-eslint/eslint-plugin": "^2.31.0",
     "@typescript-eslint/parser": "^2.31.0",
+    "@wyze/rio": "^1.4.0",
     "babel-jest": "^26.0.1",
     "eslint": "^7.0.0",
     "eslint-config-prettier": "^6.11.0",
