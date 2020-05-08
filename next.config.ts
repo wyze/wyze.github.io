@@ -1,9 +1,9 @@
-const offline = require('next-offline')
-const withOptimizedImages = require('next-optimized-images')
-const withPlugins = require('next-compose-plugins')
+import offline from 'next-offline'
+import withOptimizedImages from 'next-optimized-images'
+import withPlugins from 'next-compose-plugins'
 
 const offlineConfig = {
-  transformManifest: (manifest) => ['/'].concat(manifest),
+  transformManifest: (manifest: string[]) => ['/'].concat(manifest),
   workboxOpts: {
     swDest: 'static/service-worker.js',
     runtimeCaching: [
@@ -29,7 +29,7 @@ const offlineConfig = {
 module.exports = withPlugins([[offline, offlineConfig], withOptimizedImages], {
   pageExtensions: ['tsx)(?<!test\\.tsx'],
   target: 'serverless',
-  webpack: (config) => {
+  webpack: (config: Record<string, any>) => {
     config.module.rules.push({
       test: /\.pdf$/,
       use: [

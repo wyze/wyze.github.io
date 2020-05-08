@@ -10,11 +10,14 @@
   },
   "license": "MIT",
   "scripts": {
-    "prebuild": "rio -o next.config.js next.config.ts",
+    "prebuild": "yarn build:config",
     "build": "next build",
+    "build:config": "rio -e next-offline,next-optimized-images,next-compose-plugins -o next.config.js next.config.ts",
+    "predev": "yarn build:config",
     "dev": "next",
     "format": "prettier --write src/**/*.{ts,tsx}",
     "lint": "eslint src/**/*.{ts,tsx}",
+    "prestart": "yarn build:config",
     "start": "next start",
     "test": "jest",
     "type-check": "tsc --noEmit"
