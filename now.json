@@ -5,7 +5,6 @@
       "GITHUB_TOKEN": "@github-token"
     }
   },
-  "public": true,
   "routes": [
     {
       "src": "/service-worker.js",
@@ -21,6 +20,5 @@
         "cache-control": "max-age=31536000"
       }
     }
-  ],
-  "version": 2
+  ]
 }

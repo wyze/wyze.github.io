@@ -11,13 +11,5 @@ node_modules
 coverage
 
 # Build
-.cache
 .next
-.now
-dist
-lib
-.bsb.lock
 .env*
-.merlin
-**/*.bs.js
-firebase-service-account.json
