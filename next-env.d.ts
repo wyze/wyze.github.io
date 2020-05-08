@@ -6,6 +6,7 @@ declare module 'fela' {
 
   type TKeyFrame = ReturnType<Fela.TKeyFrame>
 
+  // eslint-disable-next-line @typescript-eslint/interface-name-prefix
   export interface IStyle extends Omit<Fela.IStyle, 'animationName'> {
     animationName?: string | TKeyFrame | TKeyFrame[]
   }
