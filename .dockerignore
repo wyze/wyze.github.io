@@ -1,8 +1,0 @@
-*
-
-!src/
-!static/
-!.env
-!bsconfig.json
-!package.json
-!yarn.lock

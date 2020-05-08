@@ -6,76 +6,87 @@
   "author": {
     "name": "Neil Kistner",
     "email": "neil.kistner@gmail.com",
-    "url": "neilkistner.com"
+    "url": "https://neilkistner.com"
   },
   "license": "MIT",
   "scripts": {
-    "build": "run-s build:*",
-    "build:bsb": "bsb -make-world",
-    "build:config": "rio -o gatsby-config.js src/config/gatsby.re",
-    "build:gatsby": "gatsby build",
-    "clean": "bsb -clean-world && rimraf .cache .merlin lib public *.js static/js",
-    "dev": "run-p dev:*",
-    "dev:bsb": "yarn build:bsb -w",
-    "dev:gatsby": "gatsby develop",
-    "jest": "jest",
-    "prejest": "rio -o babel.config.js src/config/babel.re",
-    "predev:gatsby": "yarn build:config",
-    "pretest": "yarn build:bsb",
-    "test": "yarn jest"
+    "prebuild": "yarn build:config",
+    "build": "next build",
+    "build:config": "rio -e next-offline,next-optimized-images,next-compose-plugins -o next.config.js next.config.ts",
+    "predev": "yarn build:config",
+    "dev": "next",
+    "format": "prettier --write src/**/*.{ts,tsx}",
+    "lint": "eslint src/**/*.{ts,tsx}",
+    "prestart": "yarn build:config",
+    "start": "next start",
+    "test": "jest",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@wyze/bs-react-helmet": "^0.3.1",
-    "bs-css": "^7.2.0",
-    "bs-intersection-observer": "^0.2.0",
-    "gatsby": "^2.15.28",
-    "react": "^16.10.1",
-    "react-dom": "^16.10.1",
-    "react-helmet": "^5.2.0",
-    "reason-react": "^0.5.3"
+    "@octokit/graphql": "^4.4.0",
+    "fela": "^11.3.0",
+    "fela-dom": "^11.3.0",
+    "fela-plugin-named-keys": "^11.3.0",
+    "fela-plugin-typescript": "^11.3.0",
+    "fela-preset-web": "^11.3.0",
+    "fela-sort-media-query-mobile-first": "^11.3.0",
+    "next": "^9.3.6",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-fela": "^11.3.0"
   },
   "devDependencies": {
-    "@ahrefs/bs-dotenv": "^1.0.3",
-    "@babel/core": "^7.1.2",
-    "@babel/plugin-transform-modules-commonjs": "^7.1.0",
-    "@glennsl/bs-jest": "^0.4.4",
-    "@wyze/gatsby-plugin": "^1.0.0",
-    "@wyze/gatsby-source-graphql": "^1.2.0",
-    "@wyze/rio": "^1.1.0",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "^23.6.0",
-    "bs-jest-dom": "^1.0.0",
-    "bs-platform": "^4.0.5",
-    "bs-react-testing-library": "^0.4.0",
-    "dotenv": "^6.1.0",
-    "gatsby-plugin-favicon": "^3.1.2",
-    "gatsby-plugin-glamor": "^2.0.5",
-    "gatsby-plugin-manifest": "^2.0.5",
-    "gatsby-plugin-offline": "^2.0.6",
-    "gatsby-plugin-react-helmet": "^3.0.0",
-    "gatsby-source-filesystem": "^2.0.3",
-    "identity-obj-proxy": "^3.0.0",
-    "npm-run-all": "^4.1.3",
-    "rimraf": "^2.6.2"
-  },
-  "resolutions": {
-    "reason-react": "^0.5.3"
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-typescript": "^7.9.0",
+    "@testing-library/jest-dom": "^5.7.0",
+    "@testing-library/react": "^10.0.4",
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.13.5",
+    "@types/react": "^16.9.34",
+    "@typescript-eslint/eslint-plugin": "^2.31.0",
+    "@typescript-eslint/parser": "^2.31.0",
+    "@wyze/rio": "^1.4.0",
+    "babel-jest": "^26.0.1",
+    "eslint": "^7.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-jest": "^23.9.0",
+    "eslint-plugin-jest-dom": "^2.1.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^4.0.0",
+    "eslint-plugin-testing-library": "^3.1.1",
+    "eslint-plugin-wyze": "^3.4.0",
+    "jest": "^26.0.1",
+    "next-compose-plugins": "^2.2.0",
+    "next-offline": "^5.0.2",
+    "next-optimized-images": "^2.6.0",
+    "prettier": "^2.0.5",
+    "typescript": "^3.8.3",
+    "webp-loader": "^0.6.0"
   },
   "jest": {
     "collectCoverageFrom": [
-      "**/{components,pages}/**/*.bs.js"
+      "**/*.{ts,tsx}",
+      "!src/test-utils.tsx"
     ],
     "moduleNameMapper": {
-      "^.+\\.png$": "identity-obj-proxy"
+      "\\.(pdf|png(\\?webp)?)$": "<rootDir>/__mocks__/file.ts"
     },
     "roots": [
       "src"
     ],
-    "setupFiles": [
-      "./src/config/setupTests.bs.js"
-    ],
-    "transformIgnorePatterns": [
-      "/node_modules/(?!(@ahrefs/bs-dotenv|@glennsl/bs-jest|@wyze/bs-react-helmet|bs-|reason-react))"
+    "setupFilesAfterEnv": [
+      "<rootDir>/setupTests.ts"
     ]
+  },
+  "babel": {
+    "presets": [
+      "next/babel"
+    ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
   }
 }

@@ -1,0 +1,18 @@
+name: Lighthouse Audit
+
+on: deployment_status
+
+jobs:
+  audit:
+    if: github.event.deployment_status.state == 'success'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Audit using Lighthouse
+      uses: treosh/lighthouse-ci-action@v2
+      with:
+        urls: ${{ github.event.deployment_status.target_url }}
+    - name: Post Lighthouse Status
+      uses: manrueda/lighthouse-report-action@v1.1.1
+      with:
+        reports: '.lighthouseci'
+        github-token: ${{ secrets.GITHUB_TOKEN }}

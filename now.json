@@ -5,14 +5,20 @@
       "GITHUB_TOKEN": "@github-token"
     }
   },
-  "public": true,
   "routes": [
+    {
+      "src": "/service-worker.js",
+      "dest": "_next/static/service-worker.js",
+      "headers": {
+        "cache-control": "public, max-age=43200, immutable",
+        "Service-Worker-Allowed": "/"
+      }
+    },
     {
       "src": "/.*\\.(ico|js|json|png|woff2)",
       "headers": {
         "cache-control": "max-age=31536000"
       }
     }
-  ],
-  "version": 2
+  ]
 }

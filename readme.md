@@ -3,7 +3,7 @@
 [![Website][website-image]][website-url]
 [![Lighthouse][lighthouse-image]][lighthouse-url]
 [![Build Status][actions-image]][actions-url]
-[![Coveralls][coveralls-image]][coveralls-url]
+[![Coveralls][codecov-image]][codecov-url]
 
 > The personal website of Neil Kistner.
 
@@ -52,5 +52,5 @@ MIT © [Neil Kistner](https://neilkistner.com)
 [actions-image]: https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fwyze%2Fwyze.github.io%2Fbadge&style=flat-square
 [actions-url]: https://actions-badge.atrox.dev/wyze/wyze.github.io/goto
 
-[coveralls-image]: https://img.shields.io/coveralls/github/wyze/wyze.github.io.svg?style=flat-square
-[coveralls-url]: https://coveralls.io/github/wyze/wyze.github.io
+[codecov-image]: https://img.shields.io/codecov/c/github/wyze/wyze.github.io.svg?style=flat-square
+[codecov-url]: https://codecov.io/github/wyze/wyze.github.io

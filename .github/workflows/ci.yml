@@ -1,0 +1,25 @@
+name: CI
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['14', '12']
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: yarn install --frozen-lockfile --check-files
+    - run: yarn lint
+    - run: yarn type-check
+    - run: yarn test --coverage
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        fail_ci_if_error: true
+        file: coverage/lcov.info

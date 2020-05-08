@@ -11,12 +11,6 @@ node_modules
 coverage
 
 # Build
-.cache
-lib
-public
-static/js
-.bsb.lock
-.env
-.merlin
-**/*.bs.js
-/*.js
+.next
+.env*
+next.config.js

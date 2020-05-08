@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<Languages /> languageToJs works 1`] = `
-Object {
-  "colorHex": "663399",
-  "name": "Reason",
-  "percent": 99.5,
-}
-`;
