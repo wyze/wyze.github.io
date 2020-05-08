@@ -33,12 +33,6 @@ $ yarn test
 $ yarn build
 ```
 
-## Production
-
-```sh
-$ docker build --build-arg GITHUB_TOKEN="<token>" .
-```
-
 ## License
 
 MIT © [Neil Kistner](https://neilkistner.com)
