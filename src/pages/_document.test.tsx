@@ -2,7 +2,7 @@ import { render } from '../test-utils'
 import Document from './_document'
 
 jest.mock('next/document', () => {
-  const React = require.requireActual('react')
+  const React = jest.requireActual('react')
 
   return {
     __esModule: true,
