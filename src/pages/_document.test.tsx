@@ -34,19 +34,23 @@ describe('<Document />', () => {
         __NEXT_DATA__={{ props: {}, page: '', query: {}, buildId: '' }}
         dangerousAsPath=""
         ampPath=""
+        buildManifest={{
+          devFiles: [],
+          ampDevFiles: [],
+          polyfillFiles: [],
+          lowPriorityFiles: [],
+          pages: {
+            '/_app': [],
+          },
+          ampFirstPages: [],
+        }}
         inAmpMode={false}
         hybridAmp={false}
-        staticMarkup={false}
         isDevelopment={false}
-        devFiles={[]}
         files={[]}
-        lowPriorityFiles={[]}
-        polyfillFiles={[]}
         dynamicImports={[]}
         assetPrefix=""
         canonicalBase=""
-        htmlProps={{}}
-        bodyTags={[]}
         headTags={[]}
         sheetList={[{ css: '', rehydration: 1, type: 'STATIC' } as const]}
       />

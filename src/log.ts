@@ -8,7 +8,7 @@ function isUnique(referrer: string) {
   return !referrer || referrer?.split('/')[2] !== window.location.host
 }
 
-function send(query: string, variables: object) {
+function send(query: string, variables: Record<string, unknown>) {
   const body = JSON.stringify({ query, variables })
   const headers = new Headers([['content-type', 'application/json']])
 

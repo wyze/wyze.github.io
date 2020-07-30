@@ -1,11 +1,12 @@
-import { CssFelaStyle, useFela } from 'react-fela'
+import { ClassName } from '../types'
 import { PropsWithChildren } from 'react'
 import { level, makeRGBA } from '../styles'
 import { useEffect, useRef } from 'react'
+import { useFela } from 'react-fela'
 import { view } from '../log'
 
 type BoxProps = PropsWithChildren<{
-  className?: CssFelaStyle<{}, {}>
+  className?: ClassName
   pixel: string
   title?: string
   wrap?: boolean

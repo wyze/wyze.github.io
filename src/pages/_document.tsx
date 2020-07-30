@@ -19,7 +19,7 @@ import Document, {
 type AppWithRenderer = NextComponentType<
   AppContextType<NextRouter>,
   AppInitialProps,
-  AppPropsType<NextRouter, {}> & { renderer?: IRenderer }
+  AppPropsType<NextRouter, Record<string, unknown>> & { renderer?: IRenderer }
 >
 
 type SheetList = ReturnType<typeof renderToSheetList> extends Array<infer U>

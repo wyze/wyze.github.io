@@ -1,4 +1,4 @@
-import { CssFelaStyle } from 'react-fela'
+import { ClassName } from '../types'
 import {
   GitHub,
   LinkedIn,
@@ -22,7 +22,7 @@ export enum IconType {
 }
 
 type IconProps = {
-  className?: CssFelaStyle<{}, {}>
+  className?: ClassName
   href: string
   icon: IconType
 }
