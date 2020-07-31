@@ -56,13 +56,15 @@ describe('<GitHubItem />', () => {
     // Bars
     for (const { colorHex, name, percent } of languages) {
       const bar = getByTitle(name)
+      const rgb = colorHex
+        .slice(1)
+        .match(/.{2}(?=(.{2})+(?!.))|.{2}$/g)
+        ?.map((hex) => parseInt(hex, 16))
+        .join(', ')
 
       expect(bar).toBeInTheDocument()
       expect(bar).toHaveStyle({
-        background: colorHex
-          .slice(1)
-          .match(/.{2}(?=(.{2})+(?!.))|.{2}$/g)
-          ?.map((hex) => parseInt(hex, 16)),
+        background: `rgb(${rgb})`,
         width: `${percent}%`,
       })
     }

@@ -1,9 +1,10 @@
-import { CssFelaStyle, useFela } from 'react-fela'
+import { ClassName } from '../types'
 import { PropsWithChildren } from 'react'
+import { useFela } from 'react-fela'
 
 type SectionProps = PropsWithChildren<{
   center?: boolean
-  className: CssFelaStyle<{}, {}> | string
+  className: ClassName | string
 }>
 
 const styles = ({ center }: Pick<SectionProps, 'center'>) =>

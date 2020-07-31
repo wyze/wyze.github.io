@@ -1,9 +1,10 @@
-import { CssFelaStyle, useFela } from 'react-fela'
+import { ClassName } from '../types'
 import { PropsWithChildren } from 'react'
 import { click } from '../log'
+import { useFela } from 'react-fela'
 
 type LinkProps = PropsWithChildren<{
-  className?: CssFelaStyle<{}, {}>
+  className?: ClassName
   href: string
 }>
 

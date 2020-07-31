@@ -5,20 +5,34 @@
       "GITHUB_TOKEN": "@github-token"
     }
   },
-  "routes": [
+  "headers": [
     {
-      "src": "/service-worker.js",
-      "dest": "_next/static/service-worker.js",
-      "headers": {
-        "cache-control": "public, max-age=43200, immutable",
-        "Service-Worker-Allowed": "/"
-      }
+      "source": "/(.*)\\.(ico|js|json|png|woff2)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "max-age=31536000"
+        }
+      ]
     },
     {
-      "src": "/.*\\.(ico|js|json|png|woff2)",
-      "headers": {
-        "cache-control": "max-age=31536000"
-      }
+      "source": "/service-worker.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=43200, immutable"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/service-worker.js",
+      "destination": "_next/static/service-worker.js"
     }
   ]
 }
