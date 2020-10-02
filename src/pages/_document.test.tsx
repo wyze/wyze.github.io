@@ -33,6 +33,8 @@ describe('<Document />', () => {
         html=""
         __NEXT_DATA__={{ props: {}, page: '', query: {}, buildId: '' }}
         dangerousAsPath=""
+        devOnlyCacheBusterQueryString=""
+        docComponentsRendered={{}}
         ampPath=""
         buildManifest={{
           devFiles: [],
@@ -47,7 +49,6 @@ describe('<Document />', () => {
         inAmpMode={false}
         hybridAmp={false}
         isDevelopment={false}
-        files={[]}
         dynamicImports={[]}
         assetPrefix=""
         canonicalBase=""
