@@ -32,9 +32,10 @@ export default class extends Document<{ sheetList: SheetList }> {
 
     ctx.renderPage = () =>
       originalRenderPage({
-        enhanceApp: (App: AppWithRenderer) => (props) => (
-          <App {...props} renderer={renderer} />
-        ),
+        enhanceApp: (App: AppWithRenderer) =>
+          function EnhanceApp(props) {
+            return <App {...props} renderer={renderer} />
+          },
       })
 
     const initialProps = await Document.getInitialProps(ctx)
