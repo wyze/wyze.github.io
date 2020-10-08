@@ -30,7 +30,7 @@
     "fela-plugin-typescript": "^11.3.3",
     "fela-preset-web": "^11.3.3",
     "fela-sort-media-query-mobile-first": "^11.3.3",
-    "next": "^9.5.3",
+    "next": "^9.5.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-fela": "^11.3.3"
