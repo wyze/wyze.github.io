@@ -31,7 +31,13 @@ describe('<Document />', () => {
     render(
       <Document
         html=""
-        __NEXT_DATA__={{ props: {}, page: '', query: {}, buildId: '' }}
+        __NEXT_DATA__={{
+          head: [],
+          props: {},
+          page: '',
+          query: {},
+          buildId: '',
+        }}
         dangerousAsPath=""
         devOnlyCacheBusterQueryString=""
         docComponentsRendered={{}}
