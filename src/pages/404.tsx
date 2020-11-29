@@ -1,8 +1,6 @@
 import { GhostFloating, Shadow } from '../svgs'
 import { Section } from '../components'
-import { useEffect } from 'react'
 import { useFela } from 'react-fela'
-import { view } from '../log'
 
 const styles = {
   container: {
@@ -22,10 +20,6 @@ const styles = {
 
 export default function FourOhFourPage() {
   const { css } = useFela()
-
-  useEffect(() => {
-    view()
-  }, [])
 
   return (
     <Section center className={styles.container}>

@@ -1,13 +1,11 @@
 import { ClassName } from '../types'
 import { PropsWithChildren } from 'react'
+import { forwardRef } from 'react'
 import { level, makeRGBA } from '../styles'
-import { useEffect, useRef } from 'react'
 import { useFela } from 'react-fela'
-import { view } from '../log'
 
 type BoxProps = PropsWithChildren<{
   className?: ClassName
-  pixel: string
   title?: string
   wrap?: boolean
 }>
@@ -50,36 +48,15 @@ const styles = {
   },
 }
 
-export function Box({
-  children,
-  className = {},
-  pixel,
-  title,
-  wrap = false,
-}: BoxProps) {
-  const { css } = useFela({ wrap })
-  const ref = useRef<HTMLDivElement | null>(null)
+export const Box = forwardRef<HTMLDivElement, BoxProps>(
+  ({ children, className = {}, title, wrap = false }, ref) => {
+    const { css } = useFela({ wrap })
 
-  useEffect(() => {
-    const element = ref.current
-
-    if (element) {
-      const observer = new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) {
-          view(`/${pixel}`, window.location.href)
-        }
-      })
-
-      observer.observe(element)
-
-      return () => observer.unobserve(element)
-    }
-  }, [pixel])
-
-  return (
-    <div ref={ref} className={css(styles.container)}>
-      {title && <h1 className={css(styles.title)}>{title}</h1>}
-      <div className={css(styles.child, level, className)}>{children}</div>
-    </div>
-  )
-}
+    return (
+      <div ref={ref} className={css(styles.container)}>
+        {title && <h1 className={css(styles.title)}>{title}</h1>}
+        <div className={css(styles.child, level, className)}>{children}</div>
+      </div>
+    )
+  }
+)

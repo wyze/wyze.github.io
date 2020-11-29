@@ -30,6 +30,17 @@ module.exports = withPlugins([[offline, offlineConfig], withOptimizedImages], {
   pageExtensions:
     process.env.NODE_ENV === 'production' ? ['tsx)(?<!test\\.tsx'] : undefined,
   target: 'serverless',
+  async rewrites() {
+    return [
+      { source: '/introduction', destination: '/' },
+      { source: '/social', destination: '/' },
+      { source: '/core-team', destination: '/' },
+      { source: '/employment', destination: '/' },
+      { source: '/contributions', destination: '/' },
+      { source: '/projects', destination: '/' },
+      { source: '/conclusion', destination: '/' },
+    ]
+  },
   webpack: (config: Record<string, any>) => {
     config.module.rules.push({
       test: /\.pdf$/,

@@ -9,17 +9,29 @@ import {
   Section,
 } from '../components'
 import { GitHubInfo, Repository, ViewerResponse } from '../types'
+import { MutableRefObject, useEffect, useMemo, useRef, useState } from 'react'
 import { createComponentWithProxy, useFela } from 'react-fela'
 import { graphql } from '@octokit/graphql'
 import { thin } from '../styles'
-import { useEffect, useState } from 'react'
-import { view } from '../log'
+import { useRouter } from 'next/router'
+import { useScrollSpy } from '../hooks'
 import resume from '../assets/resume.pdf'
 
 type HomePageProps = {
   contributions: GitHubInfo[]
   projects: GitHubInfo[]
 }
+
+type Sections =
+  | 'introduction'
+  | 'social'
+  | 'employment'
+  | 'core-team'
+  | 'contributions'
+  | 'projects'
+  | 'conclusion'
+
+type SectionsWithRefs = [Sections, MutableRefObject<HTMLDivElement | null>]
 
 const dev = process.env.NODE_ENV !== 'production'
 
@@ -118,13 +130,45 @@ const TeamIcon = createComponentWithProxy(styles.team, Icon)
 export default function HomePage({ contributions, projects }: HomePageProps) {
   const { css } = useFela()
   const [renderData, setRenderData] = useState(false)
+  const router = useRouter()
+
+  const introductionRef = useRef<HTMLDivElement | null>(null)
+  const socialRef = useRef<HTMLDivElement | null>(null)
+  const employmentRef = useRef<HTMLDivElement | null>(null)
+  const coreTeamRef = useRef<HTMLDivElement | null>(null)
+  const contributionsRef = useRef<HTMLDivElement | null>(null)
+  const projectsRef = useRef<HTMLDivElement | null>(null)
+  const conclusionRef = useRef<HTMLDivElement | null>(null)
+
+  const sections: SectionsWithRefs[] = useMemo(
+    () => [
+      ['introduction', introductionRef],
+      ['social', socialRef],
+      ['employment', employmentRef],
+      ['core-team', coreTeamRef],
+      ['contributions', contributionsRef],
+      ['projects', projectsRef],
+      ['conclusion', conclusionRef],
+    ],
+    []
+  )
+
+  const activeSection = useScrollSpy({
+    sections,
+    offsetPx: 0,
+  })
+
+  useEffect(() => {
+    router.push(`/${activeSection}`, undefined, { shallow: true })
+
+    // Router is not stable so we have to exclude it.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeSection])
 
   useEffect(() => {
     if ('serviceWorker' in navigator && !dev) {
       navigator.serviceWorker.register('/service-worker.js')
     }
-
-    view()
   }, [])
 
   useEffect(() => {
@@ -141,7 +185,7 @@ export default function HomePage({ contributions, projects }: HomePageProps) {
 
   return (
     <main className={css(styles.container)}>
-      <Box pixel="introduction" wrap>
+      <Box ref={introductionRef} wrap>
         <Me />
         <Section className={styles.section}>
           <h1>
@@ -150,7 +194,7 @@ export default function HomePage({ contributions, projects }: HomePageProps) {
           </h1>
         </Section>
       </Box>
-      <Box pixel="social" title="Me Around The Internet" wrap>
+      <Box ref={socialRef} title="Me Around The Internet" wrap>
         <SocialIcon href="//github.com/wyze" icon={IconType.GitHub} />
         <SocialIcon href="//twitter.com/wyze" icon={IconType.Twitter} />
         <SocialIcon
@@ -162,7 +206,7 @@ export default function HomePage({ contributions, projects }: HomePageProps) {
           icon={IconType.StackOverflow}
         />
       </Box>
-      <Box pixel="employment" title="Employment" wrap>
+      <Box ref={employmentRef} title="Employment" wrap>
         <Employer start="April 2017">Juristat</Employer>
         <Employer end="April 2017" start="September 2015">
           Monsanto
@@ -180,14 +224,14 @@ export default function HomePage({ contributions, projects }: HomePageProps) {
           Panera Bread
         </Employer>
       </Box>
-      <Box pixel="core-team" title="Core Team Member" wrap>
+      <Box ref={coreTeamRef} title="Core Team Member" wrap>
         <TeamIcon href="//yarnpkg.com" icon={IconType.Yarn} />
         <TeamIcon href="//tessel.io" icon={IconType.Tessel} />
         <TeamIcon href="//starship.rs" icon={IconType.Starship} />
       </Box>
       <Box
+        ref={contributionsRef}
         className={styles.github}
-        pixel="contributions"
         title="Contributions Made"
         wrap
       >
@@ -197,8 +241,8 @@ export default function HomePage({ contributions, projects }: HomePageProps) {
           ))}
       </Box>
       <Box
+        ref={projectsRef}
         className={styles.github}
-        pixel="projects"
         title="Open Source Projects"
         wrap
       >
@@ -207,7 +251,7 @@ export default function HomePage({ contributions, projects }: HomePageProps) {
             <GitHubItem key={project.name} {...project} />
           ))}
       </Box>
-      <Box pixel="conclusion">
+      <Box ref={conclusionRef}>
         <Section className={styles.conclusion}>
           <h2 className={css(thin)}>
             Download <Link href={resume}>résumé</Link>. View{' '}
@@ -359,5 +403,5 @@ export async function getStaticProps() {
     .sort((left, right) => right.stars - left.stars)
     .slice(0, itemCount)
 
-  return { props: { contributions, projects } }
+  return { props: { contributions, projects }, revalidate: 1 }
 }
