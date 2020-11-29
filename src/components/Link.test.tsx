@@ -1,8 +1,5 @@
 import { Link } from './Link'
-import { click } from '../log'
 import { fireEvent, render } from '../test-utils'
-
-jest.mock('../log')
 
 describe('<Link />', () => {
   it('should render', () => {
@@ -14,9 +11,6 @@ describe('<Link />', () => {
 
     expect(getByText('Content')).toBeInTheDocument()
     expect(getByText('Content')).toHaveAttribute('href', 'https://mock.local/1')
-
-    expect(click).toHaveBeenCalledTimes(1)
-    expect(click).toHaveBeenCalledWith('mock.local/1')
   })
 
   it('should apply style with className property', () => {

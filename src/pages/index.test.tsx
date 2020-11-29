@@ -3,8 +3,12 @@ import { Repository } from '../types'
 import { fireEvent, render } from '../test-utils'
 import HomePage, { getStaticProps } from '.'
 
-jest.mock('../log')
 jest.mock('@octokit/graphql')
+jest.mock('next/router', () => ({
+  useRouter: () => ({
+    push: jest.fn(),
+  }),
+}))
 
 const createLanguages = (): Repository['languages'] => ({
   edges: [
@@ -216,6 +220,7 @@ describe('getStaticProps', () => {
             },
           ],
         },
+        "revalidate": 1,
       }
     `)
   })

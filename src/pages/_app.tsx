@@ -12,7 +12,15 @@ export default function App({
   return (
     <>
       <Head>
-        <title>Neil Kistner | St. Louis Software Engineer</title>
+        <title>Neil Kistner | St. Louis Software Engineer</title>{' '}
+        {typeof window === 'undefined' ? null : (
+          <script
+            async
+            defer
+            data-domain="neilkistner.com"
+            src="https://plausible.neilkistner.com/js/plausible.outbound-links.js"
+          ></script>
+        )}
       </Head>
       <RendererProvider renderer={renderer}>
         <Component {...pageProps} />
