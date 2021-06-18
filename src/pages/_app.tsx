@@ -1,5 +1,3 @@
-import '../global.css'
-
 import { AppProps } from 'next/app'
 import { hydrate, setup } from 'otion'
 
