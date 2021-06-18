@@ -1,17 +1,6 @@
 /// <reference types="next" />
 /// <reference types="next/types/global" />
 
-declare module 'fela' {
-  import * as Fela from 'fela'
-
-  type TKeyFrame = ReturnType<Fela.TKeyFrame>
-
-  // eslint-disable-next-line @typescript-eslint/interface-name-prefix
-  export interface IStyle extends Omit<Fela.IStyle, 'animationName'> {
-    animationName?: string | TKeyFrame | TKeyFrame[]
-  }
-}
-
 declare module 'next-offline' {
   const offline: (options?: object) => object
 

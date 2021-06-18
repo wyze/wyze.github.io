@@ -1,38 +1,35 @@
-import { useFela } from 'react-fela'
+import { css, keyframes } from 'otion'
+
+const bounce = keyframes({
+  '0%': {
+    margin: '5% 0;',
+    width: '90%',
+  },
+  '50%': {
+    margin: '18% 0;',
+    width: '60%',
+  },
+  '100%': {
+    margin: '5% 0;',
+    width: '90%',
+  },
+})
 
 const styles = {
-  container: {
-    animationDuration: '3s',
-    animationIterationCount: 'infinite',
-    animationName: {
-      '0%': {
-        margin: '5% 0',
-        width: '90%',
-      },
-      '50%': {
-        margin: '18% 0',
-        width: '60%',
-      },
-      '100%': {
-        margin: '5% 0',
-        width: '90%',
-      },
-    },
-    animationTimingFunction: 'ease-out',
-    marginTop: 1,
+  container: css({
+    animation: `${bounce} infinite 3s ease-out`,
+    marginTop: '1em',
     transformOrigin: 'center center',
-  },
-  ellipse: {
+  }),
+  ellipse: css({
     transformOrigin: 'center center',
-  },
+  }),
 }
 
 export function Shadow() {
-  const { css } = useFela()
-
   return (
     <svg
-      className={css(styles.container)}
+      className={styles.container}
       enableBackground="new 0 0 122.436 39.744"
       height="39.744px"
       viewBox="0 0 122.436 39.744"
@@ -43,7 +40,7 @@ export function Shadow() {
     >
       <title>shadow</title>
       <ellipse
-        className={css(styles.ellipse)}
+        className={styles.ellipse}
         cx="61.128"
         cy="19.872"
         fill="#406789"

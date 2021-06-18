@@ -1,20 +1,17 @@
-import { useFela } from 'react-fela'
+import { css, keyframes } from 'otion'
 
-const styles = {
-  animationDuration: '3s',
-  animationIterationCount: 'infinite',
-  animationName: {
-    '50%': { transform: 'translate(0, 20px)' },
-  },
-  animationTimingFunction: 'ease-out',
-}
+const bounce = keyframes({
+  '50%': { transform: 'translate(0, 20px)' },
+})
+
+const styles = css({
+  animation: `${bounce} infinite 3s ease-out`,
+})
 
 export function GhostFloating() {
-  const { css } = useFela()
-
   return (
     <svg
-      className={css(styles)}
+      className={styles}
       height="132.743"
       viewBox="0 0 127.433 132.743"
       width="127.433"

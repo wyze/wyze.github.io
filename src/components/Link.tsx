@@ -1,29 +1,24 @@
-import { ClassName } from '../types'
 import { PropsWithChildren } from 'react'
-import { useFela } from 'react-fela'
+import { css, cx } from '../styles'
 
 type LinkProps = PropsWithChildren<{
-  className?: ClassName
+  className?: string
   href: string
 }>
 
-const styles = {
+const styles = css({
   color: '#8b008b',
   textDecoration: 'none',
   transitionDuration: '500ms',
-  nested: {
-    ':hover': {
-      color: '#8b0000',
-    },
+  ':hover': {
+    color: '#8b0000',
   },
-}
+})
 
-export function Link({ children, className = {}, href }: LinkProps) {
-  const { css } = useFela()
-
+export function Link({ children, className = '', href }: LinkProps) {
   return (
     <a
-      className={css(styles, className)}
+      className={cx(styles, className)}
       href={href}
       rel="noopener noreferrer"
       target="_blank"

@@ -1,30 +1,28 @@
 import { GhostFloating, Shadow } from '../svgs'
 import { Section } from '../components'
-import { useFela } from 'react-fela'
+import { css } from 'otion'
 
 const styles = {
-  container: {
+  container: css({
     alignContent: 'center',
     color: '#f4f6ff',
     display: 'grid',
     height: '100vh',
     justifyContent: 'center',
     justifyItems: 'center',
-  },
-  shadow: {
-    height: 3,
-    marginTop: 1,
-    width: 6,
-  },
+  }),
+  shadow: css({
+    height: '3em',
+    marginTop: '1em',
+    width: '6em',
+  }),
 }
 
 export default function FourOhFourPage() {
-  const { css } = useFela()
-
   return (
     <Section center className={styles.container}>
       <GhostFloating />
-      <div className={css(styles.shadow)}>
+      <div className={styles.shadow}>
         <Shadow />
       </div>
       <h1>Whoops!</h1>

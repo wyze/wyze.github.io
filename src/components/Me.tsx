@@ -1,29 +1,28 @@
 import { Section } from './Section'
-import { useFela } from 'react-fela'
+import { css, cx, small } from '../styles'
+
 import png from '../assets/me.png'
 import webp from '../assets/me.png?webp'
 
 const styles = {
-  container: {
-    flexBasis: 100,
-    paddingBottom: 1,
-    textAlign: 'center',
-    nested: {
-      small: {
-        flexBasis: 'auto',
-        paddingBottom: 0,
-      },
-    },
-  },
-  image: {
+  container: cx(
+    css({
+      flexBasis: '100%',
+      paddingBottom: 1,
+      textAlign: 'center',
+    }),
+    small({
+      flexBasis: 'auto',
+      paddingBottom: 0,
+    })
+  ),
+  image: css({
     maxHeight: '100px',
     borderRadius: '50%',
-  },
-} as const
+  }),
+}
 
 export function Me() {
-  const { css } = useFela()
-
   return (
     <Section center={false} className={styles.container}>
       <picture>
@@ -32,7 +31,7 @@ export function Me() {
         <img
           alt="Neil Kistner"
           src={png}
-          className={css(styles.image)}
+          className={styles.image}
           height={100}
           width={100}
         />

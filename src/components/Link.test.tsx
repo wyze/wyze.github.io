@@ -1,4 +1,5 @@
 import { Link } from './Link'
+import { css } from 'otion'
 import { fireEvent, render } from '../test-utils'
 
 describe('<Link />', () => {
@@ -15,7 +16,7 @@ describe('<Link />', () => {
 
   it('should apply style with className property', () => {
     const { getByText } = render(
-      <Link className={{ color: 'rebeccapurple' }} href="">
+      <Link className={css({ color: 'rebeccapurple' })} href="">
         Content
       </Link>
     )

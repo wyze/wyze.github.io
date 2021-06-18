@@ -1,32 +1,32 @@
-import { ClassName } from '../types'
 import { PropsWithChildren } from 'react'
-import { useFela } from 'react-fela'
+import { css, cx } from '../styles'
 
 type SectionProps = PropsWithChildren<{
   center?: boolean
-  className: ClassName | string
+  className: string
 }>
 
-const styles = ({ center }: Pick<SectionProps, 'center'>) =>
-  ({
-    textAlign: center ? 'center' : undefined,
-    nested: {
+const styles = {
+  center: css({
+    textAlign: 'center',
+  }),
+  container: css({
+    selectors: {
       '& h1': {
-        fontSize: 1.4,
+        fontSize: '1.4em',
       },
     },
-  } as const)
+  }),
+}
 
 export function Section({ center = true, children, className }: SectionProps) {
-  const { css } = useFela({ center })
-
   return (
     <div
-      className={
-        typeof className === 'string'
-          ? `${css(styles)} ${className}`
-          : css(styles, className)
-      }
+      className={cx(
+        styles.container,
+        center ? styles.center : undefined,
+        className
+      )}
     >
       {children}
     </div>
