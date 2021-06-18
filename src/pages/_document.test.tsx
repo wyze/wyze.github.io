@@ -64,4 +64,33 @@ describe('<Document />', () => {
 
     expect(document.getElementById('__otion')).toBeInTheDocument()
   })
+
+  it('should call getInitialProps and return correctly', async () => {
+    const context = {
+      AppTree() {
+        return null
+      },
+      pathname: '/',
+      query: {},
+      renderPage: jest.fn(() => Promise.resolve({ html: '' })),
+    }
+
+    const props = await Document.getInitialProps(context)
+
+    context.renderPage()
+
+    expect(props).toMatchInlineSnapshot(`
+      Object {
+        "html": "",
+        "styles": <style
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "",
+            }
+          }
+          id="__otion"
+        />,
+      }
+    `)
+  })
 })
