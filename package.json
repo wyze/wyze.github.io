@@ -24,16 +24,11 @@
   },
   "dependencies": {
     "@octokit/graphql": "^4.5.6",
-    "fela": "^11.4.0",
-    "fela-dom": "^11.4.0",
-    "fela-plugin-named-keys": "^11.4.0",
-    "fela-plugin-typescript": "^11.4.0",
-    "fela-preset-web": "^11.4.0",
-    "fela-sort-media-query-mobile-first": "^11.4.0",
     "next": "^10.0.0",
+    "otion": "^0.6.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-fela": "^11.4.0"
+    "react-otion": "^0.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
@@ -71,7 +66,7 @@
       "!src/test-utils.tsx"
     ],
     "moduleNameMapper": {
-      "\\.(pdf|png(\\?webp)?)$": "<rootDir>/__mocks__/file.ts"
+      "\\.(css|pdf|png(\\?webp)?)$": "<rootDir>/__mocks__/file.ts"
     },
     "roots": [
       "src"

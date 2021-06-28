@@ -1,7 +1,3 @@
-import { CssFelaStyle } from 'react-fela'
-
-export type ClassName = CssFelaStyle<unknown, unknown>
-
 type Language = {
   colorHex: string
   name: string

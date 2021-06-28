@@ -10,11 +10,11 @@ import {
 } from '../components'
 import { GitHubInfo, Repository, ViewerResponse } from '../types'
 import { MutableRefObject, useEffect, useMemo, useRef, useState } from 'react'
-import { createComponentWithProxy, useFela } from 'react-fela'
+import { css, cx, large, small, thin } from '../styles'
 import { graphql } from '@octokit/graphql'
-import { thin } from '../styles'
 import { useRouter } from 'next/router'
 import { useScrollSpy } from '../hooks'
+
 import resume from '../assets/resume.pdf'
 
 type HomePageProps = {
@@ -36,99 +36,104 @@ type SectionsWithRefs = [Sections, MutableRefObject<HTMLDivElement | null>]
 const dev = process.env.NODE_ENV !== 'production'
 
 const styles = {
-  conclusion: {
+  conclusion: css({
     width: '100%',
-    nested: {
-      '> h2': {
-        fontSize: 1.25,
+    selectors: {
+      '& > h2': {
+        fontSize: '1.25em',
       },
     },
-  },
-  container: {
-    padding: '2em 1em',
-    nested: {
-      large: {
-        padding: '4em 2em',
-      },
-    },
-  },
-  github: {
-    display: 'grid',
-    gridGap: 10,
-    gridTemplateColumns: '1fr',
-    nested: {
-      large: {
-        gridTemplateColumns: 'repeat(3, 1fr)',
-      },
-      small: {
+  }),
+  container: cx(
+    css({
+      padding: '2em 1em',
+    }),
+    large({
+      padding: '4em 2em',
+    })
+  ),
+  github: cx(
+    css({
+      display: 'grid',
+      gridGap: 10,
+      gridTemplateColumns: '1fr',
+    }),
+    small(
+      {
         gridTemplateColumns: 'repeat(2, 1fr)',
       },
-    },
-  },
-  section: {
+      true
+    ),
+    large({
+      gridTemplateColumns: 'repeat(3, 1fr)',
+    })
+  ),
+  section: css({
     flexBasis: 75,
     flexGrow: 1,
     flexShrink: 1,
     width: '100%',
-    nested: {
-      '> h1': {
-        ...thin,
-        nested: {
-          '> strong': {
-            fontWeight: 400,
-          },
-        },
+    selectors: {
+      '& > h1': thin,
+      '& > h1 > strong': {
+        fontWeight: 400,
       },
     },
-  },
-  social: {
-    flexBasis: 50,
-    flexGrow: 0,
-    flexShrink: 0,
-    margin: '0.5em 0',
-    paddingTop: 0.4,
-    nested: {
-      small: {
-        flexBasis: 25,
-        margin: 0,
-      },
-    },
-  },
-  team: {
-    paddingTop: 0.4,
-    width: '100%',
-    nested: {
-      small: {
-        nested: {
-          ':not(:first-of-type)': {
-            paddingTop: 0.4,
-          },
-          ':last-of-type': {
-            marginLeft: '25%',
-          },
-        },
-        width: '50%',
-      },
-      large: {
-        width: '33%',
-        nested: {
-          ':last-of-type': {
-            marginLeft: 0,
-          },
+  }),
+  social: cx(
+    css({
+      flexBasis: 50,
+      flexGrow: 0,
+      flexShrink: 0,
+      margin: '0.5em 0',
+      paddingTop: 0.4,
+    }),
+    small({
+      flexBasis: '25%',
+      margin: 0,
+    })
+  ),
+  team: cx(
+    css({
+      paddingTop: 0.4,
+      width: '100%',
+      selectors: {
+        '&:not(:first-of-type)': {
+          paddingTop: 1,
         },
       },
-      ':not(:first-of-type)': {
-        paddingTop: 1,
+    }),
+    small({
+      width: '50%',
+      selectors: {
+        '&:not(:first-of-type)': {
+          paddingTop: 0.4,
+        },
+        '&:last-of-type': {
+          marginLeft: '25%',
+        },
       },
-    },
-  },
-} as const
+    }),
+    large({
+      width: '33%',
+      selectors: {
+        '&:last-of-type': {
+          marginLeft: 0,
+        },
+      },
+    })
+  ),
+}
 
-const SocialIcon = createComponentWithProxy(styles.social, Icon)
-const TeamIcon = createComponentWithProxy(styles.team, Icon)
+function SocialIcon(props: Parameters<typeof Icon>[number]) {
+  return <Icon className={styles.social} {...props} />
+}
+
+function TeamIcon(props: Parameters<typeof Icon>[number]) {
+  return <Icon className={styles.team} {...props} />
+}
 
 export default function HomePage({ contributions, projects }: HomePageProps) {
-  const { css } = useFela()
   const [renderData, setRenderData] = useState(false)
   const router = useRouter()
 
@@ -184,7 +189,7 @@ export default function HomePage({ contributions, projects }: HomePageProps) {
   }, [renderData])
 
   return (
-    <main className={css(styles.container)}>
+    <main className={styles.container}>
       <Box ref={introductionRef} wrap>
         <Me />
         <Section className={styles.section}>
@@ -232,8 +237,8 @@ export default function HomePage({ contributions, projects }: HomePageProps) {
       <Box
         ref={contributionsRef}
         className={styles.github}
+        grid
         title="Contributions Made"
-        wrap
       >
         {renderData &&
           contributions.map((contribution) => (
@@ -243,8 +248,8 @@ export default function HomePage({ contributions, projects }: HomePageProps) {
       <Box
         ref={projectsRef}
         className={styles.github}
+        grid
         title="Open Source Projects"
-        wrap
       >
         {renderData &&
           projects.map((project) => (

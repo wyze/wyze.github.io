@@ -1,4 +1,5 @@
 import { Icon, IconType } from './Icon'
+import { css } from 'otion'
 import { render } from '../test-utils'
 
 describe('<Icon />', () => {
@@ -20,7 +21,7 @@ describe('<Icon />', () => {
   it('should apply style with className property', () => {
     const { getByText } = render(
       <Icon
-        className={{ color: 'rebeccapurple' }}
+        className={css({ color: 'rebeccapurple' })}
         href=""
         icon={IconType.GitHub}
       />

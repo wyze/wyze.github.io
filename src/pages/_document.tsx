@@ -1,13 +1,10 @@
 import {
-  AppContextType,
-  AppInitialProps,
-  AppPropsType,
-  NextComponentType,
-} from 'next/dist/next-server/lib/utils'
-import { IRenderer } from 'fela'
-import { NextRouter } from 'next/router'
-import { renderToSheetList } from 'fela-dom'
-import { renderer } from '../fela'
+  VirtualInjector,
+  filterOutUnusedRules,
+  getStyleElement,
+} from 'react-otion/server'
+import { setup } from 'otion'
+
 import Document, {
   DocumentContext,
   Head,
@@ -16,52 +13,21 @@ import Document, {
   NextScript,
 } from 'next/document'
 
-type AppWithRenderer = NextComponentType<
-  AppContextType<NextRouter>,
-  AppInitialProps,
-  AppPropsType<NextRouter, Record<string, unknown>> & { renderer?: IRenderer }
->
+export default class extends Document {
+  static async getInitialProps({ renderPage }: DocumentContext) {
+    const injector = VirtualInjector()
 
-type SheetList = ReturnType<typeof renderToSheetList> extends Array<infer U>
-  ? Array<U & { rehydration: number }>
-  : never
+    setup({ injector })
 
-export default class extends Document<{ sheetList: SheetList }> {
-  static async getInitialProps(ctx: DocumentContext) {
-    const originalRenderPage = ctx.renderPage
-
-    ctx.renderPage = () =>
-      originalRenderPage({
-        enhanceApp: (App: AppWithRenderer) =>
-          function EnhanceApp(props) {
-            return <App {...props} renderer={renderer} />
-          },
-      })
-
-    const initialProps = await Document.getInitialProps(ctx)
-    const sheetList = renderToSheetList(renderer)
+    const page = await renderPage()
 
     return {
-      ...initialProps,
-      sheetList,
+      ...page,
+      styles: getStyleElement(filterOutUnusedRules(injector, page.html)),
     }
   }
 
   render() {
-    const styleNodes = this.props.sheetList.map(
-      ({ type, rehydration, support, media, css }) => (
-        <style
-          dangerouslySetInnerHTML={{ __html: css }}
-          data-fela-id=""
-          data-fela-rehydration={rehydration}
-          data-fela-support={support}
-          data-fela-type={type}
-          key={`${type}-${media}`}
-          media={media}
-        />
-      )
-    )
-
     return (
       <Html lang="en">
         <Head>
@@ -72,7 +38,7 @@ export default class extends Document<{ sheetList: SheetList }> {
           <meta name="theme-color" content="#ffffff" />
           <link rel="manifest" href="/manifest.json" />
           <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
-          {styleNodes}
+          <link rel="stylesheet" href="/global.css" />
         </Head>
         <body>
           <Main />

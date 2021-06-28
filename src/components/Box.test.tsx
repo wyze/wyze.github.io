@@ -1,4 +1,5 @@
 import { Box } from './Box'
+import { css } from 'otion'
 import { render } from '../test-utils'
 
 describe('<Box />', () => {
@@ -16,7 +17,7 @@ describe('<Box />', () => {
     ['wrap', { wrap: true }, 'flex-wrap: wrap'],
     [
       'className',
-      { className: { color: 'rebeccapurple' } },
+      { className: css({ color: 'rebeccapurple' }) },
       'color: rebeccapurple',
     ],
   ])('should apply style with %s property', (_, props, style) => {

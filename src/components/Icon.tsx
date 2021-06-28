@@ -1,4 +1,3 @@
-import { ClassName } from '../types'
 import {
   GitHub,
   LinkedIn,
@@ -10,6 +9,7 @@ import {
 } from '../svgs'
 import { Link } from './Link'
 import { Section } from './Section'
+import { css } from 'otion'
 
 export enum IconType {
   GitHub = 'github',
@@ -22,18 +22,18 @@ export enum IconType {
 }
 
 type IconProps = {
-  className?: ClassName
+  className?: string
   href: string
   icon: IconType
 }
 
-const styles = {
+const styles = css({
   display: 'inline-block',
-  height: 3.7,
-  minWidth: 3.7,
-}
+  height: '3.7em',
+  minWidth: '3.7em',
+})
 
-export function Icon({ className = {}, href, icon }: IconProps) {
+export function Icon({ className = '', href, icon }: IconProps) {
   return (
     <Section className={className}>
       <Link className={styles} href={href}>
