@@ -97,7 +97,7 @@ describe('<HomePage />', () => {
     expect(
       getByText(
         (_, element) =>
-          element.textContent ===
+          element?.textContent ===
           "Hello, I'm Neil Kistner, a software engineer in St. Louis.",
         { selector: 'main > div' }
       )
