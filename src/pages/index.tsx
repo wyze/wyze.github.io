@@ -15,8 +15,6 @@ import { graphql } from '@octokit/graphql'
 import { useRouter } from 'next/router'
 import { useScrollSpy } from '../hooks'
 
-import resume from '../assets/resume.pdf'
-
 type HomePageProps = {
   contributions: GitHubInfo[]
   projects: GitHubInfo[]
@@ -259,7 +257,7 @@ export default function HomePage({ contributions, projects }: HomePageProps) {
       <Box ref={conclusionRef}>
         <Section className={styles.conclusion}>
           <h2 className={css(thin)}>
-            Download <Link href={resume}>résumé</Link>. View{' '}
+            Download <Link href="/assets/resume.pdf">résumé</Link>. View{' '}
             <Link href="//github.com/wyze/wyze.github.io">source</Link>.
           </h2>
         </Section>
