@@ -32,7 +32,6 @@ describe('<Document />', () => {
       <Document
         html=""
         __NEXT_DATA__={{
-          head: [],
           props: {},
           page: '',
           query: {},
@@ -59,6 +58,7 @@ describe('<Document />', () => {
         assetPrefix=""
         canonicalBase=""
         headTags={[]}
+        scriptLoader={{}}
       />
     )
 

@@ -1,10 +1,4 @@
 {
-  "alias": "neilkistner.com",
-  "build": {
-    "env": {
-      "GITHUB_TOKEN": "@github-token"
-    }
-  },
   "headers": [
     {
       "source": "/(.*)\\.(css|ico|js|json|png|woff2)",
