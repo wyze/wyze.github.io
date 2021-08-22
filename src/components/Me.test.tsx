@@ -1,10 +1,10 @@
 import { Me } from './Me'
-import { render } from '../test-utils'
+import { render, screen } from '../test-utils'
 
 describe('<Me />', () => {
   it('should render', () => {
-    const { getByAltText } = render(<Me />)
+    render(<Me />)
 
-    expect(getByAltText('Neil Kistner')).toBeInTheDocument()
+    expect(screen.getByAltText('Neil Kistner')).toBeInTheDocument()
   })
 })

@@ -1,6 +1,6 @@
 import { Icon, IconType } from './Icon'
 import { css } from 'otion'
-import { render } from '../test-utils'
+import { render, screen } from '../test-utils'
 
 describe('<Icon />', () => {
   it.each([
@@ -12,14 +12,17 @@ describe('<Icon />', () => {
     [IconType.Twitter],
     [IconType.Yarn],
   ])('should render with %s', (icon) => {
-    const { getByText } = render(<Icon href="//mock.local" icon={icon} />)
+    render(<Icon href="//mock.local" icon={icon} />)
 
-    expect(getByText(icon)).toBeInTheDocument()
-    expect(getByText(icon).closest('a')).toHaveAttribute('href', '//mock.local')
+    expect(screen.getByText(icon)).toBeInTheDocument()
+    expect(screen.getByText(icon).closest('a')).toHaveAttribute(
+      'href',
+      '//mock.local'
+    )
   })
 
   it('should apply style with className property', () => {
-    const { getByText } = render(
+    render(
       <Icon
         className={css({ color: 'rebeccapurple' })}
         href=""
@@ -27,7 +30,7 @@ describe('<Icon />', () => {
       />
     )
 
-    expect(getByText('github').closest('div')).toHaveStyle({
+    expect(screen.getByText('github').closest('div')).toHaveStyle({
       color: 'rebeccapurple',
     })
   })
