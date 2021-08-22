@@ -1,4 +1,4 @@
-import { render } from '../test-utils'
+import { render, screen } from '../test-utils'
 import App from './_app'
 import Router from 'next/router'
 
@@ -9,7 +9,7 @@ describe('<App />', () => {
       return
     }
 
-    const { getByText } = render(
+    render(
       <App
         Component={(props) => <div {...props} />}
         pageProps={{ children: <div>Hi</div> }}
@@ -17,6 +17,6 @@ describe('<App />', () => {
       />
     )
 
-    expect(getByText('Hi')).toBeInTheDocument()
+    expect(screen.getByText('Hi')).toBeInTheDocument()
   })
 })

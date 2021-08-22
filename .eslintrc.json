@@ -5,13 +5,11 @@
   },
   "extends": [
     "eslint:recommended",
+    "plugin:@next/next/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
     "plugin:react/recommended",
-    "plugin:@next/next/recommended",
-    "prettier/@typescript-eslint",
-    "prettier/react"
+    "plugin:prettier/recommended"
   ],
   "overrides": [
     {
@@ -20,8 +18,7 @@
       "extends": [
         "plugin:jest-dom/recommended",
         "plugin:jest/recommended",
-        "plugin:testing-library/react",
-        "plugin:testing-library/recommended"
+        "plugin:testing-library/react"
       ]
     }
   ],

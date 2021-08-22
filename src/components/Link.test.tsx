@@ -1,26 +1,27 @@
 import { Link } from './Link'
 import { css } from 'otion'
-import { fireEvent, render } from '../test-utils'
+import { fireEvent, render, screen } from '../test-utils'
 
 describe('<Link />', () => {
   it('should render', () => {
-    const { getByText } = render(
-      <Link href="https://mock.local/1">Content</Link>
+    render(<Link href="https://mock.local/1">Content</Link>)
+
+    fireEvent.click(screen.getByText('Content'))
+
+    expect(screen.getByText('Content')).toBeInTheDocument()
+    expect(screen.getByText('Content')).toHaveAttribute(
+      'href',
+      'https://mock.local/1'
     )
-
-    fireEvent.click(getByText('Content'))
-
-    expect(getByText('Content')).toBeInTheDocument()
-    expect(getByText('Content')).toHaveAttribute('href', 'https://mock.local/1')
   })
 
   it('should apply style with className property', () => {
-    const { getByText } = render(
+    render(
       <Link className={css({ color: 'rebeccapurple' })} href="">
         Content
       </Link>
     )
 
-    expect(getByText('Content')).toHaveStyle({ color: 'rebeccapurple' })
+    expect(screen.getByText('Content')).toHaveStyle({ color: 'rebeccapurple' })
   })
 })

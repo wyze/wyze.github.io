@@ -1,11 +1,11 @@
 import { Section } from './Section'
-import { render } from '../test-utils'
+import { render, screen } from '../test-utils'
 
 describe('<Section />', () => {
   it('should render with className as string', () => {
-    const { getByText } = render(<Section className="cn">Content</Section>)
+    render(<Section className="cn">Content</Section>)
 
-    const content = getByText('Content')
+    const content = screen.getByText('Content')
 
     expect(content).toBeInTheDocument()
     expect(content).toHaveStyle({ textAlign: 'center' })

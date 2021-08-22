@@ -1,6 +1,6 @@
 import * as octokit from '@octokit/graphql'
 import { Repository } from '../types'
-import { fireEvent, render } from '../test-utils'
+import { fireEvent, render, screen } from '../test-utils'
 import HomePage, { getStaticProps } from '.'
 
 jest.mock('@octokit/graphql')
@@ -49,7 +49,7 @@ const createRepo = ({
 
 describe('<HomePage />', () => {
   it('should render', () => {
-    const { getByText } = render(
+    render(
       <HomePage
         contributions={[
           {
@@ -95,7 +95,7 @@ describe('<HomePage />', () => {
     )
 
     expect(
-      getByText(
+      screen.getByText(
         (_, element) =>
           element?.textContent ===
           "Hello, I'm Neil Kistner, a software engineer in St. Louis.",

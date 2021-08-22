@@ -1,14 +1,14 @@
 import { Box } from './Box'
 import { css } from 'otion'
-import { render } from '../test-utils'
+import { render, screen } from '../test-utils'
 
 describe('<Box />', () => {
   it('should render', () => {
-    const { getByText } = render(<Box title="A title">Some content</Box>)
+    render(<Box title="A title">Some content</Box>)
 
-    const content = getByText('Some content')
+    const content = screen.getByText('Some content')
 
-    expect(getByText('A title')).toBeInTheDocument()
+    expect(screen.getByText('A title')).toBeInTheDocument()
     expect(content).toBeInTheDocument()
     expect(content).toHaveStyle('flex-wrap: nowrap')
   })
@@ -21,8 +21,8 @@ describe('<Box />', () => {
       'color: rebeccapurple',
     ],
   ])('should apply style with %s property', (_, props, style) => {
-    const { getByText } = render(<Box {...props}>Content</Box>)
+    render(<Box {...props}>Content</Box>)
 
-    expect(getByText('Content')).toHaveStyle(style)
+    expect(screen.getByText('Content')).toHaveStyle(style)
   })
 })
