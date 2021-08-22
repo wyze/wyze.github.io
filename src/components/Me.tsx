@@ -1,8 +1,7 @@
 import { Section } from './Section'
 import { css, cx, small } from '../styles'
 
-import png from '../assets/me.png'
-import webp from '../assets/me.png?webp'
+import Image from 'next/image'
 
 const styles = {
   container: cx(
@@ -25,17 +24,13 @@ const styles = {
 export function Me() {
   return (
     <Section center={false} className={styles.container}>
-      <picture>
-        <source srcSet={webp} type="image/webp" />
-        <source srcSet={png} type="image/png" />
-        <img
-          alt="Neil Kistner"
-          src={png}
-          className={styles.image}
-          height={100}
-          width={100}
-        />
-      </picture>
+      <Image
+        alt="Neil Kistner"
+        src="/assets/me.png"
+        className={styles.image}
+        height={100}
+        width={100}
+      />
     </Section>
   )
 }

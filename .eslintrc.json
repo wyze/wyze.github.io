@@ -9,6 +9,7 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "plugin:react/recommended",
+    "plugin:@next/next/recommended",
     "prettier/@typescript-eslint",
     "prettier/react"
   ],
@@ -24,14 +25,6 @@
       ]
     }
   ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": 2018,
-    "sourceType": "module"
-  },
   "plugins": ["react-hooks", "wyze"],
   "rules": {
     "@typescript-eslint/array-type": ["error", { "default": "array-simple" }],
