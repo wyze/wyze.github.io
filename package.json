@@ -75,7 +75,8 @@
     ],
     "setupFilesAfterEnv": [
       "<rootDir>/setupTests.ts"
-    ]
+    ],
+    "testEnvironment": "jsdom"
   },
   "babel": {
     "presets": [
