@@ -1,8 +1,18 @@
-import offline from 'next-offline'
-import withOptimizedImages from 'next-optimized-images'
-import withPlugins from 'next-compose-plugins'
+import withOffline from 'next-offline'
 
-const offlineConfig = {
+module.exports = withOffline({
+  pageExtensions:
+    process.env.NODE_ENV === 'production' ? ['tsx)(?<!test\\.tsx'] : undefined,
+  rewrites: () => [
+    { source: '/introduction', destination: '/' },
+    { source: '/social', destination: '/' },
+    { source: '/core-team', destination: '/' },
+    { source: '/employment', destination: '/' },
+    { source: '/contributions', destination: '/' },
+    { source: '/projects', destination: '/' },
+    { source: '/conclusion', destination: '/' },
+  ],
+  target: 'serverless',
   transformManifest: (manifest: string[]) => ['/'].concat(manifest),
   workboxOpts: {
     swDest: 'static/service-worker.js',
@@ -23,22 +33,5 @@ const offlineConfig = {
         },
       },
     ],
-  },
-}
-
-module.exports = withPlugins([[offline, offlineConfig], withOptimizedImages], {
-  pageExtensions:
-    process.env.NODE_ENV === 'production' ? ['tsx)(?<!test\\.tsx'] : undefined,
-  target: 'serverless',
-  async rewrites() {
-    return [
-      { source: '/introduction', destination: '/' },
-      { source: '/social', destination: '/' },
-      { source: '/core-team', destination: '/' },
-      { source: '/employment', destination: '/' },
-      { source: '/contributions', destination: '/' },
-      { source: '/projects', destination: '/' },
-      { source: '/conclusion', destination: '/' },
-    ]
   },
 })
