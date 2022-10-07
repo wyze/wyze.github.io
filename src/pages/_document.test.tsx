@@ -50,6 +50,7 @@ describe('<Document />', () => {
             '/_app': [],
           },
           ampFirstPages: [],
+          rootMainFiles: [],
         }}
         inAmpMode={false}
         hybridAmp={false}
@@ -73,6 +74,7 @@ describe('<Document />', () => {
       pathname: '/',
       query: {},
       renderPage: jest.fn(() => Promise.resolve({ html: '' })),
+      defaultGetInitialProps: jest.fn(() => Promise.resolve({ html: '' })),
     }
 
     const props = await Document.getInitialProps(context)
@@ -80,11 +82,11 @@ describe('<Document />', () => {
     context.renderPage()
 
     expect(props).toMatchInlineSnapshot(`
-      Object {
+      {
         "html": "",
         "styles": <style
           dangerouslySetInnerHTML={
-            Object {
+            {
               "__html": "",
             }
           }

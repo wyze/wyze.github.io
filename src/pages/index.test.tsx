@@ -159,18 +159,18 @@ describe('getStaticProps', () => {
     const data = await getStaticProps()
 
     expect(data).toMatchInlineSnapshot(`
-      Object {
-        "props": Object {
-          "contributions": Array [
-            Object {
+      {
+        "props": {
+          "contributions": [
+            {
               "description": "A mock repo 2.",
-              "languages": Array [
-                Object {
+              "languages": [
+                {
                   "colorHex": "#663399",
                   "name": "TypeScript",
                   "percent": 66.66666666666666,
                 },
-                Object {
+                {
                   "colorHex": "#000000",
                   "name": "JavaScript",
                   "percent": 33.33333333333333,
@@ -180,15 +180,15 @@ describe('getStaticProps', () => {
               "stars": 123456,
               "url": "//mock.local/mock/repo-2",
             },
-            Object {
+            {
               "description": "A mock repo 1.",
-              "languages": Array [
-                Object {
+              "languages": [
+                {
                   "colorHex": "#663399",
                   "name": "TypeScript",
                   "percent": 66.66666666666666,
                 },
-                Object {
+                {
                   "colorHex": "#000000",
                   "name": "JavaScript",
                   "percent": 33.33333333333333,
@@ -199,16 +199,16 @@ describe('getStaticProps', () => {
               "url": "//mock.local/mock/repo-1",
             },
           ],
-          "projects": Array [
-            Object {
+          "projects": [
+            {
               "description": "The personal website of me.",
-              "languages": Array [
-                Object {
+              "languages": [
+                {
                   "colorHex": "#663399",
                   "name": "TypeScript",
                   "percent": 66.66666666666666,
                 },
-                Object {
+                {
                   "colorHex": "#000000",
                   "name": "JavaScript",
                   "percent": 33.33333333333333,
