@@ -5,10 +5,9 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:@next/next/recommended",
+    "@remix-run/eslint-config",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
     "plugin:prettier/recommended"
   ],
   "overrides": [
@@ -22,7 +21,7 @@
       ]
     }
   ],
-  "plugins": ["react-hooks", "wyze"],
+  "plugins": ["wyze"],
   "rules": {
     "@typescript-eslint/array-type": ["error", { "default": "array-simple" }],
     "@typescript-eslint/explicit-function-return-type": "off",
@@ -43,13 +42,6 @@
     "@typescript-eslint/prefer-optional-chain": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "react/prop-types": "off",
-    "react/react-in-jsx-scope": "off",
     "wyze/sort-imports": "error"
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
   }
 }

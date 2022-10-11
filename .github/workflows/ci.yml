@@ -9,17 +9,17 @@ jobs:
       matrix:
         node-version: ['16', '14']
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Use Node ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
     - run: yarn install --frozen-lockfile --check-files
     - run: yarn lint
-    - run: yarn type-check
-    - run: yarn test --coverage
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1
-      with:
-        fail_ci_if_error: true
-        file: coverage/lcov.info
+    - run: yarn typecheck
+    # - run: yarn test --coverage
+    # - name: Upload coverage to Codecov
+    #   uses: codecov/codecov-action@v1
+    #   with:
+    #     fail_ci_if_error: true
+    #     file: coverage/lcov.info

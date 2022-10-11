@@ -11,6 +11,8 @@ node_modules
 coverage
 
 # Build
-.next
+.cache
+**/build/
+**/functions/
+*.generated.ts
 .env*
-next.config.js

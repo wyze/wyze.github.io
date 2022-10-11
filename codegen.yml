@@ -1,0 +1,21 @@
+overwrite: true
+# config:
+#   namingConvention:
+#     enumValues: keep
+#   scalars:
+#     BigDecimal: string
+#     BigInt: string
+#     Bytes: string
+#     numeric: number
+#     timestamp: string
+generates:
+  ./app/graphql/github.generated.ts:
+    schema:
+      - ${GITHUB_ENDPOINT}:
+          headers:
+            authorization: bearer ${GITHUB_TOKEN}
+    documents: './app/graphql/github.queries.ts'
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-graphql-request'
