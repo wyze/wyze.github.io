@@ -24,7 +24,7 @@ jobs:
     - name: Audit using Lighthouse
       uses: treosh/lighthouse-ci-action@v2
       with:
-        urls: https://${{ steps.cloudflare_preview_url.outputs.preview_url }}
+        urls: ${{ steps.cloudflare_preview_url.outputs.preview_url }}
     - name: Post Lighthouse Status
       uses: manrueda/lighthouse-report-action@v1.1.1
       with:
