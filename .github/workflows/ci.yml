@@ -16,8 +16,8 @@ jobs:
     - name: Make env file
       uses: SpicyPizza/create-envfile@v1
       with:
-        envkey_GITHUB_ENDPOINT=${{ secrets.GH_ENDPOINT }}
-        envkey_GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
+        envkey_GITHUB_ENDPOINT: ${{ secrets.GH_ENDPOINT }}
+        envkey_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - run: yarn build:codegen
     - run: yarn typecheck
     # - run: yarn test --coverage
