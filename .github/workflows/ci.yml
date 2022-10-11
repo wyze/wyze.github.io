@@ -13,7 +13,12 @@ jobs:
         node-version: 16
     - run: yarn install --frozen-lockfile --check-files
     - run: yarn lint
-    - run: GITHUB_ENDPOINT=${{ secrets.GH_ENDPOINT }} yarn build:codegen
+    - name: Make env file
+      uses: SpicyPizza/create-envfile@v1
+      with:
+        envkey_GITHUB_ENDPOINT=${{ secrets.GH_ENDPOINT }}
+        envkey_GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
+    - run: yarn build:codegen
     - run: yarn typecheck
     # - run: yarn test --coverage
     # - name: Upload coverage to Codecov
