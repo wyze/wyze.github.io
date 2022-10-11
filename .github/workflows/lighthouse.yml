@@ -5,8 +5,7 @@ on: deployment_status
 jobs:
   audit:
     if: >
-      github.event.deployment_status.state == 'success' &&
-      github.actor == 'vercel[bot]'
+      github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
     - name: Audit using Lighthouse
