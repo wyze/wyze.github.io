@@ -1,18 +1,30 @@
 name: Lighthouse Audit
 
-on: deployment_status
+on:
+  push:
+    branches:
+      - '**'
+      - '!master'
 
 jobs:
   audit:
-    if: >
-      github.event.deployment_status.state == 'success' &&
-      github.actor == 'vercel[bot]'
     runs-on: ubuntu-latest
     steps:
+    - run: sleep 100
+    - name: Cloudflare Preview URL
+      uses: zentered/cloudflare-preview-url@v1.3.0
+      id: cloudflare_preview_url
+      env:
+        CLOUDFLARE_ACCOUNT_EMAIL: ${{ secrets.CLOUDFLARE_ACCOUNT_EMAIL }}
+        CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      with:
+        cloudflare_project_id: 'wyze-github'
+        wait_until_ready: true
     - name: Audit using Lighthouse
       uses: treosh/lighthouse-ci-action@v2
       with:
-        urls: ${{ github.event.deployment_status.target_url }}
+        urls: ${{ steps.cloudflare_preview_url.outputs.preview_url }}
     - name: Post Lighthouse Status
       uses: manrueda/lighthouse-report-action@v1.1.1
       with:
