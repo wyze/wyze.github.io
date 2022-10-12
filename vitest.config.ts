@@ -8,9 +8,11 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   test: {
-    coverage: {
-      reporter: 'lcov',
-    },
+    coverage: process.env.CI
+      ? {
+          reporter: 'lcov',
+        }
+      : {},
     environment: 'jsdom',
     include: ['./app/**/*.test.{ts,tsx}'],
     setupFiles: ['./test/setup-test-env.ts'],
