@@ -20,9 +20,9 @@ jobs:
         envkey_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - run: yarn build:codegen
     - run: yarn typecheck
-    # - run: yarn test --coverage
-    # - name: Upload coverage to Codecov
-    #   uses: codecov/codecov-action@v1
-    #   with:
-    #     fail_ci_if_error: true
-    #     file: coverage/lcov.info
+    - run: yarn test run --coverage
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        fail_ci_if_error: true
+        files: coverage/lcov.info

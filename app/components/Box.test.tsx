@@ -1,6 +1,7 @@
 import { Box } from './Box'
 import { css } from 'otion'
-import { render, screen } from '../../test-utils'
+import { describe, expect, it } from 'vitest'
+import { render, screen } from '~/test/test-utils'
 
 describe('<Box />', () => {
   it('should render', () => {

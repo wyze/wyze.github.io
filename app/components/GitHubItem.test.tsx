@@ -1,5 +1,6 @@
 import { GitHubItem } from './GitHubItem'
-import { render, screen, within } from '../../test-utils'
+import { describe, expect, it } from 'vitest'
+import { render, screen, within } from '~/test/test-utils'
 
 describe('<GitHubItem />', () => {
   it('should render', () => {

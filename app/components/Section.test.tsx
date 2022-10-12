@@ -1,5 +1,6 @@
 import { Section } from './Section'
-import { render, screen } from '../../test-utils'
+import { describe, expect, it } from 'vitest'
+import { render, screen } from '~/test/test-utils'
 
 describe('<Section />', () => {
   it('should render with className as string', () => {
