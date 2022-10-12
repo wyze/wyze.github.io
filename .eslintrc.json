@@ -15,7 +15,6 @@
       "env": { "jest": true },
       "extends": [
         "plugin:jest-dom/recommended",
-        "plugin:jest/recommended",
         "plugin:testing-library/react"
       ]
     }
