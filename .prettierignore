@@ -1,0 +1,6 @@
+.cache/
+app/**/*.generated.ts
+coverage/
+functions/
+node_modules/
+public/build/

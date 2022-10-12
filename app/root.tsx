@@ -1,3 +1,4 @@
+import fontStyles from '@fontsource/lato/latin.css'
 import type { LinksFunction, MetaFunction } from '@remix-run/cloudflare'
 import {
   Links,
@@ -7,7 +8,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react'
-import fontStyles from '@fontsource/lato/latin.css'
+
 import styles from './styles/global.css'
 
 export const links: LinksFunction = () =>

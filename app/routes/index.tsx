@@ -1,4 +1,7 @@
+import { type LoaderArgs, json } from '@remix-run/cloudflare'
+import { useLoaderData } from '@remix-run/react'
 import type { ComponentProps } from 'react'
+
 import {
   Box,
   Employer,
@@ -9,10 +12,8 @@ import {
   Me,
   Section,
 } from '~/components'
-import { type LoaderArgs, json } from '@remix-run/cloudflare'
-import { css, cx, large, small, thin } from '~/styles/helpers'
 import { getData } from '~/services/github.server'
-import { useLoaderData } from '@remix-run/react'
+import { css, cx, large, small, thin } from '~/styles/helpers'
 
 const styles = {
   conclusion: css({

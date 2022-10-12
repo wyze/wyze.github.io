@@ -1,3 +1,5 @@
+import { css } from 'otion'
+
 import {
   GitHub,
   LinkedIn,
@@ -7,9 +9,9 @@ import {
   Twitter,
   Yarn,
 } from '~/svgs'
+
 import { Link } from './Link'
 import { Section } from './Section'
-import { css } from 'otion'
 
 export enum IconType {
   GitHub = 'github',

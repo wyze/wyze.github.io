@@ -6,23 +6,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node v16
-      uses: actions/setup-node@v3
-      with:
-        node-version: 16
-    - run: yarn install --frozen-lockfile --check-files
-    - run: yarn lint
-    - name: Make env file
-      uses: SpicyPizza/create-envfile@v1
-      with:
-        envkey_GITHUB_ENDPOINT: ${{ secrets.GH_ENDPOINT }}
-        envkey_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - run: yarn build:codegen
-    - run: yarn typecheck
-    - run: yarn test run --coverage
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
-      with:
-        fail_ci_if_error: true
-        files: coverage/lcov.info
+      - uses: actions/checkout@v3
+      - name: Use Node v16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: yarn install --frozen-lockfile --check-files
+      - name: Make env file
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_GITHUB_ENDPOINT: ${{ secrets.GH_ENDPOINT }}
+          envkey_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: yarn build:codegen
+      - run: yarn validate
+      - run: yarn test run --coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          fail_ci_if_error: true
+          files: coverage/lcov.info

@@ -1,6 +1,8 @@
-import { Employer } from './Employer'
 import { describe, expect, it } from 'vitest'
+
 import { render, screen } from '~/test/test-utils'
+
+import { Employer } from './Employer'
 
 describe('<Employer />', () => {
   it('should render', () => {

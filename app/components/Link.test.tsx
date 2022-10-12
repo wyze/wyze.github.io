@@ -1,7 +1,9 @@
-import { Link } from './Link'
 import { css } from 'otion'
 import { describe, expect, it } from 'vitest'
+
 import { render, screen, setup } from '~/test/test-utils'
+
+import { Link } from './Link'
 
 describe('<Link />', () => {
   it('should render', () => {

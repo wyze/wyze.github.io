@@ -1,5 +1,6 @@
-import { Section } from './Section'
 import { css, cx, small } from '~/styles/helpers'
+
+import { Section } from './Section'
 
 const styles = {
   container: cx(
