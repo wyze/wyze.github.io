@@ -1,6 +1,7 @@
 import type { AppLoadContext } from '@remix-run/cloudflare'
-import * as github from '~/graphql/github.generated'
 import { GraphQLClient } from 'graphql-request'
+
+import * as github from '~/graphql/github.generated'
 
 declare module '@remix-run/server-runtime' {
   interface AppLoadContext {

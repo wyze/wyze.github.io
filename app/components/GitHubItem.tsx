@@ -1,8 +1,9 @@
 import type { getData } from '~/services/github.server'
+import { css, cx, level, makeRGBA } from '~/styles/helpers'
+import { Star } from '~/svgs'
+
 import { Link } from './Link'
 import { Section } from './Section'
-import { Star } from '~/svgs'
-import { css, cx, level, makeRGBA } from '~/styles/helpers'
 
 type GitHubItemProps = Awaited<ReturnType<typeof getData>>['projects'][number]
 

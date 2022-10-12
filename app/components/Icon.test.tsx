@@ -1,7 +1,9 @@
-import { Icon, IconType } from './Icon'
 import { css } from 'otion'
 import { describe, expect, it } from 'vitest'
+
 import { render, screen } from '~/test/test-utils'
+
+import { Icon, IconType } from './Icon'
 
 describe('<Icon />', () => {
   it.each([

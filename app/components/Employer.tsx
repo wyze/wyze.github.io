@@ -1,6 +1,8 @@
 import type { PropsWithChildren } from 'react'
-import { Section } from './Section'
+
 import { css, cx, large, level, small } from '~/styles/helpers'
+
+import { Section } from './Section'
 
 type EmployerProps = PropsWithChildren<{
   end?: string
