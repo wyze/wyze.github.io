@@ -1,10 +1,9 @@
-import type { PropsWithChildren } from 'react'
-
-type SvgProps = PropsWithChildren<{
+type SvgProps = {
+  children: React.ReactNode
   height: number
   name: string
   width: number
-}>
+}
 
 export function Svg({ children, height, name, width }: SvgProps) {
   return (

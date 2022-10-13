@@ -1,5 +1,6 @@
 .cache/
 app/**/*.generated.ts
+app/styles/
 coverage/
 functions/
 node_modules/

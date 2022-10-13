@@ -13,7 +13,11 @@ describe('<Employer />', () => {
   })
 
   it('should work with end property', () => {
-    render(<Employer end="2020-02-02" start="2020-01-01" />)
+    render(
+      <Employer end="2020-02-02" start="2020-01-01">
+        A Company
+      </Employer>
+    )
 
     expect(screen.getByText('(2020-01-01 — 2020-02-02)')).toBeInTheDocument()
   })

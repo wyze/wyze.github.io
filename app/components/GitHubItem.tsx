@@ -1,5 +1,4 @@
 import type { getData } from '~/services/github.server'
-import { css, cx, level, makeRGBA } from '~/styles/helpers'
 import { Star } from '~/svgs'
 
 import { Link } from './Link'
@@ -8,75 +7,6 @@ import { Section } from './Section'
 type GitHubItemProps = Awaited<ReturnType<typeof getData>>['projects'][number]
 
 const { format: formatStars } = Intl.NumberFormat('en-US')
-const shadowColor = makeRGBA(0.175)
-
-const styles = {
-  bar: css({
-    display: 'flex',
-    flexBasis: 12,
-    flexGrow: 0,
-    flexShrink: 0,
-    width: '100.1%',
-  }),
-  bold: css({
-    fontWeight: 600,
-  }),
-  bullets: css({
-    display: 'flex',
-    flexWrap: 'wrap',
-    fontSize: '0.75em',
-    padding: '0 0.5em 0.25em',
-  }),
-  circle: css({
-    borderRadius: '100%',
-    height: 12,
-    width: 12,
-  }),
-  container: css({
-    backgroundColor: 'hsl(200, 33%, 96%)',
-    borderRadius: 5,
-    boxShadow: `0 2px 3px 0 ${shadowColor}, 0 0 0 1px ${shadowColor}`,
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100%',
-    minHeight: '9em',
-    overflow: 'hidden',
-  }),
-  description: css({
-    fontSize: '0.95em',
-    overflow: 'hidden',
-    padding: '0.25em 0.5em',
-    textOverflow: 'ellipsis',
-    wordBreak: 'break-word',
-  }),
-  languages: css({
-    display: 'flex',
-    flexDirection: 'column',
-    marginTop: 'auto',
-    width: '100%',
-  }),
-  language: css({
-    alignItems: 'center',
-    display: 'grid',
-    gridGap: 6,
-    gridTemplateColumns: 'repeat(3, auto)',
-    marginRight: '12px',
-  }),
-  link: css({
-    fontSize: '1.05em',
-    wordBreak: 'break-word',
-  }),
-  star: css({
-    fontSize: '0.95em',
-    fontStyle: 'italic',
-    height: '1.05em',
-    justifyContent: 'flex-end',
-  }),
-  title: css({
-    padding: '0.5em 0.5em 0',
-  }),
-}
-
 const { format: formatLanguage } = Intl.NumberFormat('en-US', {
   minimumFractionDigits: 1,
   style: 'percent',
@@ -93,26 +23,26 @@ export function GitHubItem({
     .sort((left, right) => right.percent - left.percent)
     .reduce(
       ([bullets, bars], { colorHex, name, percent }) => {
-        const background = css({ backgroundColor: colorHex })
+        const backgroundColor = colorHex
         const width = formatLanguage(percent / 100).replace('.0', '')
 
         const bullet = (
-          <div key={name} className={styles.language}>
+          <div
+            key={name}
+            className="mr-3 grid grid-cols-language items-center gap-1"
+          >
             <div
-              className={cx(background, styles.circle)}
+              className="h-3 w-3 rounded-full"
+              style={{ backgroundColor }}
               data-testid="language-color"
             />
-            <div className={styles.bold}>{name}</div>
+            <div className="font-semibold">{name}</div>
             <div>{width}</div>
           </div>
         )
 
         const bar = (
-          <span
-            key={name}
-            className={cx(background, css({ width }))}
-            title={name}
-          />
+          <span key={name} style={{ backgroundColor, width }} title={name} />
         )
 
         return [
@@ -124,29 +54,36 @@ export function GitHubItem({
     )
 
   return (
-    <Section center={false} className={styles.container}>
-      <Section center={false} className={cx(css(level), styles.title)}>
-        <Link className={styles.link} href={url}>
+    <Section
+      center={false}
+      className="flex h-full min-h-[10rem] flex-col overflow-hidden rounded-md bg-sky-50 text-lg shadow"
+    >
+      <Section
+        center={false}
+        className="flex items-center justify-between px-4 pt-2"
+      >
+        <Link className="break-words text-xl" href={url}>
           {name}
         </Link>
-        <div className={cx(css(level), styles.star)}>
+        <div className="flex h-4 items-center justify-end italic">
           <Star />
           {formatStars(stars)}
         </div>
       </Section>
-      <Section center={false} className={styles.description}>
+      <Section
+        center={false}
+        className="overflow-hidden text-ellipsis break-words py-1 px-4"
+      >
         {description.replace(/<[^>]*>?/gm, '')}
       </Section>
-      <div className={styles.languages}>
-        <div className={styles.bullets}>
+      <div className="mt-auto flex w-full flex-col">
+        <div className="flex flex-wrap px-4 pb-2 text-sm">
           {bullets.slice(0, 3)}
           {bullets.length > 3 && (
-            <span className={cx(css({ color: '#6b6b6b' }), styles.language)}>
-              + {bullets.length - 3} more
-            </span>
+            <span className="text-[#6b6b6b]">+ {bullets.length - 3} more</span>
           )}
         </div>
-        <div className={styles.bar}>{bars}</div>
+        <div className="flex w-full shrink-0 grow-0 basis-3">{bars}</div>
       </div>
     </Section>
   )

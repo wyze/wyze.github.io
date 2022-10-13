@@ -11,8 +11,7 @@ describe('<Section />', () => {
     const content = screen.getByText('Content')
 
     expect(content).toBeInTheDocument()
-    expect(content).toHaveStyle({ textAlign: 'center' })
-
+    expect(content).toHaveClass('text-center')
     expect(content).toHaveClass('cn')
   })
 })

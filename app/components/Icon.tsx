@@ -1,5 +1,3 @@
-import { css } from 'otion'
-
 import {
   GitHub,
   LinkedIn,
@@ -29,16 +27,10 @@ type IconProps = {
   icon: IconType
 }
 
-const styles = css({
-  display: 'inline-block',
-  height: '3.7em',
-  minWidth: '3.7em',
-})
-
 export function Icon({ className = '', href, icon }: IconProps) {
   return (
     <Section className={className}>
-      <Link className={styles} href={href}>
+      <Link className="min-w-20 inline-block h-20" href={href}>
         {icon === IconType.GitHub && <GitHub />}
         {icon === IconType.LinkedIn && <LinkedIn />}
         {icon === IconType.Starship && <Starship />}

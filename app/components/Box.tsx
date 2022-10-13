@@ -1,61 +1,32 @@
-import type { PropsWithChildren } from 'react'
+import clsx from 'clsx'
 import { forwardRef } from 'react'
 
-import { css, cx, large, level, makeRGBA } from '~/styles/helpers'
-
-type BoxProps = PropsWithChildren<{
+type BoxProps = {
+  children: React.ReactNode
   className?: string
   grid?: true
   title?: string
   wrap?: boolean
-}>
-
-const boxShadow = makeRGBA(0.1)
-
-const styles = {
-  container: cx(
-    css({
-      backgroundColor: 'hsl(200, 25%, 94%)',
-      borderRadius: 5,
-      boxShadow: `0 2px 3px 0 ${boxShadow}, 0 0 0 1px ${boxShadow}`,
-      padding: '1em',
-      selectors: {
-        '&:not(:first-child)': {
-          marginTop: '2em',
-        },
-      },
-    }),
-    large({
-      selectors: {
-        '&:not(:first-child)': {
-          marginTop: '4em',
-        },
-      },
-    })
-  ),
-  title: css({
-    boxShadow: `0 2px 2px -2px ${makeRGBA(0.25)}`,
-    color: makeRGBA(0.75),
-    fontSize: '1.4em',
-    fontWeight: 300,
-    marginBottom: '0.5em',
-    paddingBottom: '0.25em',
-  }),
 }
 
 export const Box = forwardRef<HTMLDivElement, BoxProps>(function Box(
-  { children, className = '', grid, title, wrap = false },
+  { children, className, grid, title, wrap = false },
   ref
 ) {
   return (
-    <div ref={ref} className={styles.container}>
-      {title ? <h1 className={styles.title}>{title}</h1> : null}
+    <div ref={ref} className="rounded-lg bg-slate-200 p-6 shadow-lg">
+      {title ? (
+        <h1 className="mb-4 pb-2 text-3xl font-light text-slate-700/75 shadow-bottom">
+          {title}
+        </h1>
+      ) : null}
       <div
-        className={cx(
-          css({
-            flexWrap: wrap ? 'wrap' : 'nowrap',
-          }),
-          grid ? undefined : css(level),
+        className={clsx(
+          {
+            'flex items-center justify-between': !grid,
+            'flex-wrap': !grid && wrap,
+            'flex-nowrap': !grid && !wrap,
+          },
           className
         )}
       >

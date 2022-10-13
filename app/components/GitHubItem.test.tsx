@@ -59,15 +59,10 @@ describe('<GitHubItem />', () => {
     // Bars
     for (const { colorHex, name, percent } of languages) {
       const bar = screen.getByTitle(name)
-      const rgb = colorHex
-        .slice(1)
-        .match(/.{2}(?=(.{2})+(?!.))|.{2}$/g)
-        ?.map((hex) => parseInt(hex, 16))
-        .join(', ')
 
       expect(bar).toBeInTheDocument()
       expect(bar).toHaveStyle({
-        background: `rgb(${rgb})`,
+        backgroundColor: colorHex,
         width: `${percent}%`,
       })
     }
