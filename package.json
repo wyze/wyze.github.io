@@ -19,7 +19,7 @@
     "dev:codegen": "yarn build:codegen -w",
     "dev:css": "yarn generate:css --watch",
     "dev:remix": "remix watch",
-    "dev:wrangler": "NODE_ENV=development wrangler pages dev ./public -b $(cat .env)",
+    "dev:wrangler": "NODE_ENV=development wrangler pages dev ./public --kv PERSONAL -b $(cat .env)",
     "format": "prettier --write .",
     "generate:css": "tailwindcss -o ./app/styles/tailwind.css",
     "install:fonts": "rsync -r node_modules/@fontsource/lato/files/ public/build/_assets/files/",

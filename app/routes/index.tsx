@@ -14,6 +14,30 @@ import {
 } from '~/components'
 import { getData } from '~/services/github.server'
 
+declare module '@remix-run/server-runtime' {
+  interface AppLoadContext {
+    PERSONAL: KVNamespace
+  }
+}
+
+type Data = Awaited<ReturnType<typeof getData>>
+
+export async function loader({ context }: LoaderArgs) {
+  const key = 'data'
+  const kv = context.PERSONAL
+  const cache = await kv.get<Data>(key, { type: 'json' })
+
+  if (cache) {
+    return json(cache)
+  }
+
+  const data = await getData(context)
+
+  await kv.put(key, JSON.stringify(data), { expirationTtl: 86_400 })
+
+  return json(data)
+}
+
 function SocialIcon(props: ComponentProps<typeof Icon>) {
   return <Icon className="my-1 basis-1/2 sm:my-0 sm:basis-1/4" {...props} />
 }
@@ -25,10 +49,6 @@ function TeamIcon(props: ComponentProps<typeof Icon>) {
       {...props}
     />
   )
-}
-
-export async function loader({ context }: LoaderArgs) {
-  return json(await getData(context))
 }
 
 export default function Index() {
