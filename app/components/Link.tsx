@@ -1,25 +1,18 @@
-import type { PropsWithChildren } from 'react'
+import clsx from 'clsx'
 
-import { css, cx } from '~/styles/helpers'
-
-type LinkProps = PropsWithChildren<{
+type LinkProps = {
+  children: React.ReactNode
   className?: string
   href: string
-}>
-
-const styles = css({
-  color: '#8b008b',
-  textDecoration: 'none',
-  transitionDuration: '500ms',
-  ':hover': {
-    color: '#8b0000',
-  },
-})
+}
 
 export function Link({ children, className = '', href }: LinkProps) {
   return (
     <a
-      className={cx(styles, className)}
+      className={clsx(
+        'text-[#8b008b] no-underline transition-colors duration-500 hover:text-[#8b0000]',
+        className
+      )}
       href={href}
       rel="noopener noreferrer"
       target="_blank"

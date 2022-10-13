@@ -13,104 +13,18 @@ import {
   Section,
 } from '~/components'
 import { getData } from '~/services/github.server'
-import { css, cx, large, small, thin } from '~/styles/helpers'
-
-const styles = {
-  conclusion: css({
-    width: '100%',
-    selectors: {
-      '& > h2': {
-        fontSize: '1.25em',
-      },
-    },
-  }),
-  container: cx(
-    css({
-      padding: '2em 1em',
-    }),
-    large({
-      padding: '4em 2em',
-    })
-  ),
-  github: cx(
-    css({
-      display: 'grid',
-      gridGap: 10,
-      gridTemplateColumns: '1fr',
-    }),
-    small(
-      {
-        gridTemplateColumns: 'repeat(2, 1fr)',
-      },
-      true
-    ),
-    large({
-      gridTemplateColumns: 'repeat(3, 1fr)',
-    })
-  ),
-  section: css({
-    flexBasis: 75,
-    flexGrow: 1,
-    flexShrink: 1,
-    width: '100%',
-    selectors: {
-      '& > h1': thin,
-      '& > h1 > strong': {
-        fontWeight: 400,
-      },
-    },
-  }),
-  social: cx(
-    css({
-      flexBasis: 50,
-      flexGrow: 0,
-      flexShrink: 0,
-      margin: '0.5em 0',
-      paddingTop: 0.4,
-    }),
-    small({
-      flexBasis: '25%',
-      margin: 0,
-    })
-  ),
-  team: cx(
-    css({
-      paddingTop: 0.4,
-      width: '100%',
-      selectors: {
-        '&:not(:first-of-type)': {
-          paddingTop: 1,
-        },
-      },
-    }),
-    small({
-      width: '50%',
-      selectors: {
-        '&:not(:first-of-type)': {
-          paddingTop: 0.4,
-        },
-        '&:last-of-type': {
-          marginLeft: '25%',
-        },
-      },
-    }),
-    large({
-      width: '33%',
-      selectors: {
-        '&:last-of-type': {
-          marginLeft: 0,
-        },
-      },
-    })
-  ),
-}
 
 function SocialIcon(props: ComponentProps<typeof Icon>) {
-  return <Icon className={styles.social} {...props} />
+  return <Icon className="my-1 basis-1/2 sm:my-0 sm:basis-1/4" {...props} />
 }
 
 function TeamIcon(props: ComponentProps<typeof Icon>) {
-  return <Icon className={styles.team} {...props} />
+  return (
+    <Icon
+      className="w-full space-y-2 md:w-1/2 md:last:ml-[25%] lg:w-1/3 lg:last:ml-0"
+      {...props}
+    />
+  )
 }
 
 export async function loader({ context }: LoaderArgs) {
@@ -121,11 +35,11 @@ export default function Index() {
   const { contributions, projects } = useLoaderData<typeof loader>()
 
   return (
-    <main className={styles.container}>
-      <Box wrap>
+    <main className="space-y-10 px-6 py-10 lg:space-y-20 lg:px-12 lg:py-20">
+      <Box className="space-y-2" wrap>
         <Me />
-        <Section className={styles.section}>
-          <h1>
+        <Section className="flex w-full flex-1 basis-20">
+          <h1 className="w-full text-3xl font-light">
             Hello, I{"'"}m <strong>Neil Kistner</strong>, a software engineer in{' '}
             <strong>St. Louis</strong>.
           </h1>
@@ -143,7 +57,11 @@ export default function Index() {
           icon={IconType.StackOverflow}
         />
       </Box>
-      <Box title="Employment" wrap>
+      <Box
+        className="grid grid-cols-1 gap-x-20 gap-y-2 md:grid-cols-2"
+        title="Employment"
+        grid
+      >
         <Employer start="April 2017">Juristat</Employer>
         <Employer end="April 2017" start="September 2015">
           Monsanto
@@ -166,19 +84,27 @@ export default function Index() {
         <TeamIcon href="//tessel.io" icon={IconType.Tessel} />
         <TeamIcon href="//starship.rs" icon={IconType.Starship} />
       </Box>
-      <Box className={styles.github} grid title="Contributions Made">
+      <Box
+        className="grid gap-2 md:grid-cols-2 lg:grid-cols-3"
+        grid
+        title="Contributions Made"
+      >
         {contributions.map((contribution) => (
           <GitHubItem key={contribution.name} {...contribution} />
         ))}
       </Box>
-      <Box className={styles.github} grid title="Open Source Projects">
+      <Box
+        className="grid gap-2 md:grid-cols-2 lg:grid-cols-3"
+        grid
+        title="Open Source Projects"
+      >
         {projects.map((project) => (
           <GitHubItem key={project.name} {...project} />
         ))}
       </Box>
       <Box>
-        <Section className={styles.conclusion}>
-          <h2 className={css(thin)}>
+        <Section className="w-full">
+          <h2 className="text-3xl font-light">
             Download <Link href="/assets/resume.pdf">résumé</Link>. View{' '}
             <Link href="//github.com/wyze/wyze.github.io">source</Link>.
           </h2>

@@ -12,6 +12,7 @@ coverage
 
 # Build
 .cache
+app/styles/
 **/build/
 **/functions/
 *.generated.ts

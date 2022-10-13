@@ -1,4 +1,3 @@
-import { css } from 'otion'
 import { describe, expect, it } from 'vitest'
 
 import { render, screen } from '~/test/test-utils'
@@ -13,19 +12,19 @@ describe('<Box />', () => {
 
     expect(screen.getByText('A title')).toBeInTheDocument()
     expect(content).toBeInTheDocument()
-    expect(content).toHaveStyle('flex-wrap: nowrap')
+    expect(content).toHaveClass('flex-nowrap')
   })
 
   it.each([
-    ['wrap', { wrap: true }, 'flex-wrap: wrap'],
+    ['wrap', { wrap: true }, 'flex-wrap'],
     [
       'className',
-      { className: css({ color: 'rebeccapurple' }) },
-      'color: rebeccapurple',
+      { className: 'text-[rebeccapurple]' },
+      'text-[rebeccapurple]',
     ],
-  ])('should apply style with %s property', (_, props, style) => {
+  ])('should apply style with %s property', (_, props, className) => {
     render(<Box {...props}>Content</Box>)
 
-    expect(screen.getByText('Content')).toHaveStyle(style)
+    expect(screen.getByText('Content')).toHaveClass(className)
   })
 })

@@ -1,35 +1,7 @@
-import { css, keyframes } from 'otion'
-
-const bounce = keyframes({
-  '0%': {
-    margin: '5% 0;',
-    width: '90%',
-  },
-  '50%': {
-    margin: '18% 0;',
-    width: '60%',
-  },
-  '100%': {
-    margin: '5% 0;',
-    width: '90%',
-  },
-})
-
-const styles = {
-  container: css({
-    animation: `${bounce} infinite 3s ease-out`,
-    marginTop: '1em',
-    transformOrigin: 'center center',
-  }),
-  ellipse: css({
-    transformOrigin: 'center center',
-  }),
-}
-
 export function Shadow() {
   return (
     <svg
-      className={styles.container}
+      className="mt-2 -ml-3 animate-bounce text-slate-400"
       enableBackground="new 0 0 122.436 39.744"
       height="39.744px"
       viewBox="0 0 122.436 39.744"
@@ -40,10 +12,10 @@ export function Shadow() {
     >
       <title>shadow</title>
       <ellipse
-        className={styles.ellipse}
+        className="origin-center"
         cx="61.128"
         cy="19.872"
-        fill="#406789"
+        fill="currentColor"
         rx="49.25"
         ry="8.916"
       />

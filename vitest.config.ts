@@ -5,6 +5,7 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 import { configDefaults, defineConfig } from 'vitest/config'
 
 export default defineConfig({
+  // @ts-ignore Not sure why, but currently throwing an error.
   plugins: [react(), tsconfigPaths()],
   test: {
     coverage: process.env.CI
@@ -12,7 +13,7 @@ export default defineConfig({
           reporter: 'lcov',
         }
       : {},
-    environment: 'jsdom',
+    environment: 'happy-dom',
     include: ['./app/**/*.test.{ts,tsx}'],
     setupFiles: ['./test/setup-test-env.ts'],
     watchExclude: [

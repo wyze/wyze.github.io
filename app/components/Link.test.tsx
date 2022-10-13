@@ -1,4 +1,3 @@
-import { css } from 'otion'
 import { describe, expect, it } from 'vitest'
 
 import { render, screen, setup } from '~/test/test-utils'
@@ -20,11 +19,11 @@ describe('<Link />', () => {
 
   it('should apply style with className property', () => {
     render(
-      <Link className={css({ color: 'rebeccapurple' })} href="">
+      <Link className="text-[rebeccapurple]" href="">
         Content
       </Link>
     )
 
-    expect(screen.getByText('Content')).toHaveStyle({ color: 'rebeccapurple' })
+    expect(screen.getByText('Content')).toHaveClass('text-[rebeccapurple]')
   })
 })

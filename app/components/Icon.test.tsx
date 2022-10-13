@@ -1,4 +1,3 @@
-import { css } from 'otion'
 import { describe, expect, it } from 'vitest'
 
 import { render, screen } from '~/test/test-utils'
@@ -26,15 +25,11 @@ describe('<Icon />', () => {
 
   it('should apply style with className property', () => {
     render(
-      <Icon
-        className={css({ color: 'rebeccapurple' })}
-        href=""
-        icon={IconType.GitHub}
-      />
+      <Icon className="text-[rebeccapurple]" href="" icon={IconType.GitHub} />
     )
 
-    expect(screen.getByText('github').closest('div')).toHaveStyle({
-      color: 'rebeccapurple',
-    })
+    expect(screen.getByText('github').closest('div')).toHaveClass(
+      'text-[rebeccapurple]'
+    )
   })
 })

@@ -1,17 +1,7 @@
-import { css, keyframes } from 'otion'
-
-const bounce = keyframes({
-  '50%': { transform: 'translate(0, 20px)' },
-})
-
-const styles = css({
-  animation: `${bounce} infinite 3s ease-out`,
-})
-
 export function GhostFloating() {
   return (
     <svg
-      className={styles}
+      className="animate-bounce"
       height="132.743"
       viewBox="0 0 127.433 132.743"
       width="127.433"

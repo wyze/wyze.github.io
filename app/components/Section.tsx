@@ -1,35 +1,13 @@
-import type { PropsWithChildren } from 'react'
+import clsx from 'clsx'
 
-import { css, cx } from '~/styles/helpers'
-
-type SectionProps = PropsWithChildren<{
+type SectionProps = {
   center?: boolean
+  children: React.ReactNode
   className: string
-}>
-
-const styles = {
-  center: css({
-    textAlign: 'center',
-  }),
-  container: css({
-    selectors: {
-      '& h1': {
-        fontSize: '1.4em',
-      },
-    },
-  }),
 }
 
 export function Section({ center = true, children, className }: SectionProps) {
   return (
-    <div
-      className={cx(
-        styles.container,
-        center ? styles.center : undefined,
-        className
-      )}
-    >
-      {children}
-    </div>
+    <div className={clsx({ 'text-center': center }, className)}>{children}</div>
   )
 }
