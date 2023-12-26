@@ -39,8 +39,7 @@ export default function Index() {
       <Box>
         <Section className="w-full">
           <h2 className="text-3xl font-light">
-            Download <Link href="/assets/resume.pdf">résumé</Link>. View{' '}
-            <Link href="//github.com/wyze/wyze.github.io">source</Link>.
+            View <Link href="//github.com/wyze/wyze.github.io">source</Link>.
           </h2>
         </Section>
       </Box>
